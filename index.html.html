@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quick Hands Services & Marketplace</title>
+
+    <meta
+
+        name="description"
+
+        content="Quick Hands Services & Marketplace — Market shopping, errands, pickups and delivery made easier."
+
+    >
+
+    <style>
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f7f7f7;
+
+            color: #222;
+
+            line-height: 1.6;
+
+        }
+
+        a {
+
+            text-decoration: none;
+
+            color: inherit;
+
+        }
+
+        /* TOP BAR */
+
+        .top-bar {
+
+            background: linear-gradient(
+
+                90deg,
+
+                #f5a400,
+
+                #e67e22,
+
+                #d35400
+
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 9px 15px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        /* HEADER */
+
+        header {
+
+            background: white;
+
+            padding: 18px 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
+            border-bottom: 1px solid #eee;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+            color: #e67e22;
+
+        }
+
+        .logo span {
+
+            display: block;
+
+            color: #333;
+
+            font-size: 13px;
+
+            margin-top: 2px;
+
+        }
+
+        nav {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+        }
+
+        nav a {
+
+            padding: 8px 11px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+        nav a:hover {
+
+            background: #fff3df;
+
+        }
+
+        /* HERO */
+
+        .hero {
+
+            background: linear-gradient(
+
+                135deg,
+
+                #f5a400,
+
+                #e67e22,
+
+                #d35400
+
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 65px 20px;
+
+        }
+
+        .hero h1 {
+
+            font-size: clamp(34px, 8vw, 58px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+
+        }
+
+        .hero h2 {
+
+            font-size: clamp(19px, 4vw, 27px);
+
+            margin-bottom: 15px;
+
+        }
+
+        .hero p {
+
+            max-width: 650px;
+
+            margin: 0 auto 25px;
+
+            font-size: 17px;
+
+        }
+
+        .hero-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .button {
+
+            display: inline-block;
+
+            border: none;
+
+            cursor: pointer;
+
+            padding: 14px 22px;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            font-size: 15px;
+
+        }
+
+        .button-white {
+
+            background: white;
+
+            color: #d35400;
+
+        }
+
+        .button-dark {
+
+            background: #222;
+
+            color: white;
+
+        }
+
+        .button-green {
+
+            background: #25D366;
+
+            color: white;
+
+        }
+
+        /* MAIN */
+
+        .section {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 50px 18px;
+
+        }
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+
+        }
+
+        .section-intro {
+
+            text-align: center;
+
+            color: #666;
+
+            max-width: 700px;
+
+            margin: 0 auto 30px;
+
+        }
+
+        /* SERVICES */
+
+        .service-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(
+
+                auto-fit,
+
+                minmax(150px, 1fr)
+
+            );
+
+            gap: 15px;
+
+        }
+
+        .service-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+
+            transition: transform 0.2s;
+
+        }
+
+        .service-card:hover {
+
+            transform: translateY(-3px);
+
+        }
+
+        .service-icon {
+
+            font-size: 35px;
+
+            margin-bottom: 10px;
+
+        }
+
+        .service-card h3 {
+
+            font-size: 17px;
+
+        }
+
+        /* BOOKING */
+
+        .booking-section {
+
+            background: #fff3df;
+
+        }
+
+        .booking-container {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+
+        }
+
+        .booking-container h2 {
+
+            text-align: center;
+
+            margin-bottom: 8px;
+
+        }
+
+        .booking-container > p {
+
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 25px;
+
+        }
+
+        label {
+
+            display: block;
+
+            font-weight: 700;
+
+            margin: 14px 0 6px;
+
+        }
+
+        input,
+
+        select,
+
+        textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-family: inherit;
+
+        }
+
+        textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+
+        }
+
+        .submit-button {
+
+            width: 100%;
+
+            margin-top: 22px;
+
+            background: #25D366;
+
+            color: white;
+
+            border: none;
+
+            padding: 16px;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+        /* HOW IT WORKS */
+
+        .steps {
+
+            display: grid;
+
+            grid-template-columns: repeat(
+
+                auto-fit,
+
+                minmax(200px, 1fr)
+
+            );
+
+            gap: 18px;
+
+        }
+
+        .step {
+
+            background: white;
+
+            padding: 25px 18px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+
+        }
+
+        .step-number {
+
+            width: 45px;
+
+            height: 45px;
+
+            border-radius: 50%;
+
+            background: #e67e22;
+
+            color: white;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin: 0 auto 12px;
+
+            font-weight: 900;
+
+            font-size: 20px;
+
+        }
+
+        /* COMING SOON */
+
+        .coming-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(
+
+                auto-fit,
+
+                minmax(230px, 1fr)
+
+            );
+
+            gap: 18px;
+
+        }
+
+        .coming-card {
+
+            background: white;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            border: 2px dashed #e67e22;
+
+        }
+
+        .coming-card h3 {
+
+            margin-bottom: 8px;
+
+        }
+
+        .coming-card p {
+
+            color: #666;
+
+        }
+
+        /* ADVERTISEMENT */
+
+        .advertisement {
+
+            background: #222;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+        }
+
+        .advertisement h2 {
+
+            margin-bottom: 8px;
+
+        }
+
+        .advertisement p {
+
+            color: #ddd;
+
+            margin-bottom: 18px;
+
+        }
+
+        /* CONTACT */
+
+        .contact {
+
+            background: #fff3df;
+
+            text-align: center;
+
+        }
+
+        .contact-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+
+        }
+
+        /* FOOTER */
+
+        footer {
+
+            background: #171717;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 18px;
+
+        }
+
+        footer h3 {
+
+            margin-bottom: 8px;
+
+        }
+
+        footer p {
+
+            color: #ccc;
+
+            font-size: 14px;
+
+            margin-top: 5px;
+
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            header {
+
+                justify-content: center;
+
+                text-align: center;
+
+            }
+
+            nav {
+
+                justify-content: center;
+
+            }
+
+            nav a {
+
+                font-size: 13px;
+
+            }
+
+            .hero {
+
+                padding: 50px 18px;
+
+            }
+
+            .section {
+
+                padding: 40px 15px;
+
+            }
+
+            .booking-container {
+
+                padding: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        🛒 Quick Hands Services & Marketplace — Your errands. Our hands.
+
+    </div>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="#home" class="logo">
+
+            QUICK HANDS
+
+            <span>Services & Marketplace</span>
+
+        </a>
+
+        <nav>
+
+            <a href="#services">Services</a>
+
+            <a href="#booking">Book</a>
+
+            <a href="#how-it-works">How It Works</a>
+
+            <a href="#riders">Riders</a>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <h1>QUICK HANDS</h1>
+
+        <h2>Services & Marketplace</h2>
+
+        <p>
+
+            Need something done? We can help with market shopping,
+
+            personal shopping, errands, pickups and delivery.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+
+                href="#booking"
+
+                class="button button-white"
+
+            >
+
+                🛒 Book an Errand
+
+            </a>
+
+            <a
+
+                href="tel:+2349041797547"
+
+                class="button button-dark"
+
+            >
+
+                📞 Call Quick Hands
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <section class="section" id="services">
+
+        <h2 class="section-title">
+
+            Our Services
+
+        </h2>
+
+        <p class="section-intro">
+
+            Choose what you need and send your request to Quick Hands.
+
+        </p>
+
+        <div class="service-grid">
+
+            <a href="#booking" class="service-card">
+
+                <div class="service-icon">🛍️</div>
+
+                <h3>Market Shopping</h3>
+
+            </a>
+
+            <a href="#booking" class="service-card">
+
+                <div class="service-icon">🛒</div>
+
+                <h3>Personal Shopping</h3>
+
+            </a>
+
+            <a href="#booking" class="service-card">
+
+                <div class="service-icon">📦</div>
+
+                <h3>Errands</h3>
+
+            </a>
+
+            <a href="#booking" class="service-card">
+
+                <div class="service-icon">📦</div>
+
+                <h3>Pickups</h3>
+
+            </a>
+
+            <a href="#booking" class="service-card">
+
+                <div class="service-icon">🚚</div>
+
+                <h3>Delivery</h3>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- BOOKING -->
+
+    <section class="booking-section" id="booking">
+
+        <div class="section">
+
+            <div class="booking-container">
+
+                <h2>🛒 Book an Errand</h2>
+
+                <p>
+
+                    Tell us what you need and Quick Hands will contact you.
+
+                </p>
+
+                <form id="errandForm">
+
+                    <label for="name">
+
+                        Your Name
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="name"
+
+                        placeholder="Enter your name"
+
+                        required
+
+                    >
+
+                    <label for="phone">
+
+                        Phone Number
+
+                    </label>
+
+                    <input
+
+                        type="tel"
+
+                        id="phone"
+
+                        placeholder="Enter your phone number"
+
+                        required
+
+                    >
+
+                    <label for="service">
+
+                        What do you need?
+
+                    </label>
+
+                    <select id="service" required>
+
+                        <option value="">
+
+                            Select a service
+
+                        </option>
+
+                        <option>
+
+                            Market Shopping
+
+                        </option>
+
+                        <option>
+
+                            Personal Shopping
+
+                        </option>
+
+                        <option>
+
+                            Errands
+
+                        </option>
+
+                        <option>
+
+                            Pickups
+
+                        </option>
+
+                        <option>
+
+                            Delivery
+
+                        </option>
+
+                    </select>
+
+                    <label for="location">
+
+                        Pickup / Shopping Location
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="location"
+
+                        placeholder="Where should we shop or pick up?"
+
+                        required
+
+                    >
+
+                    <label for="destination">
+
+                        Delivery / Destination
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="destination"
+
+                        placeholder="Where should we deliver?"
+
+                        required
+
+                    >
+
+                    <label for="details">
+
+                        Tell us what you need
+
+                    </label>
+
+                    <textarea
+
+                        id="details"
+
+                        placeholder="Describe your request..."
+
+                        required
+
+                    ></textarea>
+
+                    <button
+
+                        type="submit"
+
+                        class="submit-button"
+
+                    >
+
+                        📲 Send Request on WhatsApp
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+
+    <section class="section" id="how-it-works">
+
+        <h2 class="section-title">
+
+            📖 How Quick Hands Works
+
+        </h2>
+
+        <p class="section-intro">
+
+            Getting help is simple.
+
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+
+                    1
+
+                </div>
+
+                <h3>Choose a Service</h3>
+
+                <p>
+
+                    Select shopping, errands, pickups or delivery.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-number">
+
+                    2
+
+                </div>
+
+                <h3>Tell Us What You Need</h3>
+
+                <p>
+
+                    Give us the locations and details of your request.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-number">
+
+                    3
+
+                </div>
+
+                <h3>Send Your Request</h3>
+
+                <p>
+
+                    Your request goes directly to Quick Hands through WhatsApp.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-number">
+
+                    4
+
+                </div>
+
+                <h3>We Get It Done</h3>
+
+                <p>
+
+                    We confirm the request and arrange the service.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FUTURE FEATURES -->
+
+    <section class="section" id="riders">
+
+        <h2 class="section-title">
+
+            Coming to Quick Hands
+
+        </h2>
+
+        <p class="section-intro">
+
+            We're building more ways for customers, sellers and service providers to use Quick Hands.
+
+        </p>
+
+        <div class="coming-grid">
+
+            <div class="coming-card">
+
+                <h3>🏪 Marketplace</h3>
+
+                <p>
+
+                    Shop from businesses and sellers on Quick Hands.
+
+                </p>
+
+            </div>
+
+            <div class="coming-card">
+
+                <h3>🚚 Become a Rider</h3>
+
+                <p>
+
+                    Rider registration and delivery opportunities are coming soon.
+
+                </p>
+
+            </div>
+
+            <div class="coming-card">
+
+                <h3>👤 Customer Accounts</h3>
+
+                <p>
+
+                    Create an account and manage your Quick Hands requests.
+
+                </p>
+
+            </div>
+
+            <div class="coming-card">
+
+                <h3>📢 Business Advertising</h3>
+
+                <p>
+
+                    Businesses and individuals will be able to advertise on Quick Hands.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ADVERTISEMENT -->
+
+    <section class="advertisement">
+
+        <h2>
+
+            📢 Advertise With Quick Hands
+
+        </h2>
+
+        <p>
+
+            Put your business, products or services in front of Quick Hands customers.
+
+        </p>
+
+        <a
+
+            href="https://wa.me/2349041797547?text=Hello%20Quick%20Hands%2C%20I%20am%20interested%20in%20advertising%20on%20Quick%20Hands."
+
+            class="button button-green"
+
+        >
+
+            📲 Ask About Advertising
+
+        </a>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="section contact">
+
+        <h2 class="section-title">
+
+            Need Help?
+
+        </h2>
+
+        <p>
+
+            Contact Quick Hands directly.
+
+        </p>
+
+        <div class="contact-buttons">
+
+            <a
+
+                href="https://wa.me/2349041797547"
+
+                class="button button-green"
+
+            >
+
+                📲 WhatsApp
+
+            </a>
+
+            <a
+
+                href="tel:+2349041797547"
+
+                class="button button-dark"
+
+            >
+
+                📞 Call Us
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+
+            QUICK HANDS SERVICES & MARKETPLACE
+
+        </h3>
+
+        <p>
+
+            Your errands. Our hands.
+
+        </p>
+
+        <p>
+
+            Shop, order, pick up and get your items delivered without the stress.
+
+        </p>
+
+        <p>
+
+            © 2026 Quick Hands Services & Marketplace
+
+        </p>
+
+    </footer>
+
+    <!-- WHATSAPP FORM -->
+
+    <script>
+
+        document
+
+            .getElementById("errandForm")
+
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const name =
+
+                    document.getElementById("name").value.trim();
+
+                const phone =
+
+                    document.getElementById("phone").value.trim();
+
+                const service =
+
+                    document.getElementById("service").value;
+
+                const location =
+
+                    document.getElementById("location").value.trim();
+
+                const destination =
+
+                    document.getElementById("destination").value.trim();
+
+                const details =
+
+                    document.getElementById("details").value.trim();
+
+                const message =
+
+                    "🛒 QUICK HANDS ERRAND REQUEST\n\n" +
+
+                    "Name: " + name + "\n" +
+
+                    "Customer Phone: " + phone + "\n" +
+
+                    "Service: " + service + "\n" +
+
+                    "Pickup / Shopping Location: " +
+
+                    location + "\n" +
+
+                    "Delivery / Destination: " +
+
+                    destination + "\n" +
+
+                    "Details: " + details;
+
+                const whatsappURL =
+
+                    "https://wa.me/2349041797547?text=" +
+
+                    encodeURIComponent(message);
+
+                window.location.href = whatsappURL;
+
+            });
+
+    </script>
+
+</body>
+
+</html>
