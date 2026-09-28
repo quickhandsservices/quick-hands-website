@@ -458,6 +458,60 @@
         </div>
     </div>
 </section>
+<!-- SHOPPING LIST / ERRAND REQUEST -->
+
+<section class="section" id="shopping-list">
+    <h2 class="section-title">
+        🛒 Create Your Shopping List
+    </h2>
+
+    <p class="section-intro">
+        Tell Quick Hands what you want us to buy or help you with. 
+        You can list as many items as you need.
+    </p>
+
+    <form onsubmit="sendShoppingList(event)" class="booking-form">
+
+        <label>Your Name</label>
+        <input type="text" id="shoppingName" placeholder="Enter your name" required>
+
+        <label>Phone Number</label>
+        <input type="tel" id="shoppingPhone" placeholder="Enter your phone number" required>
+
+        <label>Shopping / Market Location</label>
+        <input type="text" id="shoppingLocation" placeholder="Example: Wuse Market" required>
+
+        <label>Delivery / Destination</label>
+        <input type="text" id="shoppingDestination" placeholder="Where should we deliver?" required>
+
+        <label>What do you want us to buy?</label>
+        <textarea id="shoppingItems"
+            placeholder="Example:
+Rice — 10kg
+Tomatoes — 2 baskets
+Fish — 5 pieces
+Cooking oil — 2 bottles
+
+List everything you need here."
+            rows="8"
+            required></textarea>
+
+        <label>Preferred Delivery Time</label>
+        <input type="text" id="shoppingTime" placeholder="Example: Afternoon">
+
+        <label>Additional Instructions</label>
+        <textarea id="shoppingInstructions"
+            placeholder="Any special instructions, preferred brands, quantities, etc."
+            rows="4"></textarea>
+
+        <button type="submit">
+            📲 Send Shopping List on WhatsApp
+        </button>
+
+    </form>
+</section>
+
+<!-- END SHOPPING LIST / ERRAND REQUEST -->
 <section class="section" id="how-it-works">
     <h2 class="section-title">
         📖 How Quick Hands Works
