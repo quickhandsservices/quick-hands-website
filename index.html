@@ -622,44 +622,39 @@ List everything you need here."
 </section>
 <footer>
     <h3>
-        QUICK HANDS SERVICES & MARKETPLACE
-    </h3>
-    <p>
-        Your errands. Our hands.
-    </p>
-    <p>
-        Shop, order, pick up and get your items delivered without the stress.
-    </p>
-    <p>
-        📞 +234 904 179 7547
-    </p>
-    <p>
-        © 2026 Quick Hands Services & Marketplace
-    </p>
-</footer>
 <script>
     const QUICK_HANDS_NUMBER = "2349041797547";
+
     function chooseService(serviceName) {
         setTimeout(function() {
             document.getElementById("service").value = serviceName;
         }, 100);
     }
+
+    // EXISTING ERRAND FORM
     document
         .getElementById("errandForm")
         .addEventListener("submit", function(event) {
             event.preventDefault();
+
             const name =
                 document.getElementById("name").value.trim();
+
             const phone =
                 document.getElementById("phone").value.trim();
+
             const service =
                 document.getElementById("service").value;
+
             const location =
                 document.getElementById("location").value.trim();
+
             const destination =
                 document.getElementById("destination").value.trim();
+
             const details =
                 document.getElementById("details").value.trim();
+
             const message =
                 "🛒 QUICK HANDS ERRAND REQUEST\n\n" +
                 "Name: " + name + "\n" +
@@ -670,13 +665,64 @@ List everything you need here."
                 "Delivery / Destination: " +
                 destination + "\n" +
                 "Details: " + details;
+
             const whatsappURL =
                 "https://wa.me/" +
                 QUICK_HANDS_NUMBER +
                 "?text=" +
                 encodeURIComponent(message);
+
             window.location.href = whatsappURL;
         });
+
+    // SHOPPING LIST FORM
+    function sendShoppingList(event) {
+        event.preventDefault();
+
+        const name =
+            document.getElementById("shoppingName").value.trim();
+
+        const phone =
+            document.getElementById("shoppingPhone").value.trim();
+
+        const location =
+            document.getElementById("shoppingLocation").value.trim();
+
+        const destination =
+            document.getElementById("shoppingDestination").value.trim();
+
+        const items =
+            document.getElementById("shoppingItems").value.trim();
+
+        const time =
+            document.getElementById("shoppingTime").value.trim();
+
+        const instructions =
+            document.getElementById("shoppingInstructions").value.trim();
+
+        const message =
+            "🛒 QUICK HANDS SHOPPING LIST\n\n" +
+            "Name: " + name + "\n" +
+            "Customer Phone: " + phone + "\n" +
+            "Shopping / Market Location: " +
+            location + "\n" +
+            "Delivery / Destination: " +
+            destination + "\n\n" +
+            "ITEMS NEEDED:\n" +
+            items + "\n\n" +
+            "Preferred Delivery Time: " +
+            time + "\n\n" +
+            "Additional Instructions:\n" +
+            instructions;
+
+        const whatsappURL =
+            "https://wa.me/" +
+            QUICK_HANDS_NUMBER +
+            "?text=" +
+            encodeURIComponent(message);
+
+        window.location.href = whatsappURL;
+    }
 </script>
 </body>
 </html>
