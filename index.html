@@ -1076,5 +1076,73 @@ const supabaseClient = supabase.createClient(
 
     <p id="account-message"></p>
 </section>
+<script>
+async function signUpCustomer() {
+    const name = document.getElementById("signup-name").value.trim();
+    const phone = document.getElementById("signup-phone").value.trim();
+    const email = document.getElementById("signup-email").value.trim();
+    const password = document.getElementById("signup-password").value;
+
+    const message = document.getElementById("account-message");
+
+    if (!name || !phone || !email || !password) {
+        message.textContent = "Please fill in all fields.";
+        return;
+    }
+
+    message.textContent = "Creating your account...";
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+            data: {
+                name: name,
+                phone: phone
+            },
+            emailRedirectTo:
+                "https://quickhandsservices.github.io/quick-hands-website/"
+        }
+    });
+
+    if (error) {
+        message.textContent = error.message;
+        return;
+    }
+
+    message.textContent =
+        "Account created. Please check your email to confirm your account.";
+}
+
+async function loginCustomer() {
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
+
+    const message = document.getElementById("account-message");
+
+    if (!email || !password) {
+        message.textContent = "Please enter your email and password.";
+        return;
+    }
+
+    message.textContent = "Logging in...";
+
+    const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+    if (error) {
+        message.textContent = error.message;
+        return;
+    }
+
+    message.textContent = "Login successful!";
+
+    window.location.hash = "account";
+}
+</script>
+
 </body>
 </html>
