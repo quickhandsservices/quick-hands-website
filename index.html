@@ -1004,12 +1004,71 @@ class="button button-green"
 <script>
 const SUPABASE_URL = "https://gccphxlofazghlgtzwba.supabase.co";
 
-const SUPABASE_ANON_KEY = sb_publishable_DPI3mrF-ZpajMMD480pHew_tNM3-IyU
+const SUPABASE_ANON_KEY = "sb_publishable_DPI3mrF-ZpajMMD480pHew_tNM3-IyU";
 
 const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_ANON_KEY
 );
+</script>
+
+<!-- SUPABASE MARKETPLACE TEST -->
+<section id="supabase-marketplace-test" style="padding:30px 20px; max-width:600px; margin:auto;">
+
+    <h2>🛍️ Live Marketplace</h2>
+
+    <p>
+        Markets connected to Quick Hands Marketplace.
+    </p>
+
+    <div id="market-list">
+        Loading markets...
+    </div>
+
+</section>
+
+<script>
+async function loadMarkets() {
+
+    const marketList =
+        document.getElementById("market-list");
+
+    const { data, error } =
+        await supabaseClient
+            .from("Market")
+            .select("*");
+
+    if (error) {
+        marketList.textContent =
+            "Could not load markets: " + error.message;
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        marketList.textContent =
+            "No markets found.";
+        return;
+    }
+
+    marketList.innerHTML = "";
+
+    data.forEach(function(market) {
+
+        const name =
+            market.name ||
+            market.Name ||
+            "Unnamed Market";
+
+        const item =
+            document.createElement("p");
+
+        item.textContent = "🛒 " + name;
+
+        marketList.appendChild(item);
+    });
+}
+
+loadMarkets();
 </script>
 <!-- CUSTOMER ACCOUNT -->
 <section id="account" style="padding:40px 20px; max-width:600px; margin:auto;">
