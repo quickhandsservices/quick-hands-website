@@ -849,69 +849,278 @@ class="button button-green"
     </h2>
 
     <p class="section-intro">
-        Register your shop on Quick Hands Marketplace and start selling to customers across Abuja.
+        Register your shop and start selling to customers across Abuja.
     </p>
 
-    <form id="seller-form">
 
-        <input
-            type="text"
-            id="seller-name"
-            placeholder="Your name"
-            required
-        >
+    <!-- SELLER PERSONAL INFORMATION -->
 
-        <input
-            type="text"
-            id="shop-name"
-            placeholder="Shop / Business name"
-            required
-        >
+    <details open>
 
-        <input
-            type="tel"
-            id="seller-phone"
-            placeholder="Phone number"
-            required
-        >
+        <summary>
+            👤 Personal Information
+        </summary>
 
-        <input
-            type="text"
-            id="seller-market"
-            placeholder="Market / Location"
-            required
-        >
+        <div style="padding:15px 0;">
 
-        <input
-            type="text"
-            id="bank-name"
-            placeholder="Bank name"
-            required
-        >
+            <input
+                type="text"
+                id="seller-name"
+                placeholder="Full Name"
+                required
+            >
 
-        <input
-            type="text"
-            id="account-name"
-            placeholder="Account name"
-            required
-        >
+            <input
+                type="tel"
+                id="seller-phone"
+                placeholder="Phone Number"
+                required
+            >
 
-        <input
-            type="text"
-            id="account-number"
-            placeholder="Account number"
-            inputmode="numeric"
-            required
-        >
+            <input
+                type="email"
+                id="seller-email"
+                placeholder="Email Address"
+            >
+
+            <input
+                type="tel"
+                id="seller-whatsapp"
+                placeholder="WhatsApp Number"
+            >
+
+        </div>
+
+    </details>
+
+
+    <!-- BUSINESS INFORMATION -->
+
+    <details>
+
+        <summary>
+            🏪 Business Information
+        </summary>
+
+        <div style="padding:15px 0;">
+
+            <input
+                type="text"
+                id="shop-name"
+                placeholder="Shop / Business Name"
+                required
+            >
+
+            <input
+                type="text"
+                id="seller-business-type"
+                placeholder="Business Type"
+            >
+
+            <input
+                type="text"
+                id="seller-description"
+                placeholder="Short Business Description"
+            >
+
+        </div>
+
+    </details>
+
+
+    <!-- MARKET INFORMATION -->
+
+    <details>
+
+        <summary>
+            🛒 Market & Location
+        </summary>
+
+        <div style="padding:15px 0;">
+
+            <label for="seller-market">
+                Market / Location
+            </label>
+
+            <input
+                type="text"
+                id="seller-market"
+                placeholder="Example: Gwarinpa Market"
+                required
+            >
+
+            <input
+                type="text"
+                id="seller-shop-address"
+                placeholder="Shop Address / Stall Number"
+            >
+
+            <input
+                type="text"
+                id="seller-city"
+                placeholder="City"
+                value="Abuja"
+            >
+
+            <input
+                type="text"
+                id="seller-state"
+                placeholder="State"
+                value="FCT"
+            >
+
+        </div>
+
+    </details>
+
+
+    <!-- PRODUCTS AND SERVICES -->
+
+    <details>
+
+        <summary>
+            🛍️ Products & Services
+        </summary>
+
+        <div style="padding:15px 0;">
+
+            <input
+                type="text"
+                id="seller-category"
+                placeholder="Main Product Category"
+            >
+
+            <input
+                type="text"
+                id="seller-products"
+                placeholder="Products You Sell"
+            >
+
+            <input
+                type="text"
+                id="seller-services"
+                placeholder="Services You Provide (Optional)"
+            >
+
+        </div>
+
+    </details>
+
+
+    <!-- DELIVERY INFORMATION -->
+
+    <details>
+
+        <summary>
+            🚚 Delivery & Shop Hours
+        </summary>
+
+        <div style="padding:15px 0;">
+
+            <input
+                type="text"
+                id="seller-opening-hours"
+                placeholder="Opening Hours"
+            >
+
+            <input
+                type="text"
+                id="seller-delivery-area"
+                placeholder="Delivery Areas"
+            >
+
+            <input
+                type="text"
+                id="seller-delivery-notes"
+                placeholder="Delivery Information"
+            >
+
+        </div>
+
+    </details>
+
+
+    <!-- PAYOUT INFORMATION -->
+
+    <details>
+
+        <summary>
+            💰 Payout Information
+        </summary>
+
+        <div style="padding:15px 0;">
+
+            <p>
+                Your payout information will be used to set up secure seller payments.
+            </p>
+
+            <input
+                type="text"
+                id="bank-name"
+                placeholder="Bank Name"
+            >
+
+            <input
+                type="text"
+                id="account-name"
+                placeholder="Account Name"
+            >
+
+            <input
+                type="text"
+                id="account-number"
+                placeholder="Account Number"
+                inputmode="numeric"
+            >
+
+        </div>
+
+    </details>
+
+
+    <!-- SELLER AGREEMENT -->
+
+    <details>
+
+        <summary>
+            ✅ Verification & Agreement
+        </summary>
+
+        <div style="padding:15px 0;">
+
+            <label style="display:block; margin:10px 0;">
+
+                <input
+                    type="checkbox"
+                    id="seller-agreement"
+                >
+
+                I confirm that the information provided is correct
+                and I agree to the Quick Hands seller terms.
+
+            </label>
+
+        </div>
+
+    </details>
+
+
+    <!-- REGISTER BUTTON -->
+
+    <div style="margin-top:20px;">
 
         <button
             type="submit"
+            form="seller-form"
             class="button button-green"
         >
-            🏪 Register as Seller
+            🏪 Submit Seller Application
         </button>
 
-    </form>
+    </div>
+
+
+    <form id="seller-form" style="display:none;"></form>
 
     <p id="seller-message"></p>
 
@@ -1153,19 +1362,40 @@ loadMarkets();
 <section id="account" style="padding:40px 20px; max-width:600px; margin:auto;">
 
     <style>
+
         #account input {
-            display: block !important;
-            width: 100% !important;
-            padding: 12px !important;
-            margin: 10px 0 !important;
-            box-sizing: border-box !important;
+            display:block;
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            box-sizing:border-box;
+            border:1px solid #ccc;
+            border-radius:8px;
         }
 
         #account button {
-            margin: 10px 0 !important;
-            padding: 12px 18px !important;
+            margin:8px 0;
+            padding:12px 18px;
+            border-radius:8px;
+            cursor:pointer;
         }
+
+        .account-panel {
+            display:none;
+            margin-top:15px;
+            padding:20px;
+            border:1px solid #ddd;
+            border-radius:10px;
+            background:#fafafa;
+        }
+
+        .account-option {
+            display:block;
+            width:100%;
+        }
+
     </style>
+
 
     <h2>👤 Customer Account</h2>
 
@@ -1173,79 +1403,278 @@ loadMarkets();
         Create an account or log in to manage your Quick Hands orders.
     </p>
 
-    <h3>Create Account</h3>
 
-    <input
-        type="text"
-        id="signup-name"
-        placeholder="Full Name"
-    >
-
-    <input
-        type="tel"
-        id="signup-phone"
-        placeholder="Phone Number"
-    >
-
-    <input
-        type="email"
-        id="signup-email"
-        placeholder="Email Address"
-    >
-
-    <input
-        type="password"
-        id="signup-password"
-        placeholder="Password"
-    >
+    <!-- CUSTOMER OPTIONS -->
 
     <button
         type="button"
-        id="create-account-button"
-        class="button button-green"
+        id="show-customer-register"
+        class="button button-green account-option"
     >
-        Create Account
+        👤 Create Customer Account
     </button>
 
-    <h3>Already have an account?</h3>
-
-    <input
-        type="email"
-        id="login-email"
-        placeholder="Email Address"
-    >
-
-    <input
-        type="password"
-        id="login-password"
-        placeholder="Password"
-    >
 
     <button
         type="button"
-        id="login-account-button"
-        class="button"
+        id="show-customer-login"
+        class="button account-option"
     >
-        Log In
+        🔐 Already Have an Account? Log In
     </button>
+
+
+    <!-- CUSTOMER REGISTRATION -->
+
+    <div
+        id="customer-register-panel"
+        class="account-panel"
+    >
+
+        <h3>👤 Create Your Customer Account</h3>
+
+        <p>
+            Please provide your information so Quick Hands can serve you better.
+        </p>
+
+
+        <h4>Personal Information</h4>
+
+        <input
+            type="text"
+            id="signup-name"
+            placeholder="Full Name"
+        >
+
+        <input
+            type="tel"
+            id="signup-phone"
+            placeholder="Phone Number"
+        >
+
+        <input
+            type="tel"
+            id="signup-whatsapp"
+            placeholder="WhatsApp Number"
+        >
+
+
+        <h4>Account Information</h4>
+
+        <input
+            type="email"
+            id="signup-email"
+            placeholder="Email Address"
+        >
+
+        <input
+            type="password"
+            id="signup-password"
+            placeholder="Password"
+        >
+
+        <input
+            type="password"
+            id="signup-password-confirm"
+            placeholder="Confirm Password"
+        >
+
+
+        <h4>Delivery Information</h4>
+
+        <input
+            type="text"
+            id="signup-address"
+            placeholder="Home / Delivery Address"
+        >
+
+        <input
+            type="text"
+            id="signup-area"
+            placeholder="Area / District"
+        >
+
+        <input
+            type="text"
+            id="signup-city"
+            placeholder="City"
+        >
+
+        <input
+            type="text"
+            id="signup-state"
+            placeholder="State"
+        >
+
+        <input
+            type="text"
+            id="signup-delivery-notes"
+            placeholder="Delivery Instructions (Optional)"
+        >
+
+
+        <button
+            type="button"
+            id="create-account-button"
+            class="button button-green"
+        >
+            Create Account
+        </button>
+
+    </div>
+
+
+    <!-- CUSTOMER LOGIN -->
+
+    <div
+        id="customer-login-panel"
+        class="account-panel"
+    >
+
+        <h3>🔐 Customer Login</h3>
+
+        <input
+            type="email"
+            id="login-email"
+            placeholder="Email Address"
+        >
+
+        <input
+            type="password"
+            id="login-password"
+            placeholder="Password"
+        >
+
+        <button
+            type="button"
+            id="login-account-button"
+            class="button"
+        >
+            Log In
+        </button>
+
+    </div>
+
 
     <p id="account-message"></p>
 
+
+    <!-- SELLER ACCESS -->
+
+    <div
+        style="
+            margin-top:30px;
+            padding-top:20px;
+            border-top:1px solid #ddd;
+        "
+    >
+
+        <h3>🏪 Want to Sell on Quick Hands?</h3>
+
+        <p>
+            Register your shop and become a Quick Hands Marketplace seller.
+        </p>
+
+        <button
+            type="button"
+            id="show-seller-registration"
+            class="button button-green account-option"
+        >
+            🏪 Register as a Seller
+        </button>
+
+    </div>
+
 </section>
+
 
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    const registerButton =
+        document.getElementById("show-customer-register");
+
+    const loginButton =
+        document.getElementById("show-customer-login");
+
+    const sellerButton =
+        document.getElementById("show-seller-registration");
+
+    const registerPanel =
+        document.getElementById("customer-register-panel");
+
+    const loginPanel =
+        document.getElementById("customer-login-panel");
+
+    const sellerPanel =
+        document.getElementById("seller-registration");
+
     const createButton =
         document.getElementById("create-account-button");
 
-    const loginButton =
+    const loginAccountButton =
         document.getElementById("login-account-button");
 
     const message =
         document.getElementById("account-message");
 
+
+    /* SHOW CUSTOMER REGISTRATION */
+
+    registerButton.addEventListener("click", function () {
+
+        registerPanel.style.display = "block";
+
+        loginPanel.style.display = "none";
+
+        message.textContent = "";
+
+        registerPanel.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+
+    /* SHOW CUSTOMER LOGIN */
+
+    loginButton.addEventListener("click", function () {
+
+        loginPanel.style.display = "block";
+
+        registerPanel.style.display = "none";
+
+        message.textContent = "";
+
+        loginPanel.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+
+    /* SHOW SELLER REGISTRATION */
+
+    sellerButton.addEventListener("click", function () {
+
+        if (sellerPanel) {
+
+            sellerPanel.style.display = "block";
+
+            sellerPanel.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    });
+
+
+    /* CREATE CUSTOMER ACCOUNT */
 
     createButton.addEventListener("click", async function () {
 
@@ -1259,17 +1688,29 @@ document.addEventListener("DOMContentLoaded", function () {
         const phone =
             document.getElementById("signup-phone").value.trim();
 
+        const whatsapp =
+            document.getElementById("signup-whatsapp").value.trim();
+
         const email =
             document.getElementById("signup-email").value.trim();
 
         const password =
             document.getElementById("signup-password").value;
 
+        const passwordConfirm =
+            document.getElementById("signup-password-confirm").value;
 
-        if (!name || !phone || !email || !password) {
+
+        if (
+            !name ||
+            !phone ||
+            !email ||
+            !password ||
+            !passwordConfirm
+        ) {
 
             message.textContent =
-                "Please fill in all fields.";
+                "Please fill in all required fields.";
 
             return;
 
@@ -1280,6 +1721,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             message.textContent =
                 "Password must be at least 6 characters.";
+
+            return;
+
+        }
+
+
+        if (password !== passwordConfirm) {
+
+            message.textContent =
+                "Passwords do not match.";
 
             return;
 
@@ -1298,8 +1749,38 @@ document.addEventListener("DOMContentLoaded", function () {
                     options: {
 
                         data: {
+
                             name: name,
-                            phone: phone
+
+                            phone: phone,
+
+                            whatsapp: whatsapp,
+
+                            address:
+                                document.getElementById(
+                                    "signup-address"
+                                ).value.trim(),
+
+                            area:
+                                document.getElementById(
+                                    "signup-area"
+                                ).value.trim(),
+
+                            city:
+                                document.getElementById(
+                                    "signup-city"
+                                ).value.trim(),
+
+                            state:
+                                document.getElementById(
+                                    "signup-state"
+                                ).value.trim(),
+
+                            delivery_notes:
+                                document.getElementById(
+                                    "signup-delivery-notes"
+                                ).value.trim()
+
                         },
 
                         emailRedirectTo:
@@ -1313,7 +1794,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.error) {
 
                 message.textContent =
-                    "Signup error: " + result.error.message;
+                    "Signup error: " +
+                    result.error.message;
 
                 return;
 
@@ -1326,14 +1808,17 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
 
             message.textContent =
-                "Error: " + error.message;
+                "Error: " +
+                error.message;
 
         }
 
     });
 
 
-    loginButton.addEventListener("click", async function () {
+    /* CUSTOMER LOGIN */
+
+    loginAccountButton.addEventListener("click", async function () {
 
         message.textContent =
             "Logging in...";
@@ -1371,7 +1856,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.error) {
 
                 message.textContent =
-                    "Login error: " + result.error.message;
+                    "Login error: " +
+                    result.error.message;
 
                 return;
 
@@ -1384,15 +1870,16 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
 
             message.textContent =
-                "Error: " + error.message;
+                "Error: " +
+                error.message;
 
         }
 
     });
 
 });
-</script>
 
+</script>
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -1404,12 +1891,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+
     sellerForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
+
         const message =
             document.getElementById("seller-message");
+
 
         message.textContent =
             "Registering your shop...";
@@ -1424,6 +1914,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        /* CHECK CUSTOMER LOGIN */
+
         const { data: userData, error: userError } =
             await supabaseClient.auth.getUser();
 
@@ -1437,20 +1929,77 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        const user = userData.user;
+        const user =
+            userData.user;
 
+
+        /* GET SELLER INFORMATION */
 
         const sellerName =
             document.getElementById("seller-name").value.trim();
 
-        const shopName =
-            document.getElementById("shop-name").value.trim();
-
         const sellerPhone =
             document.getElementById("seller-phone").value.trim();
 
+        const sellerEmail =
+            document.getElementById("seller-email").value.trim();
+
+        const sellerWhatsapp =
+            document.getElementById("seller-whatsapp").value.trim();
+
+
+        /* BUSINESS INFORMATION */
+
+        const shopName =
+            document.getElementById("shop-name").value.trim();
+
+        const businessType =
+            document.getElementById("seller-business-type").value.trim();
+
+        const description =
+            document.getElementById("seller-description").value.trim();
+
+
+        /* LOCATION */
+
         const sellerMarket =
             document.getElementById("seller-market").value.trim();
+
+        const shopAddress =
+            document.getElementById("seller-shop-address").value.trim();
+
+        const sellerCity =
+            document.getElementById("seller-city").value.trim();
+
+        const sellerState =
+            document.getElementById("seller-state").value.trim();
+
+
+        /* PRODUCTS */
+
+        const category =
+            document.getElementById("seller-category").value.trim();
+
+        const products =
+            document.getElementById("seller-products").value.trim();
+
+        const services =
+            document.getElementById("seller-services").value.trim();
+
+
+        /* DELIVERY */
+
+        const openingHours =
+            document.getElementById("seller-opening-hours").value.trim();
+
+        const deliveryArea =
+            document.getElementById("seller-delivery-area").value.trim();
+
+        const deliveryNotes =
+            document.getElementById("seller-delivery-notes").value.trim();
+
+
+        /* PAYOUT */
 
         const bankName =
             document.getElementById("bank-name").value.trim();
@@ -1462,22 +2011,30 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("account-number").value.trim();
 
 
+        /* AGREEMENT */
+
+        const agreement =
+            document.getElementById("seller-agreement").checked;
+
+
+        /* REQUIRED INFORMATION */
+
         if (
             !sellerName ||
-            !shopName ||
             !sellerPhone ||
+            !shopName ||
             !sellerMarket ||
-            !bankName ||
-            !accountName ||
-            !accountNumber
+            !agreement
         ) {
 
             message.textContent =
-                "Please fill in all seller registration fields.";
+                "Please complete the required information and accept the seller agreement.";
 
             return;
         }
 
+
+        /* FIND MARKET */
 
         const { data: market, error: marketError } =
             await supabaseClient
@@ -1495,6 +2052,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+
+        /* CREATE SHOP */
 
         const { data: shop, error: shopError } =
             await supabaseClient
@@ -1526,6 +2085,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        /* SAVE PAYOUT PROFILE */
+
         const { error: payoutError } =
             await supabaseClient
                 .from("seller_payout_profiles")
@@ -1554,17 +2115,44 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        /* SUCCESS */
+
         message.textContent =
             "Seller registration submitted successfully! Your shop is pending approval.";
 
 
-        sellerForm.reset();
+        /* CLEAR SELLER FIELDS */
+
+        document.getElementById("seller-name").value = "";
+        document.getElementById("seller-phone").value = "";
+        document.getElementById("seller-email").value = "";
+        document.getElementById("seller-whatsapp").value = "";
+
+        document.getElementById("shop-name").value = "";
+        document.getElementById("seller-business-type").value = "";
+        document.getElementById("seller-description").value = "";
+
+        document.getElementById("seller-market").value = "";
+        document.getElementById("seller-shop-address").value = "";
+
+        document.getElementById("seller-category").value = "";
+        document.getElementById("seller-products").value = "";
+        document.getElementById("seller-services").value = "";
+
+        document.getElementById("seller-opening-hours").value = "";
+        document.getElementById("seller-delivery-area").value = "";
+        document.getElementById("seller-delivery-notes").value = "";
+
+        document.getElementById("bank-name").value = "";
+        document.getElementById("account-name").value = "";
+        document.getElementById("account-number").value = "";
+
+        document.getElementById("seller-agreement").checked = false;
 
     });
 
 });
 
 </script>
-
 </body>
 </html>
