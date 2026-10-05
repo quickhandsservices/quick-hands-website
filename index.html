@@ -1151,262 +1151,354 @@ loadMarkets();
 </script>
 <!-- CUSTOMER ACCOUNT -->
 <section id="account" style="padding:40px 20px; max-width:600px; margin:auto;">
+
     <style>
         #account input {
             display: block !important;
             width: 100% !important;
             padding: 12px !important;
-margin: 10px 0 !important;
+            margin: 10px 0 !important;
             box-sizing: border-box !important;
         }
+
+        #account button {
+            margin: 10px 0 !important;
+            padding: 12px 18px !important;
+        }
     </style>
+
     <h2>👤 Customer Account</h2>
-    <p>Create an account or log in to manage your Quick Hands orders.</p>
 
-    <div>
-        <h3>Create Account</h3>
+    <p>
+        Create an account or log in to manage your Quick Hands orders.
+    </p>
 
-        <input
-            type="text"
-            id="signup-name"
-            placeholder="Full Name"
-            required
-        >
+    <h3>Create Account</h3>
 
-        <input
-            type="tel"
-            id="signup-phone"
-            placeholder="Phone Number"
-            required
-        >
+    <input
+        type="text"
+        id="signup-name"
+        placeholder="Full Name"
+    >
 
-        <input
-            type="email"
-            id="signup-email"
-            placeholder="Email Address"
-            required
-        >
+    <input
+        type="tel"
+        id="signup-phone"
+        placeholder="Phone Number"
+    >
 
-        <input
-            type="password"
-            id="signup-password"
-            placeholder="Password"
-            required
-        >
+    <input
+        type="email"
+        id="signup-email"
+        placeholder="Email Address"
+    >
 
-        <button type="button" onclick="signUpCustomer()">
-            Create Account
-        </button>
-    </div>
+    <input
+        type="password"
+        id="signup-password"
+        placeholder="Password"
+    >
 
-    <div>
-        <h3>Already have an account?</h3>
+    <button
+        type="button"
+        id="create-account-button"
+        class="button button-green"
+    >
+        Create Account
+    </button>
 
-        <input
-            type="email"
-            id="login-email"
-            placeholder="Email Address"
-            required
-        >
+    <h3>Already have an account?</h3>
 
-        <input
-            type="password"
-            id="login-password"
-            placeholder="Password"
-            required
-        >
+    <input
+        type="email"
+        id="login-email"
+        placeholder="Email Address"
+    >
 
-        <button type="button" onclick="loginCustomer()">
-            Log In
-        </button>
-    </div>
+    <input
+        type="password"
+        id="login-password"
+        placeholder="Password"
+    >
+
+    <button
+        type="button"
+        id="login-account-button"
+        class="button"
+    >
+        Log In
+    </button>
 
     <p id="account-message"></p>
+
 </section>
+
 <script>
-async function signUpCustomer() {
-    const name = document.getElementById("signup-name").value.trim();
-    const phone = document.getElementById("signup-phone").value.trim();
-    const email = document.getElementById("signup-email").value.trim();
-    const password = document.getElementById("signup-password").value;
 
-    const message = document.getElementById("account-message");
-
-    if (!name || !phone || !email || !password) {
-        message.textContent = "Please fill in all fields.";
-        return;
-    }
-
-    message.textContent = "Creating your account...";
-
-    const { data, error } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-            data: {
-                name: name,
-                phone: phone
-            },
-            emailRedirectTo:
-                "https://quickhandsservices.github.io/quick-hands-website/"
-        }
-    });
-
-    if (error) {
-        message.textContent = error.message;
-        return;
-    }
-
-    message.textContent =
-        "Account created. Please check your email to confirm your account.";
-}
-
-async function loginCustomer() {
-    const email = document.getElementById("login-email").value.trim();
-    const password = document.getElementById("login-password").value;
-
-    const message = document.getElementById("account-message");
-
-    if (!email || !password) {
-        message.textContent = "Please enter your email and password.";
-        return;
-    }
-
-    message.textContent = "Logging in...";
-
-    const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
-
-    if (error) {
-        message.textContent = error.message;
-        return;
-    }
-
-    message.textContent = "Login successful!";
-
-    window.location.hash = "account";
-}
-</script>
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const sellerForm = document.getElementById("seller-form");
+    const createButton =
+        document.getElementById("create-account-button");
+
+    const loginButton =
+        document.getElementById("login-account-button");
+
+    const message =
+        document.getElementById("account-message");
+
+
+    createButton.addEventListener("click", async function () {
+
+        message.textContent =
+            "Creating your account...";
+
+
+        const name =
+            document.getElementById("signup-name").value.trim();
+
+        const phone =
+            document.getElementById("signup-phone").value.trim();
+
+        const email =
+            document.getElementById("signup-email").value.trim();
+
+        const password =
+            document.getElementById("signup-password").value;
+
+
+        if (!name || !phone || !email || !password) {
+
+            message.textContent =
+                "Please fill in all fields.";
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            message.textContent =
+                "Password must be at least 6 characters.";
+
+            return;
+
+        }
+
+
+        try {
+
+            const result =
+                await supabaseClient.auth.signUp({
+
+                    email: email,
+
+                    password: password,
+
+                    options: {
+
+                        data: {
+                            name: name,
+                            phone: phone
+                        },
+
+                        emailRedirectTo:
+                            "https://quickhandsservices.github.io/quick-hands-website/"
+
+                    }
+
+                });
+
+
+            if (result.error) {
+
+                message.textContent =
+                    "Signup error: " + result.error.message;
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Account created! Please check your email to confirm your account.";
+
+        } catch (error) {
+
+            message.textContent =
+                "Error: " + error.message;
+
+        }
+
+    });
+
+
+    loginButton.addEventListener("click", async function () {
+
+        message.textContent =
+            "Logging in...";
+
+
+        const email =
+            document.getElementById("login-email").value.trim();
+
+        const password =
+            document.getElementById("login-password").value;
+
+
+        if (!email || !password) {
+
+            message.textContent =
+                "Please enter your email and password.";
+
+            return;
+
+        }
+
+
+        try {
+
+            const result =
+                await supabaseClient.auth.signInWithPassword({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            if (result.error) {
+
+                message.textContent =
+                    "Login error: " + result.error.message;
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Login successful!";
+
+        } catch (error) {
+
+            message.textContent =
+                "Error: " + error.message;
+
+        }
+
+    });
+
+});
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const sellerForm =
+        document.getElementById("seller-form");
 
     if (!sellerForm) {
-
         return;
-
     }
 
-    sellerForm.addEventListener("submit", async function(event) {
+    sellerForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
-        const message = document.getElementById("seller-message");
+        const message =
+            document.getElementById("seller-message");
 
-        message.textContent = "Registering your shop...";
+        message.textContent =
+            "Registering your shop...";
+
+
+        if (typeof supabaseClient === "undefined") {
+
+            message.textContent =
+                "Supabase is not connected.";
+
+            return;
+        }
+
 
         const { data: userData, error: userError } =
-
             await supabaseClient.auth.getUser();
+
 
         if (userError || !userData.user) {
 
             message.textContent =
-
                 "Please create or log in to your Customer Account first.";
 
             return;
-
         }
+
 
         const user = userData.user;
 
-        const sellerName =
 
+        const sellerName =
             document.getElementById("seller-name").value.trim();
 
         const shopName =
-
             document.getElementById("shop-name").value.trim();
 
         const sellerPhone =
-
             document.getElementById("seller-phone").value.trim();
 
         const sellerMarket =
-
             document.getElementById("seller-market").value.trim();
 
         const bankName =
-
             document.getElementById("bank-name").value.trim();
 
         const accountName =
-
             document.getElementById("account-name").value.trim();
 
         const accountNumber =
-
             document.getElementById("account-number").value.trim();
 
+
         if (
-
             !sellerName ||
-
             !shopName ||
-
             !sellerPhone ||
-
             !sellerMarket ||
-
             !bankName ||
-
             !accountName ||
-
             !accountNumber
-
         ) {
 
             message.textContent =
-
                 "Please fill in all seller registration fields.";
 
             return;
-
         }
 
+
         const { data: market, error: marketError } =
-
             await supabaseClient
-
                 .from("Market")
-
                 .select("id, name")
-
                 .ilike("name", sellerMarket)
-
                 .maybeSingle();
+
 
         if (marketError || !market) {
 
             message.textContent =
-
                 "Market not found. Please enter the exact market name.";
 
             return;
-
         }
 
+
         const { data: shop, error: shopError } =
-
             await supabaseClient
-
                 .from("Shops")
-
                 .insert({
 
                     Name: shopName,
@@ -1420,27 +1512,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     status: "pending"
 
                 })
-
                 .select("id")
-
                 .single();
+
 
         if (shopError) {
 
             message.textContent =
-
-                "Shop registration failed: " + shopError.message;
+                "Shop registration failed: " +
+                shopError.message;
 
             return;
-
         }
 
+
         const { error: payoutError } =
-
             await supabaseClient
-
                 .from("seller_payout_profiles")
-
                 .insert({
 
                     shop_id: shop.id,
@@ -1455,21 +1543,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 });
 
+
         if (payoutError) {
 
             message.textContent =
-
                 "Shop created, but payout information could not be saved: " +
-
                 payoutError.message;
 
             return;
-
         }
 
-        message.textContent =
 
+        message.textContent =
             "Seller registration submitted successfully! Your shop is pending approval.";
+
 
         sellerForm.reset();
 
@@ -1478,5 +1565,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+
 </body>
 </html>
