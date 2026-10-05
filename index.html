@@ -1076,6 +1076,7 @@ class="button button-green"
 
         window.location.href = whatsappURL;
     }
+</script>
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1289,6 +1290,193 @@ async function loginCustomer() {
     window.location.hash = "account";
 }
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const sellerForm = document.getElementById("seller-form");
+
+    if (!sellerForm) {
+
+        return;
+
+    }
+
+    sellerForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const message = document.getElementById("seller-message");
+
+        message.textContent = "Registering your shop...";
+
+        const { data: userData, error: userError } =
+
+            await supabaseClient.auth.getUser();
+
+        if (userError || !userData.user) {
+
+            message.textContent =
+
+                "Please create or log in to your Customer Account first.";
+
+            return;
+
+        }
+
+        const user = userData.user;
+
+        const sellerName =
+
+            document.getElementById("seller-name").value.trim();
+
+        const shopName =
+
+            document.getElementById("shop-name").value.trim();
+
+        const sellerPhone =
+
+            document.getElementById("seller-phone").value.trim();
+
+        const sellerMarket =
+
+            document.getElementById("seller-market").value.trim();
+
+        const bankName =
+
+            document.getElementById("bank-name").value.trim();
+
+        const accountName =
+
+            document.getElementById("account-name").value.trim();
+
+        const accountNumber =
+
+            document.getElementById("account-number").value.trim();
+
+        if (
+
+            !sellerName ||
+
+            !shopName ||
+
+            !sellerPhone ||
+
+            !sellerMarket ||
+
+            !bankName ||
+
+            !accountName ||
+
+            !accountNumber
+
+        ) {
+
+            message.textContent =
+
+                "Please fill in all seller registration fields.";
+
+            return;
+
+        }
+
+        const { data: market, error: marketError } =
+
+            await supabaseClient
+
+                .from("Market")
+
+                .select("id, name")
+
+                .ilike("name", sellerMarket)
+
+                .maybeSingle();
+
+        if (marketError || !market) {
+
+            message.textContent =
+
+                "Market not found. Please enter the exact market name.";
+
+            return;
+
+        }
+
+        const { data: shop, error: shopError } =
+
+            await supabaseClient
+
+                .from("Shops")
+
+                .insert({
+
+                    Name: shopName,
+
+                    Phone: sellerPhone,
+
+                    market_id: market.id,
+
+                    auth_user_id: user.id,
+
+                    status: "pending"
+
+                })
+
+                .select("id")
+
+                .single();
+
+        if (shopError) {
+
+            message.textContent =
+
+                "Shop registration failed: " + shopError.message;
+
+            return;
+
+        }
+
+        const { error: payoutError } =
+
+            await supabaseClient
+
+                .from("seller_payout_profiles")
+
+                .insert({
+
+                    shop_id: shop.id,
+
+                    bank_name: bankName,
+
+                    account_name: accountName,
+
+                    account_number: accountNumber,
+
+                    verification_status: "pending"
+
+                });
+
+        if (payoutError) {
+
+            message.textContent =
+
+                "Shop created, but payout information could not be saved: " +
+
+                payoutError.message;
+
+            return;
+
+        }
+
+        message.textContent =
+
+            "Seller registration submitted successfully! Your shop is pending approval.";
+
+        sellerForm.reset();
+
+    });
+
+});
+
+</script>
 </body>
 </html>
