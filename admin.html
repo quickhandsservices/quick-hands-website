@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quick Hands Admin</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        .top {
+            background: linear-gradient(90deg, #f5a400, #e67e22, #d35400);
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        .top h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .top p {
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #e67e22;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d35400;
+        }
+
+        .logout {
+            background: #333;
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .error {
+            background: #ffe5e5;
+            color: #a40000;
+        }
+
+        .success {
+            background: #e5f8e9;
+            color: #176b2c;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .admin-item {
+            background: #f7f7f7;
+            padding: 18px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top">
+        <h1>QUICK HANDS</h1>
+        <p>Admin Dashboard</p>
+    </div>
+
+    <div class="container">
+
+        <!-- LOGIN -->
+        <div id="login-section" class="card">
+            <h2>Admin Login</h2>
+            <p>Sign in to manage Quick Hands Services & Marketplace.</p>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Admin email"
+                autocomplete="email"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
+
+            <button onclick="login()">
+                Sign In
+            </button>
+
+            <div id="login-message" class="message"></div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div id="dashboard-section" class="hidden">
+
+            <div class="card">
+                <h2>Welcome to Quick Hands Admin 👋</h2>
+
+                <p id="admin-email"></p>
+
+                <div class="admin-grid">
+
+                    <div class="admin-item">
+                        🏪 Markets
+                    </div>
+
+                    <div class="admin-item">
+                        🏬 Shops & Sellers
+                    </div>
+
+                    <div class="admin-item">
+                        📦 Products
+                    </div>
+
+                    <div class="admin-item">
+                        🛒 Orders
+                    </div>
+
+                    <div class="admin-item">
+                        👥 Customers
+                    </div>
+
+                    <div class="admin-item">
+                        💳 Payments
+                    </div>
+
+                    <div class="admin-item">
+                        🚚 Delivery
+                    </div>
+
+                    <div class="admin-item">
+                        💰 Commissions & Payouts
+                    </div>
+
+                </div>
+
+                <button class="logout" onclick="logout()">
+                    Sign Out
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+
+    const SUPABASE_URL =
+        "https://gccphxlofazghlgtzwba.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_DPI3mrF-ZpajMMD480pHew_tNM3-IyU";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+
+    function showMessage(message, type) {
+
+        const box = document.getElementById("login-message");
+
+        box.textContent = message;
+        box.className = "message " + type;
+        box.style.display = "block";
+    }
+
+
+    async function login() {
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        if (!email || !password) {
+
+            showMessage(
+                "Please enter your email and password.",
+                "error"
+            );
+
+            return;
+        }
+
+        showMessage(
+            "Signing in...",
+            "success"
+        );
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+        if (error) {
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+            return;
+        }
+
+        const { data: adminCheck, error: adminError } =
+            await supabaseClient.rpc("is_admin");
+
+        if (adminError) {
+
+            await supabaseClient.auth.signOut();
+
+            showMessage(
+                "Admin verification failed. Please try again.",
+                "error"
+            );
+
+            console.error(adminError);
+
+            return;
+        }
+
+        if (adminCheck !== true) {
+
+            await supabaseClient.auth.signOut();
+
+            showMessage(
+                "This account is not authorized as a Quick Hands Admin.",
+                "error"
+            );
+
+            return;
+        }
+
+        document.getElementById("login-section")
+            .classList.add("hidden");
+
+        document.getElementById("dashboard-section")
+            .classList.remove("hidden");
+
+        document.getElementById("admin-email")
+            .textContent =
+            "Signed in as: " + data.user.email;
+    }
+
+
+    async function logout() {
+
+        await supabaseClient.auth.signOut();
+
+        document.getElementById("dashboard-section")
+            .classList.add("hidden");
+
+        document.getElementById("login-section")
+            .classList.remove("hidden");
+
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+
+        showMessage(
+            "You have been signed out.",
+            "success"
+        );
+    }
+
+
+    async function checkExistingSession() {
+
+        const { data } =
+            await supabaseClient.auth.getSession();
+
+        if (!data.session) {
+            return;
+        }
+
+        const { data: adminCheck } =
+            await supabaseClient.rpc("is_admin");
+
+        if (adminCheck === true) {
+
+            document.getElementById("login-section")
+                .classList.add("hidden");
+
+            document.getElementById("dashboard-section")
+                .classList.remove("hidden");
+
+            document.getElementById("admin-email")
+                .textContent =
+                "Signed in as: " +
+                data.session.user.email;
+        }
+    }
+
+
+    checkExistingSession();
+
+</script>
+
+</body>
+</html>
