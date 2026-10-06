@@ -182,11 +182,12 @@
                 <p id="admin-email"></p>
 
                 <div class="admin-grid">
-
-                    <div class="admin-item">
-                        🏪 Markets
+                    
+                    <div class="admin-item" onclick="openMarkets()">
+                      🏪 Markets
+                      
                     </div>
-
+                      
                     <div class="admin-item">
                         🏬 Shops & Sellers
                     </div>
@@ -372,16 +373,21 @@
                 .classList.remove("hidden");
 
             document.getElementById("admin-email")
-                .textContent =
-                "Signed in as: " +
-                data.session.user.email;
-        }
-    }
+               
+            .textContent =
+    "Signed in as: " +
+    data.session.user.email;
+}
+}
 
+function openMarkets() {
+    alert("Markets section is ready. Next we will connect it to Supabase.");
+}
 
-    checkExistingSession();
+checkExistingSession();
 
 </script>
 
 </body>
 </html>
+     
