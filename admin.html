@@ -233,9 +233,7 @@
 
             <div class="admin-grid">
 
-                <div class="admin-item" onclick="openSection('Markets')">
-                    🏪<br>
-                    Markets
+                <div class="admin-item" onclick="openMarkets()">🏪<br>Markets</div>
                 </div>
 
                 <div class="admin-item" onclick="openSection('Shops & Sellers')">
@@ -451,7 +449,29 @@ function showDashboard(email) {
         "Signed in as: " + email;
 }
 
+function openMarkets() {
+    document.getElementById("dashboard-section").classList.add("hidden");
+    document.getElementById("management-section").classList.remove("hidden");
 
+    document.getElementById("section-title").textContent = "Markets";
+    document.getElementById("section-description").textContent =
+        "Manage Quick Hands markets.";
+
+    document.getElementById("section-content").innerHTML = `
+        <div class="status-box">
+            <strong>🏪 Markets Management</strong>
+            <p style="margin-top:8px;">
+                Loading markets...
+            </p>
+        </div>
+
+        <div id="market-list" class="market-list">
+            Loading...
+        </div>
+    `;
+
+    loadMarkets();
+}
 function openSection(sectionName) {
 
     document
