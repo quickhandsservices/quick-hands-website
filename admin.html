@@ -9,18 +9,15 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: #f5f5f5;
     color: #222;
-    min-height: 100vh;
 }
 
 .top {
@@ -31,11 +28,12 @@ body {
 }
 
 .top h1 {
+    margin: 0 0 5px;
     font-size: 25px;
-    margin-bottom: 5px;
 }
 
 .top p {
+    margin: 0;
     font-size: 14px;
 }
 
@@ -50,11 +48,11 @@ body {
     border-radius: 14px;
     padding: 24px;
     margin-bottom: 18px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 15px rgba(0,0,0,.08);
 }
 
 h2 {
-    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .subtitle {
@@ -74,19 +72,37 @@ input {
 button {
     width: 100%;
     padding: 14px;
-    border: none;
+    border: 0;
     border-radius: 8px;
     background: #e67e22;
     color: white;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 button:active {
-    transform: scale(0.98);
+    transform: scale(.98);
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.admin-button {
+    background: #f7f7f7;
+    color: #222;
+    padding: 22px 15px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+}
+
+.admin-button:hover {
+    border-color: #e67e22;
+    background: #fff7ed;
 }
 
 .logout {
@@ -116,53 +132,12 @@ button:active {
     color: #176b2c;
 }
 
-.hidden {
-    display: none !important;
-}
-
-.admin-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin-top: 20px;
-}
-
-.admin-button {
-    background: #f7f7f7;
-    color: #222;
-    padding: 22px 15px;
-    border-radius: 12px;
-    font-weight: bold;
-    text-align: center;
-    border: 2px solid transparent;
-    cursor: pointer;
-    line-height: 1.5;
-}
-
-.admin-button:hover {
-    border-color: #e67e22;
-    background: #fff7ed;
-}
-
-.admin-button:active {
-    background: #ffe9cc;
-}
-
-.section-title {
-    font-size: 22px;
-    margin-bottom: 8px;
-}
-
 .status-box {
     background: #fff7ed;
     border: 1px solid #f5a400;
     padding: 15px;
     border-radius: 10px;
     margin-top: 15px;
-}
-
-.market-list {
-    margin-top: 20px;
 }
 
 .market {
@@ -184,6 +159,10 @@ button:active {
     font-size: 14px;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .loading {
     text-align: center;
     padding: 20px;
@@ -199,205 +178,206 @@ button:active {
     .container {
         margin-top: 15px;
     }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="top">
+
     <h1>QUICK HANDS</h1>
-    <p>Services & Marketplace — Admin Dashboard</p>
+
+    <p>
+        Services &amp; Marketplace — Admin Dashboard
+    </p>
+
 </div>
+
 
 <div class="container">
 
-    <!-- LOGIN -->
 
-    <div id="login-section" class="card">
+<!-- LOGIN -->
 
-        <h2>Admin Login</h2>
+<div id="login-section" class="card">
 
-        <p class="subtitle">
-            Sign in to manage Quick Hands Services & Marketplace.
-        </p>
+    <h2>Admin Login</h2>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Admin email"
-            autocomplete="email"
+    <p class="subtitle">
+        Sign in to manage Quick Hands Services &amp; Marketplace.
+    </p>
+
+    <input
+        id="email"
+        type="email"
+        placeholder="Admin email"
+        autocomplete="email"
+    >
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        autocomplete="current-password"
+    >
+
+    <button type="button" onclick="login()">
+        Sign In
+    </button>
+
+    <div id="login-message" class="message"></div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboard-section" class="hidden">
+
+    <div class="card">
+
+        <h2>
+            Welcome to Quick Hands Admin 👋
+        </h2>
+
+        <p id="admin-email" class="subtitle"></p>
+
+
+        <div class="admin-grid">
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openMarkets()"
+            >
+                🏪<br>
+                Markets
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Shops & Sellers')"
+            >
+                🏬<br>
+                Shops &amp; Sellers
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Products')"
+            >
+                📦<br>
+                Products
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Orders')"
+            >
+                🛒<br>
+                Orders
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Customers')"
+            >
+                👥<br>
+                Customers
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Payments')"
+            >
+                💳<br>
+                Payments
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Delivery')"
+            >
+                🚚<br>
+                Delivery
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-button"
+                onclick="openSection('Commissions & Payouts')"
+            >
+                💰<br>
+                Commissions &amp; Payouts
+            </button>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="logout"
+            onclick="logout()"
         >
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            autocomplete="current-password"
-        >
-
-        <button id="login-button" type="button">
-            Sign In
+            Sign Out
         </button>
 
-        <div id="login-message" class="message"></div>
+    </div>
+
+</div>
+
+
+<!-- MANAGEMENT -->
+
+<div id="management-section" class="hidden">
+
+    <div class="card">
+
+        <button
+            type="button"
+            class="back"
+            onclick="backToDashboard()"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <h2 id="section-title">
+            Management
+        </h2>
+
+
+        <p
+            id="section-description"
+            class="subtitle"
+        ></p>
+
+
+        <div id="section-content"></div>
 
     </div>
 
+</div>
 
-    <!-- DASHBOARD -->
-
-    <div id="dashboard-section" class="hidden">
-
-        <div class="card">
-
-            <h2>Welcome to Quick Hands Admin 👋</h2>
-
-            <p id="admin-email" class="subtitle"></p>
-
-
-            <div class="admin-grid">
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="markets-button"
-                >
-                    🏪<br>
-                    Markets
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="shops-button"
-                >
-                    🏬<br>
-                    Shops & Sellers
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="products-button"
-                >
-                    📦<br>
-                    Products
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="orders-button"
-                >
-                    🛒<br>
-                    Orders
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="customers-button"
-                >
-                    👥<br>
-                    Customers
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="payments-button"
-                >
-                    💳<br>
-                    Payments
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="delivery-button"
-                >
-                    🚚<br>
-                    Delivery
-                </button>
-
-
-                <button
-                    type="button"
-                    class="admin-button"
-                    id="commissions-button"
-                >
-                    💰<br>
-                    Commissions & Payouts
-                </button>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="logout"
-                id="logout-button"
-            >
-                Sign Out
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- MANAGEMENT -->
-
-    <div id="management-section" class="hidden">
-
-        <div class="card">
-
-            <button
-                type="button"
-                class="back"
-                id="back-button"
-            >
-                ← Back to Dashboard
-            </button>
-
-
-            <h2
-                id="section-title"
-                class="section-title"
-            >
-                Management
-            </h2>
-
-
-            <p
-                id="section-description"
-                class="subtitle"
-            ></p>
-
-
-            <div id="section-content"></div>
-
-        </div>
-
-    </div>
 
 </div>
 
 
 <script>
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
     "https://gccphxlofazghlgtzwba.supabase.co";
@@ -405,16 +385,13 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_DPI3mrF-ZpajMMD480pHew_tNM3-IyU";
 
+
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_PUBLISHABLE_KEY
     );
 
-
-/* =========================
-   ELEMENTS
-========================= */
 
 const loginSection =
     document.getElementById("login-section");
@@ -435,9 +412,17 @@ const sectionContent =
     document.getElementById("section-content");
 
 
-/* =========================
-   MESSAGE
-========================= */
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
 
 function showMessage(message, type) {
 
@@ -450,25 +435,21 @@ function showMessage(message, type) {
         "message " + type;
 
     box.style.display = "block";
+
 }
 
-
-/* =========================
-   LOGIN
-========================= */
 
 async function login() {
 
     const email =
-        document
-        .getElementById("email")
+        document.getElementById("email")
         .value
         .trim();
 
     const password =
-        document
-        .getElementById("password")
+        document.getElementById("password")
         .value;
+
 
     if (!email || !password) {
 
@@ -480,25 +461,30 @@ async function login() {
         return;
     }
 
+
     showMessage(
         "Signing in...",
         "success"
     );
 
+
     try {
 
         const result =
             await supabaseClient.auth.signInWithPassword({
-
                 email: email,
                 password: password
-
             });
 
-        if (result.error) {
+
+        const data = result.data;
+        const error = result.error;
+
+
+        if (error) {
 
             showMessage(
-                result.error.message,
+                error.message,
                 "error"
             );
 
@@ -510,20 +496,17 @@ async function login() {
             await supabaseClient.rpc("is_admin");
 
 
-        if (adminResult.error) {
+        const isAdmin =
+            adminResult.data;
 
-            await supabaseClient.auth.signOut();
-
-            showMessage(
-                "Admin verification failed.",
-                "error"
-            );
-
-            return;
-        }
+        const adminError =
+            adminResult.error;
 
 
-        if (adminResult.data !== true) {
+        if (
+            adminError ||
+            isAdmin !== true
+        ) {
 
             await supabaseClient.auth.signOut();
 
@@ -537,7 +520,7 @@ async function login() {
 
 
         showDashboard(
-            result.data.user.email
+            data.user.email
         );
 
 
@@ -551,12 +534,9 @@ async function login() {
         );
 
     }
+
 }
 
-
-/* =========================
-   SHOW DASHBOARD
-========================= */
 
 function showDashboard(email) {
 
@@ -566,162 +546,166 @@ function showDashboard(email) {
 
     dashboardSection.classList.remove("hidden");
 
-    document
-        .getElementById("admin-email")
-        .textContent =
+
+    document.getElementById(
+        "admin-email"
+    ).textContent =
         "Signed in as: " + email;
+
 }
 
 
-/* =========================
-   OPEN MARKETS
-========================= */
-
 function openMarkets() {
-    alert("MARKETS BUTTON WORKS");
 
     dashboardSection.classList.add("hidden");
 
     managementSection.classList.remove("hidden");
+
 
     sectionTitle.textContent =
         "Markets";
 
+
     sectionDescription.textContent =
         "Manage Quick Hands markets.";
 
-    sectionContent.innerHTML = `
 
-        <div class="status-box">
+    sectionContent.innerHTML =
 
-            <strong>
-                🏪 Markets Management
-            </strong>
+        '<div class="status-box">' +
 
-            <p style="margin-top:8px;">
-                Your Abuja markets are listed below.
-            </p>
+        '<strong>🏪 Markets Management</strong>' +
 
-        </div>
+        '<p style="margin-top:8px">' +
 
-        <div
-            id="market-list"
-            class="market-list"
-        >
-            <div class="loading">
-                Loading markets...
-            </div>
-        </div>
+        'Your Abuja markets are listed below.' +
 
-    `;
+        '</p>' +
+
+        '</div>' +
+
+        '<div id="market-list">' +
+
+        '<div class="loading">' +
+
+        'Loading markets...' +
+
+        '</div>' +
+
+        '</div>';
+
 
     loadMarkets();
+
 }
 
 
-/* =========================
-   OPEN OTHER SECTION
-========================= */
-
-function openSection(sectionName) {
+function openSection(name) {
 
     dashboardSection.classList.add("hidden");
 
     managementSection.classList.remove("hidden");
 
+
     sectionTitle.textContent =
-        sectionName;
+        name;
+
 
     sectionDescription.textContent =
         "Quick Hands Admin — " +
-        sectionName +
+        name +
         " management.";
 
-    sectionContent.innerHTML = `
 
-        <div class="status-box">
+    sectionContent.innerHTML =
 
-            <strong>
-                ${escapeHtml(sectionName)}
-            </strong>
+        '<div class="status-box">' +
 
-            <p style="margin-top:8px;">
-                This section is working.
-            </p>
+        '<strong>' +
+        escapeHtml(name) +
+        '</strong>' +
 
-            <p style="margin-top:8px;">
-                We will connect this section
-                to its Supabase table next.
-            </p>
+        '<p style="margin-top:8px">' +
 
-        </div>
+        'This section is ready for connection to Supabase.' +
 
-    `;
+        '</p>' +
+
+        '<p style="margin-top:8px">' +
+
+        'We can build this section next without changing the working login.' +
+
+        '</p>' +
+
+        '</div>';
+
 }
 
-
-/* =========================
-   LOAD MARKETS
-========================= */
 
 async function loadMarkets() {
 
     const list =
         document.getElementById("market-list");
 
-    if (!list) {
-        return;
-    }
 
     try {
 
         const result =
             await supabaseClient
-            .from("Market")
-            .select("id, Name, description")
-            .order("id", {
-                ascending: true
-            });
+                .from("Market")
+                .select(
+                    "id, Name, description"
+                )
+                .order(
+                    "id",
+                    {
+                        ascending: true
+                    }
+                );
 
 
-        if (result.error) {
+        const data =
+            result.data;
 
-            list.innerHTML = `
+        const error =
+            result.error;
 
-                <div class="status-box">
 
-                    <strong>
-                        Unable to load markets
-                    </strong>
+        if (error) {
 
-                    <p style="margin-top:8px;">
-                        ${escapeHtml(
-                            result.error.message
-                        )}
-                    </p>
+            list.innerHTML =
 
-                </div>
+                '<div class="status-box">' +
 
-            `;
+                '<strong>Unable to load markets</strong>' +
 
-            console.error(result.error);
+                '<p style="margin-top:8px">' +
+
+                escapeHtml(error.message) +
+
+                '</p>' +
+
+                '</div>';
+
+
+            console.error(error);
 
             return;
         }
 
 
         if (
-            !result.data ||
-            result.data.length === 0
+            !data ||
+            data.length === 0
         ) {
 
-            list.innerHTML = `
+            list.innerHTML =
 
-                <div class="status-box">
-                    No markets found.
-                </div>
+                '<div class="status-box">' +
 
-            `;
+                'No markets found.' +
+
+                '</div>';
 
             return;
         }
@@ -730,32 +714,36 @@ async function loadMarkets() {
         list.innerHTML = "";
 
 
-        result.data.forEach(function(market) {
+        data.forEach(function(market) {
 
             const item =
                 document.createElement("div");
 
-            item.className = "market";
 
-            item.innerHTML = `
+            item.className =
+                "market";
 
-                <strong>
-                    ${escapeHtml(
-                        market.Name ||
-                        "Unnamed Market"
-                    )}
-                </strong>
 
-                <div class="market-description">
+            item.innerHTML =
 
-                    ${escapeHtml(
-                        market.description ||
-                        "No description available."
-                    )}
+                "<strong>" +
 
-                </div>
+                escapeHtml(
+                    market.Name ||
+                    "Unnamed Market"
+                ) +
 
-            `;
+                "</strong>" +
+
+                '<div class="market-description">' +
+
+                escapeHtml(
+                    market.description ||
+                    "No description available."
+                ) +
+
+                "</div>";
+
 
             list.appendChild(item);
 
@@ -766,38 +754,33 @@ async function loadMarkets() {
 
         console.error(error);
 
-        list.innerHTML = `
 
-            <div class="status-box">
+        list.innerHTML =
 
-                Unable to load markets.
+            '<div class="status-box">' +
 
-            </div>
+            'Unable to load markets.' +
 
-        `;
+            '</div>';
+
     }
+
 }
 
-
-/* =========================
-   BACK TO DASHBOARD
-========================= */
 
 function backToDashboard() {
 
     managementSection.classList.add("hidden");
 
     dashboardSection.classList.remove("hidden");
+
 }
 
-
-/* =========================
-   SIGN OUT
-========================= */
 
 async function logout() {
 
     await supabaseClient.auth.signOut();
+
 
     dashboardSection.classList.add("hidden");
 
@@ -805,124 +788,24 @@ async function logout() {
 
     loginSection.classList.remove("hidden");
 
-    document.getElementById("email").value = "";
 
-    document.getElementById("password").value = "";
+    document.getElementById(
+        "email"
+    ).value = "";
+
+
+    document.getElementById(
+        "password"
+    ).value = "";
+
 
     showMessage(
         "You have been signed out.",
         "success"
     );
+
 }
 
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHtml(value) {
-
-    return String(value)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-}
-
-
-/* =========================
-   BUTTON EVENT LISTENERS
-========================= */
-
-document
-    .getElementById("login-button")
-    .addEventListener("click", login);
-
-document
-    .getElementById("markets-button")
-    .addEventListener("click", openMarkets);
-
-document
-    .getElementById("shops-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Shops & Sellers");
-        }
-    );
-
-document
-    .getElementById("products-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Products");
-        }
-    );
-
-document
-    .getElementById("orders-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Orders");
-        }
-    );
-
-document
-    .getElementById("customers-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Customers");
-        }
-    );
-
-document
-    .getElementById("payments-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Payments");
-        }
-    );
-
-document
-    .getElementById("delivery-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Delivery");
-        }
-    );
-
-document
-    .getElementById("commissions-button")
-    .addEventListener(
-        "click",
-        function() {
-            openSection("Commissions & Payouts");
-        }
-    );
-
-document
-    .getElementById("logout-button")
-    .addEventListener("click", logout);
-
-document
-    .getElementById("back-button")
-    .addEventListener("click", backToDashboard);
-
-
-/* =========================
-   EXISTING SESSION
-========================= */
 
 async function checkExistingSession() {
 
@@ -931,26 +814,44 @@ async function checkExistingSession() {
         const result =
             await supabaseClient.auth.getSession();
 
-        if (!result.data.session) {
+
+        const data =
+            result.data;
+
+
+        if (!data.session) {
+
             return;
         }
 
-        const adminResult =
-            await supabaseClient.rpc("is_admin");
 
-        if (adminResult.data === true) {
+        const adminResult =
+            await supabaseClient.rpc(
+                "is_admin"
+            );
+
+
+        const isAdmin =
+            adminResult.data;
+
+
+        if (isAdmin === true) {
 
             showDashboard(
-                result.data.session.user.email
+                data.session.user.email
             );
+
         }
+
 
     } catch (error) {
 
         console.error(error);
 
     }
+
 }
+
 
 checkExistingSession();
 
