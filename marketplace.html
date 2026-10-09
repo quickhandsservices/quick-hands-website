@@ -1,1 +1,1249 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Shop Abuja markets online with Quick Hands Services & Marketplace. Explore local markets, shops, groceries and delivery.">
+
+  <title>Quick Hands Marketplace | Abuja</title>
+
+  <style>
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
+    }
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background: #f5f8f2;
+
+      color: #203027;
+
+      line-height: 1.6;
+
+    }
+
+    button, input, textarea {
+
+      font-family: inherit;
+
+    }
+
+    a {
+
+      text-decoration: none;
+
+    }
+
+    header {
+
+      background: #14532d;
+
+      color: white;
+
+      padding: 18px 5%;
+
+    }
+
+    .brand {
+
+      font-size: 23px;
+
+      font-weight: 800;
+
+    }
+
+    header p {
+
+      color: #dcfce7;
+
+      font-size: 13px;
+
+    }
+
+    nav {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 17px;
+
+      margin-top: 14px;
+
+    }
+
+    nav a {
+
+      color: white;
+
+      font-size: 14px;
+
+    }
+
+    .hero {
+
+      padding: 45px 5%;
+
+      background: linear-gradient(135deg, #dcfce7, #f0fdf4);
+
+    }
+
+    .hero h1 {
+
+      max-width: 650px;
+
+      font-size: clamp(30px, 6vw, 46px);
+
+      line-height: 1.15;
+
+      margin-bottom: 14px;
+
+    }
+
+    .hero p {
+
+      max-width: 620px;
+
+      margin-bottom: 20px;
+
+    }
+
+    .button {
+
+      display: inline-block;
+
+      background: #166534;
+
+      color: white;
+
+      padding: 12px 18px;
+
+      border: 0;
+
+      border-radius: 9px;
+
+      font-size: 15px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+    }
+
+    .button:hover {
+
+      background: #14532d;
+
+    }
+
+    main {
+
+      max-width: 1100px;
+
+      margin: auto;
+
+      padding: 30px 5%;
+
+    }
+
+    section {
+
+      margin-bottom: 38px;
+
+      scroll-margin-top: 20px;
+
+    }
+
+    h2 {
+
+      font-size: 25px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .muted {
+
+      color: #647067;
+
+      font-size: 13px;
+
+    }
+
+    .markets,
+
+    .shops,
+
+    .products {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+
+      gap: 14px;
+
+      margin-top: 16px;
+
+    }
+
+    .card {
+
+      background: white;
+
+      border: 1px solid #e0e8dd;
+
+      border-radius: 14px;
+
+      padding: 17px;
+
+      box-shadow: 0 3px 12px rgba(24, 53, 27, 0.05);
+
+    }
+
+    .market {
+
+      text-align: left;
+
+      color: inherit;
+
+      font: inherit;
+
+      cursor: pointer;
+
+    }
+
+    .market:hover,
+
+    .market:focus {
+
+      border-color: #166534;
+
+      outline-color: #166534;
+
+    }
+
+    .emoji {
+
+      font-size: 32px;
+
+      margin-bottom: 8px;
+
+    }
+
+    .shop-card h3,
+
+    .product-card h3 {
+
+      font-size: 17px;
+
+      margin-bottom: 6px;
+
+    }
+
+    .product-card {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 8px;
+
+    }
+
+    .price {
+
+      color: #166534;
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+    }
+
+    .product-card .button {
+
+      margin-top: auto;
+
+      width: 100%;
+
+    }
+
+    .notice {
+
+      background: #fff7d6;
+
+      border: 1px solid #f1df9a;
+
+      border-radius: 12px;
+
+      padding: 15px;
+
+      margin-bottom: 25px;
+
+      font-size: 14px;
+
+    }
+
+    label {
+
+      display: block;
+
+      font-weight: bold;
+
+      margin-top: 13px;
+
+    }
+
+    input,
+
+    textarea {
+
+      width: 100%;
+
+      padding: 12px;
+
+      margin-top: 5px;
+
+      border: 1px solid #cbd5cc;
+
+      border-radius: 8px;
+
+      font-size: 15px;
+
+      background: white;
+
+    }
+
+    textarea {
+
+      resize: vertical;
+
+    }
+
+    .form-button {
+
+      width: 100%;
+
+      margin-top: 16px;
+
+    }
+
+    footer {
+
+      padding: 25px 5%;
+
+      background: #123b25;
+
+      color: white;
+
+      text-align: center;
+
+      font-size: 13px;
+
+    }
+
+    footer a {
+
+      color: #dcfce7;
+
+    }
+
+    @media (max-width: 480px) {
+
+      .hero {
+
+        padding-top: 32px;
+
+      }
+
+      .markets,
+
+      .shops,
+
+      .products {
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <div class="brand">QUICK HANDS</div>
+
+    <p>Services & Marketplace · Abuja, Nigeria</p>
+
+    <nav>
+
+      <a href="#markets">Markets</a>
+
+      <a href="#shops">Shops</a>
+
+      <a href="#products">Products</a>
+
+      <a href="#order">Order</a>
+
+      <a href="index.html">Main Website</a>
+
+    </nav>
+
+  </header>
+
+  <div class="hero">
+
+    <h1>Your Abuja market, made easier.</h1>
+
+    <p>
+
+      Explore local markets, discover shops, choose the items you need,
+
+      and send your shopping request to Quick Hands.
+
+    </p>
+
+    <a class="button" href="#markets">Explore Markets</a>
+
+  </div>
+
+  <main>
+
+    <section id="markets">
+
+      <h2>Explore Abuja Markets</h2>
+
+      <p class="muted">Choose a market to see its shop listings.</p>
+
+      <div class="markets">
+
+        <button class="card market" onclick="showMarket('Gwarinpa')">
+
+          <div class="emoji">🥬</div>
+
+          <strong>Gwarinpa</strong>
+
+          <p class="muted">Groceries and everyday needs</p>
+
+        </button>
+
+        <button class="card market" onclick="showMarket('Wuse')">
+
+          <div class="emoji">🛍️</div>
+
+          <strong>Wuse Market</strong>
+
+          <p class="muted">Fresh food and market goods</p>
+
+        </button>
+
+        <button class="card market" onclick="showMarket('Garki')">
+
+          <div class="emoji">🥕</div>
+
+          <strong>Garki Market</strong>
+
+          <p class="muted">Produce and household shopping</p>
+
+        </button>
+
+        <button class="card market" onclick="showMarket('Kubwa')">
+
+          <div class="emoji">🧺</div>
+
+          <strong>Kubwa</strong>
+
+          <p class="muted">Local shops and essentials</p>
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <section id="shops">
+
+      <h2 id="shops-title">Shops in Gwarinpa</h2>
+
+      <p class="muted">
+
+        These are starter listings. Shop availability must be confirmed.
+
+      </p>
+
+      <div class="shops" id="shop-list"></div>
+
+    </section>
+
+    <section id="products">
+
+      <h2>Starter Product List</h2>
+
+      <p class="muted">
+
+        Example prices only. Confirm actual prices and stock with the shop.
+
+      </p>
+
+      <div class="products" id="product-list"></div>
+
+    </section>
+
+    <section id="order">
+
+      <h2>Send Your Shopping Request</h2>
+
+      <div class="card">
+
+        <p class="muted">
+
+          Add products to your list, provide your delivery location,
+
+          and send your request by WhatsApp.
+
+        </p>
+
+        <p style="margin-top:12px;font-size:14px">
+
+          <strong>Market shopping service fee: ₦10,000.</strong>
+
+          Goods and rider delivery are separate costs. Confirm the
+
+          final quote before shopping begins.
+
+        </p>
+
+        <form id="order-form">
+
+          <label for="customer-name">Your Name</label>
+
+          <input
+
+            id="customer-name"
+
+            type="text"
+
+            placeholder="Enter your name"
+
+            required
+
+          >
+
+          <label for="customer-phone">Your Phone Number</label>
+
+          <input
+
+            id="customer-phone"
+
+            type="tel"
+
+            placeholder="Enter your phone number"
+
+            required
+
+          >
+
+          <label for="destination">Delivery Location in Abuja</label>
+
+          <input
+
+            id="destination"
+
+            type="text"
+
+            placeholder="Area or delivery address"
+
+            required
+
+          >
+
+          <label for="items">Your Shopping List</label>
+
+          <textarea
+
+            id="items"
+
+            rows="6"
+
+            placeholder="Your selected products will appear here"
+
+            required
+
+          ></textarea>
+
+          <label for="extra-details">Additional Instructions</label>
+
+          <textarea
+
+            id="extra-details"
+
+            rows="3"
+
+            placeholder="Preferred brand, quantity, or other details"
+
+          ></textarea>
+
+          <button class="button form-button" type="submit">
+
+            Send Request on WhatsApp
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <div class="notice">
+
+      <strong>Important:</strong> This is the initial marketplace preview.
+
+      Shops, products, and example prices are not connected to live inventory.
+
+      No online payment is collected on this page. Confirm the goods cost,
+
+      service fee, and delivery fee before proceeding.
+
+    </div>
+
+  </main>
+
+  <footer>
+
+    <p>Quick Hands Services & Marketplace · Abuja, Nigeria</p>
+
+    <p>WhatsApp: +234 904 179 7547</p>
+
+    <p style="margin-top:8px">
+
+      <a href="index.html">Visit the main website</a>
+
+    </p>
+
+  </footer>
+
+  <script>
+
+    const WHATSAPP_NUMBER = "2349041797547";
+
+    const shopData = {
+
+      Gwarinpa: [
+
+        {
+
+          name: "Mama Grace Foods",
+
+          description: "Rice, beans, grains and groceries",
+
+          emoji: "🛒"
+
+        },
+
+        {
+
+          name: "Gwarinpa Fresh Produce",
+
+          description: "Vegetables, fruits and fresh produce",
+
+          emoji: "🥬"
+
+        },
+
+        {
+
+          name: "Gwarinpa Meat & Fish",
+
+          description: "Meat, fish and frozen food",
+
+          emoji: "🐟"
+
+        },
+
+        {
+
+          name: "Gwarinpa Household Store",
+
+          description: "Household supplies and essentials",
+
+          emoji: "🧹"
+
+        }
+
+      ],
+
+      Wuse: [
+
+        {
+
+          name: "Wuse Food Market",
+
+          description: "Foodstuff and everyday groceries",
+
+          emoji: "🥘"
+
+        },
+
+        {
+
+          name: "Wuse Fresh Produce",
+
+          description: "Vegetables and fruits",
+
+          emoji: "🥑"
+
+        },
+
+        {
+
+          name: "Wuse Household Goods",
+
+          description: "Home and kitchen essentials",
+
+          emoji: "🏠"
+
+        }
+
+      ],
+
+      Garki: [
+
+        {
+
+          name: "Garki Foodstuff Shop",
+
+          description: "Rice, beans, grains and staples",
+
+          emoji: "🌾"
+
+        },
+
+        {
+
+          name: "Garki Produce Shop",
+
+          description: "Fresh vegetables and fruits",
+
+          emoji: "🥕"
+
+        },
+
+        {
+
+          name: "Garki Meat & Fish",
+
+          description: "Fresh and frozen food",
+
+          emoji: "🐟"
+
+        }
+
+      ],
+
+      Kubwa: [
+
+        {
+
+          name: "Kubwa Grocery Shop",
+
+          description: "Everyday groceries and foodstuff",
+
+          emoji: "🛒"
+
+        },
+
+        {
+
+          name: "Kubwa Fresh Produce",
+
+          description: "Fresh fruits and vegetables",
+
+          emoji: "🍅"
+
+        },
+
+        {
+
+          name: "Kubwa Household Store",
+
+          description: "Household essentials",
+
+          emoji: "🧺"
+
+        }
+
+      ]
+
+    };
+
+    const productData = {
+
+      Gwarinpa: [
+
+        {
+
+          name: "Rice",
+
+          description: "Illustrative listing; confirm bag size",
+
+          price: 75000,
+
+          emoji: "🍚",
+
+          shop: "Mama Grace Foods"
+
+        },
+
+        {
+
+          name: "Beans",
+
+          description: "Illustrative listing; confirm quantity",
+
+          price: 3500,
+
+          emoji: "🫘",
+
+          shop: "Mama Grace Foods"
+
+        },
+
+        {
+
+          name: "Fresh Tomatoes",
+
+          description: "Illustrative listing; confirm basket size",
+
+          price: 5000,
+
+          emoji: "🍅",
+
+          shop: "Gwarinpa Fresh Produce"
+
+        },
+
+        {
+
+          name: "Fresh Fish",
+
+          description: "Illustrative listing; confirm weight",
+
+          price: 6000,
+
+          emoji: "🐟",
+
+          shop: "Gwarinpa Meat & Fish"
+
+        },
+
+        {
+
+          name: "Cooking Oil",
+
+          description: "Illustrative listing; confirm bottle size",
+
+          price: 4500,
+
+          emoji: "🫒",
+
+          shop: "Mama Grace Foods"
+
+        },
+
+        {
+
+          name: "Household Cleaner",
+
+          description: "Illustrative listing; confirm brand and size",
+
+          price: 2500,
+
+          emoji: "🧴",
+
+          shop: "Gwarinpa Household Store"
+
+        }
+
+      ],
+
+      Wuse: [
+
+        {
+
+          name: "Rice",
+
+          description: "Illustrative listing; confirm bag size",
+
+          price: 75000,
+
+          emoji: "🍚",
+
+          shop: "Wuse Food Market"
+
+        },
+
+        {
+
+          name: "Fresh Peppers",
+
+          description: "Illustrative listing; confirm quantity",
+
+          price: 3000,
+
+          emoji: "🌶️",
+
+          shop: "Wuse Fresh Produce"
+
+        },
+
+        {
+
+          name: "Cooking Utensils",
+
+          description: "Illustrative listing; confirm item",
+
+          price: 5000,
+
+          emoji: "🍳",
+
+          shop: "Wuse Household Goods"
+
+        }
+
+      ],
+
+      Garki: [
+
+        {
+
+          name: "Beans",
+
+          description: "Illustrative listing; confirm quantity",
+
+          price: 3500,
+
+          emoji: "🫘",
+
+          shop: "Garki Foodstuff Shop"
+
+        },
+
+        {
+
+          name: "Fresh Tomatoes",
+
+          description: "Illustrative listing; confirm basket size",
+
+          price: 5000,
+
+          emoji: "🍅",
+
+          shop: "Garki Produce Shop"
+
+        },
+
+        {
+
+          name: "Frozen Fish",
+
+          description: "Illustrative listing; confirm weight",
+
+          price: 6000,
+
+          emoji: "🐟",
+
+          shop: "Garki Meat & Fish"
+
+        }
+
+      ],
+
+      Kubwa: [
+
+        {
+
+          name: "Rice",
+
+          description: "Illustrative listing; confirm bag size",
+
+          price: 75000,
+
+          emoji: "🍚",
+
+          shop: "Kubwa Grocery Shop"
+
+        },
+
+        {
+
+          name: "Fresh Vegetables",
+
+          description: "Illustrative listing; confirm quantity",
+
+          price: 3000,
+
+          emoji: "🥬",
+
+          shop: "Kubwa Fresh Produce"
+
+        },
+
+        {
+
+          name: "Household Essentials",
+
+          description: "Illustrative listing; confirm item",
+
+          price: 2500,
+
+          emoji: "🧺",
+
+          shop: "Kubwa Household Store"
+
+        }
+
+      ]
+
+    };
+
+    let selectedMarket = "Gwarinpa";
+
+    function formatNaira(amount) {
+
+      return "₦" + amount.toLocaleString("en-NG");
+
+    }
+
+    function showMarket(market) {
+
+      selectedMarket = market;
+
+      document.getElementById("shops-title").textContent =
+
+        "Shops in " + market;
+
+      const shopList = document.getElementById("shop-list");
+
+      const productList = document.getElementById("product-list");
+
+      shopList.replaceChildren();
+
+      productList.replaceChildren();
+
+      shopData[market].forEach(function(shop) {
+
+        const card = document.createElement("div");
+
+        card.className = "card shop-card";
+
+        const emoji = document.createElement("div");
+
+        emoji.className = "emoji";
+
+        emoji.textContent = shop.emoji;
+
+        const title = document.createElement("h3");
+
+        title.textContent = shop.name;
+
+        const description = document.createElement("p");
+
+        description.className = "muted";
+
+        description.textContent = shop.description;
+
+        card.append(emoji, title, description);
+
+        shopList.appendChild(card);
+
+      });
+
+      productData[market].forEach(function(product) {
+
+        const card = document.createElement("div");
+
+        card.className = "card product-card";
+
+        const emoji = document.createElement("div");
+
+        emoji.className = "emoji";
+
+        emoji.textContent = product.emoji;
+
+        const title = document.createElement("h3");
+
+        title.textContent = product.name;
+
+        const shop = document.createElement("p");
+
+        shop.className = "muted";
+
+        shop.textContent = product.shop;
+
+        const description = document.createElement("p");
+
+        description.className = "muted";
+
+        description.textContent = product.description;
+
+        const price = document.createElement("p");
+
+        price.className = "price";
+
+        price.textContent = formatNaira(product.price);
+
+        const button = document.createElement("button");
+
+        button.className = "button";
+
+        button.type = "button";
+
+        button.textContent = "Add to List";
+
+        button.addEventListener("click", function() {
+
+          addToShoppingList(product);
+
+        });
+
+        card.append(emoji, title, shop, description, price, button);
+
+        productList.appendChild(card);
+
+      });
+
+    }
+
+    function addToShoppingList(product) {
+
+      const itemsField = document.getElementById("items");
+
+      const line =
+
+        "- " + product.name +
+
+        " from " + product.shop +
+
+        " — example price " + formatNaira(product.price);
+
+      if (itemsField.value.trim()) {
+
+        itemsField.value += "\n" + line;
+
+      } else {
+
+        itemsField.value = line;
+
+      }
+
+      document.getElementById("order").scrollIntoView({
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+    document.getElementById("order-form").addEventListener(
+
+      "submit",
+
+      function(event) {
+
+        event.preventDefault();
+
+        const name =
+
+          document.getElementById("customer-name").value.trim();
+
+        const phone =
+
+          document.getElementById("customer-phone").value.trim();
+
+        const destination =
+
+          document.getElementById("destination").value.trim();
+
+        const items =
+
+          document.getElementById("items").value.trim();
+
+        const extraDetails =
+
+          document.getElementById("extra-details").value.trim();
+
+        if (!name || !phone || !destination || !items) {
+
+          alert("Please complete your name, phone, delivery location and shopping list.");
+
+          return;
+
+        }
+
+        const message =
+
+          "🛒 QUICK HANDS MARKETPLACE ORDER REQUEST\n\n" +
+
+          "Customer: " + name + "\n" +
+
+          "Phone: " + phone + "\n" +
+
+          "Market: " + selectedMarket + "\n" +
+
+          "Delivery location: " + destination + "\n\n" +
+
+          "Shopping list:\n" + items + "\n\n" +
+
+          "Additional instructions: " +
+
+          (extraDetails || "None") + "\n\n" +
+
+          "Please confirm current product prices, availability, " +
+
+          "shopping service fee and rider delivery cost before proceeding.";
+
+        const whatsappURL =
+
+          "https://wa.me/" + WHATSAPP_NUMBER +
+
+          "?text=" + encodeURIComponent(message);
+
+        window.location.href = whatsappURL;
+
+      }
+
+    );
+
+    showMarket("Gwarinpa");
+
+  </script>
+
+</body>
+
+</html>
