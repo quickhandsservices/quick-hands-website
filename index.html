@@ -1,2160 +1,629 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta name="google-site-verification" content="bkiPj0BbLhtgtIKMzhjRnhfbTpg3GqwDJt-3qZaSSKQ" />
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quick Hands Services Abuja | Quick Hands Services & Marketplace</title>
+  <meta charset="UTF-8">
 
-<meta name="description" content="Quick Hands Services & Marketplace in Abuja, Nigeria. Market shopping, personal shopping, errands, pickups and delivery.">
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    html {
-        scroll-behavior: smooth;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Discover Abuja markets and shops with Quick Hands Services & Marketplace. Sellers can register their shops and manage their products.">
+
+  <title>Quick Hands Services & Marketplace | Abuja</title>
+
+  <style>
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-        font-family: Arial, sans-serif;
-        background: #f7f7f7;
-        color: #222;
-        line-height: 1.6;
+
+      margin: 0;
+
+      font-family: Arial, sans-serif;
+
+      line-height: 1.6;
+
+      background: #f5f8f2;
+
+      color: #203027;
+
     }
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-    button,
-    input,
-    select,
-    textarea {
-        font-family: inherit;
-    }
-    .top-bar {
-        background: linear-gradient(90deg, #f5a400, #e67e22, #d35400);
-        color: white;
-        text-align: center;
-        padding: 9px 15px;
-        font-size: 14px;
-        font-weight: bold;
-    }
+
     header {
-        background: white;
-        padding: 16px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
-        border-bottom: 1px solid #eee;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+
+      background: #14532d;
+
+      color: white;
+
+      padding: 20px 5%;
+
     }
-    .logo {
-        font-size: 21px;
-        font-weight: 900;
-        color: #e67e22;
+
+    .brand { font-size: 24px; font-weight: 800; }
+
+    header p { margin: 4px 0; color: #dcfce7; }
+
+    nav { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; }
+
+    nav a { color: white; text-decoration: none; }
+
+    .hero { padding: 42px 5%; background: #dcfce7; }
+
+    .hero h1 { font-size: clamp(30px, 6vw, 46px); line-height: 1.15; }
+
+    .hero p { max-width: 650px; }
+
+    main { max-width: 1100px; margin: auto; padding: 28px 5%; }
+
+    section { margin-bottom: 38px; scroll-margin-top: 15px; }
+
+    h2 { margin-bottom: 8px; }
+
+    .muted { color: #647067; font-size: 14px; }
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+      gap: 14px;
+
+      margin-top: 16px;
+
     }
-    .logo span {
-        display: block;
-        color: #333;
-        font-size: 13px;
-        margin-top: 2px;
+
+    .card {
+
+      background: white;
+
+      border: 1px solid #e0e8dd;
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      overflow-wrap: anywhere;
+
     }
-    nav {
-        display: flex;
-        gap: 7px;
-        flex-wrap: wrap;
+
+    .market-button {
+
+      width: 100%;
+
+      text-align: left;
+
+      cursor: pointer;
+
+      color: inherit;
+
+      font: inherit;
+
     }
-    nav a {
-        padding: 8px 10px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    nav a:hover {
-        background: #fff3df;
-    }
-    .hero {
-        background: linear-gradient(135deg, #f5a400, #e67e22, #d35400);
-        color: white;
-        text-align: center;
-        padding: 65px 20px;
-    }
-    .hero h1 {
-        font-size: clamp(34px, 8vw, 58px);
-        line-height: 1.1;
-        margin-bottom: 12px;
-    }
-    .hero h2 {
-        font-size: clamp(19px, 4vw, 27px);
-        margin-bottom: 15px;
-    }
-    .hero p {
-        max-width: 650px;
-        margin: 0 auto 25px;
-        font-size: 17px;
-    }
-    .hero-buttons,
-    .contact-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
+
+    .market-button:hover { border-color: #166534; }
+
+    .emoji { font-size: 30px; }
+
     .button {
-        display: inline-block;
-        border: none;
-        cursor: pointer;
-        padding: 14px 22px;
-        border-radius: 10px;
-        font-weight: 800;
-        font-size: 15px;
+
+      display: inline-block;
+
+      padding: 12px 17px;
+
+      margin-top: 10px;
+
+      border: 0;
+
+      border-radius: 8px;
+
+      background: #166534;
+
+      color: white;
+
+      font-weight: bold;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
     }
-    .button-white {
-        background: white;
-        color: #d35400;
+
+    .button:hover { background: #14532d; }
+
+    label { display: block; margin-top: 13px; font-weight: bold; }
+
+    input, select, textarea {
+
+      display: block;
+
+      width: 100%;
+
+      margin-top: 5px;
+
+      padding: 12px;
+
+      border: 1px solid #cbd5cc;
+
+      border-radius: 8px;
+
+      background: white;
+
+      font: inherit;
+
     }
-    .button-dark {
-        background: #222;
-        color: white;
+
+    textarea { resize: vertical; }
+
+    .notice {
+
+      padding: 14px;
+
+      margin: 15px 0;
+
+      border-radius: 10px;
+
+      background: #fff7d6;
+
+      border: 1px solid #f1df9a;
+
+      font-size: 14px;
+
     }
-    .button-green {
-        background: #25D366;
-        color: white;
-    }
-    .section {
-        max-width: 1100px;
-        margin: auto;
-        padding: 50px 18px;
-    }
-    .section-title {
-        text-align: center;
-        font-size: 30px;
-        margin-bottom: 10px;
-    }
-    .section-intro {
-        text-align: center;
-        color: #666;
-        max-width: 700px;
-        margin: 0 auto 30px;
-    }
-    .service-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-    }
-    .service-card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px 15px;
-        text-align: center;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-        transition: transform 0.2s;
-    }
-    .service-card:hover {
-        transform: translateY(-3px);
-    }
-    .service-icon {
-        font-size: 35px;
-        margin-bottom: 10px;
-    }
-    .service-card h3 {
-        font-size: 17px;
-    }
-    .booking-section {
-        background: #fff3df;
-    }
-    .booking-container {
-        max-width: 700px;
-        margin: auto;
-        background: white;
-        padding: 25px;
-        border-radius: 18px;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-    }
-    .booking-container h2 {
-        text-align: center;
-        margin-bottom: 8px;
-    }
-    .booking-container > p {
-        text-align: center;
-        color: #666;
-        margin-bottom: 25px;
-    }
-    label {
-        display: block;
-        font-weight: 700;
-        margin: 14px 0 6px;
-    }
-    input,
-    select,
-    textarea {
-        width: 100%;
-        padding: 13px;
-        border: 1px solid #ccc;
-        border-radius: 9px;
-        font-size: 16px;
-    }
-    textarea {
-        min-height: 120px;
-        resize: vertical;
-    }
-    .submit-button {
-        width: 100%;
-        margin-top: 22px;
-        background: #25D366;
-        color: white;
-        border: none;
-        padding: 16px;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: 800;
-        cursor: pointer;
-    }
-    .steps {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 18px;
-    }
-    .step {
-        background: white;
-        padding: 25px 18px;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-    }
-    .step-number {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background: #e67e22;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 12px;
-        font-weight: 900;
-        font-size: 20px;
-    }
-    .coming-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 18px;
-    }
-    .coming-card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        text-align: center;
-        border: 2px dashed #e67e22;
-    }
-    .coming-card h3 {
-        margin-bottom: 8px;
-    }
-    .coming-card p {
-        color: #666;
-    }
-    .advertisement {
-        background: #222;
-        color: white;
-        text-align: center;
-        padding: 45px 20px;
-    }
-    .advertisement h2 {
-        margin-bottom: 8px;
-    }
-    .advertisement p {
-        color: #ddd;
-        margin-bottom: 18px;
-    }
-    .contact {
-        background: #fff3df;
-        text-align: center;
-    }
+
+    .price { color: #166534; font-weight: bold; }
+
     footer {
-        background: #171717;
-        color: white;
-        text-align: center;
-        padding: 30px 18px;
+
+      padding: 25px 5%;
+
+      text-align: center;
+
+      background: #123b25;
+
+      color: white;
+
     }
-    footer h3 {
-        margin-bottom: 8px;
+
+    footer a { color: #dcfce7; }
+
+    @media (max-width: 480px) {
+
+      .grid { grid-template-columns: 1fr 1fr; }
+
+      .card { padding: 13px; }
+
     }
-    footer p {
-        color: #ccc;
-        font-size: 14px;
-        margin-top: 5px;
-    }
-    @media (max-width: 650px) {
-        header {
-            justify-content: center;
-            text-align: center;
-        }
-        nav {
-            justify-content: center;
-        }
-        nav a {
-            font-size: 13px;
-        }
-        .hero {
-            padding: 50px 18px;
-        }
-        .section {
-            padding: 40px 15px;
-        }
-        .booking-container {
-            padding: 20px;
-        }
-    }
-</style>
+
+  </style>
+
 </head>
+
 <body>
-<div class="top-bar">
-    🛒 Quick Hands Services & Marketplace — Your errands. Our hands.
-</div>
+
 <header>
-    <a href="#home" class="logo">
-        QUICK HANDS
-        <span>Services & Marketplace</span>
-    </a>
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#booking">Book</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#riders">Coming Soon</a>
-        <a href="#account">👤 Customer Account</a>
-    </nav>
+
+  <div class="brand">QUICK HANDS</div>
+
+  <p>Services & Marketplace · Abuja, Nigeria</p>
+
+  <nav>
+
+    <a href="#markets">Markets</a>
+
+    <a href="#shops">Shops</a>
+
+    <a href="#products">Products</a>
+
+    <a href="#seller-register">Register Your Shop</a>
+
+    <a href="#order">Shopping Request</a>
+
+    <a href="index.html">Main Website</a>
+
+  </nav>
+
 </header>
-<section class="hero" id="home">
-    <h1>QUICK HANDS</h1>
-    <h2>Services & Marketplace</h2>
-    <p>
-       Need something done in Abuja? Quick Hands Services & Marketplace can help with market shopping, personal shopping, errands, pickups and delivery.
-    </p>
-    <div class="hero-buttons">
-        <a href="#booking" class="button button-white">
-            🛒 Book an Errand
-        </a>
-        <a href="tel:+2349041797547" class="button button-dark">
-            📞 Call Quick Hands
-        </a>
+
+<div class="hero">
+
+  <h1>Discover Abuja markets and shops.</h1>
+
+  <p>Browse local shopping areas, discover sellers, and request the products you need. Shop owners can apply to join our marketplace.</p>
+
+  <a class="button" href="#markets">Explore Markets</a>
+
+  <a class="button" href="#seller-register">Register Your Shop</a>
+
+</div>
+
+<main>
+
+  <div class="notice">
+
+    <strong>Fair pricing:</strong> Shop owners determine their own selling prices.
+
+    We do not display invented prices. Confirm current prices, quantities and
+
+    availability before an order is finalized.
+
+  </div>
+
+  <section id="markets">
+
+    <h2>Explore Abuja Markets</h2>
+
+    <p class="muted">Choose a market area to view its current marketplace listings. Not every listed area has an onboarded seller yet.</p>
+
+    <div class="grid" id="market-list"></div>
+
+  </section>
+
+  <section id="shops">
+
+    <h2 id="shops-title">Shops</h2>
+
+    <p class="muted">Only approved shops should appear here when the live database is connected.</p>
+
+    <div class="grid" id="shop-list">
+
+      <div class="card">
+
+        <div class="emoji">🏪</div>
+
+        <h3>Shop listings are being prepared</h3>
+
+        <p class="muted">Register your shop below to apply to join Quick Hands Marketplace.</p>
+
+      </div>
+
     </div>
-</section>
-<section class="section" id="services">
-    <h2 class="section-title">
-        Our Services
-    </h2>
-    <p class="section-intro">
-        Choose what you need and send your request to Quick Hands.
-    </p>
-    <div class="service-grid">
-        <a href="#booking" class="service-card"
-           onclick="chooseService('Market Shopping')">
-            <div class="service-icon">🛍️</div>
-            <h3>Market Shopping</h3>
-        </a>
-        <a href="#booking" class="service-card"
-           onclick="chooseService('Personal Shopping')">
-            <div class="service-icon">🛒</div>
-            <h3>Personal Shopping</h3>
-        </a>
-        <a href="#booking" class="service-card"
-           onclick="chooseService('Errands')">
-            <div class="service-icon">📦</div>
-            <h3>Errands</h3>
-        </a>
-        <a href="#booking" class="service-card"
-           onclick="chooseService('Pickups')">
-            <div class="service-icon">📦</div>
-            <h3>Pickups</h3>
-        </a>
-        <a href="#booking" class="service-card"
-           onclick="chooseService('Delivery')">
-            <div class="service-icon">🚚</div>
-            <h3>Delivery</h3>
-        </a>
+
+  </section>
+
+  <section id="products">
+
+    <h2>Products</h2>
+
+    <p class="muted">Product names, photos, prices and availability will come from approved shop listings. Prices will not be invented by Quick Hands.</p>
+
+    <div class="grid" id="product-list">
+
+      <div class="card">
+
+        <div class="emoji">📦</div>
+
+        <h3>Products will appear here</h3>
+
+        <p class="muted">Shop owners will add products and control their own prices after their accounts are connected.</p>
+
+        <p class="price">Price on request</p>
+
+      </div>
+
     </div>
-</section>
-<section class="booking-section" id="booking">
-    <div class="section">
-        <div class="booking-container">
-            <h2>🛒 Book an Errand</h2>
-            <p>
-                Tell us what you need and Quick Hands will contact you.
-            </p>
-            <form id="errandForm">
-                <label for="name">Your Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name"
-                    required
-                >
-                <label for="phone">Phone Number</label>
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter your phone number"
-                    required
-                >
-                <label for="service">What do you need?</label>
-                <select id="service" required>
-                    <option value="">
-                        Select a service
-                    </option>
-                    <option value="Market Shopping">
-                        Market Shopping
-                    </option>
-                    <option value="Personal Shopping">
-                        Personal Shopping
-                    </option>
-                    <option value="Errands">
-                        Errands
-                    </option>
-                    <option value="Pickups">
-                        Pickups
-                    </option>
-                    <option value="Delivery">
-                        Delivery
-                    </option>
-                </select>
-                <label for="location">
-                    Pickup / Shopping Location
-                </label>
-                <input
-                    type="text"
-                    id="location"
-                    placeholder="Where should we shop or pick up?"
-                    required
-                >
-                <label for="destination">
-                    Delivery / Destination
-                </label>
-                <input
-                    type="text"
-                    id="destination"
-                    placeholder="Where should we deliver?"
-                    required
-                >
-                <label for="details">
-                    Tell us what you need
-                </label>
-                <textarea
-                    id="details"
-                    placeholder="Describe your request..."
-                    required
-                ></textarea>
-                <button
-                    type="submit"
-                    class="submit-button"
-                >
-                    📲 Send Request on WhatsApp
-                </button>
-            </form>
-        </div>
+
+  </section>
+
+  <section id="seller-register">
+
+    <h2>Register Your Shop</h2>
+
+    <p>Are you a shop owner or trader in Abuja? Submit your shop details for review.</p>
+
+    <div class="notice">
+
+      This is a registration form preview, not a live account system yet.
+
+      Do not enter passwords, bank details or sensitive identity documents here.
+
+      Submissions are not saved to the database in this version.
+
     </div>
-</section>
-<!-- SHOPPING LIST / ERRAND REQUEST -->
 
-<section class="section" id="shopping-list">
-    <h2 class="section-title">
-        🛒 Create Your Shopping List
-    </h2>
+    <form id="seller-form" class="card">
 
-    <p class="section-intro">
-        Tell Quick Hands what you want us to buy or help you with. 
-        You can list as many items as you need.
-    </p>
+      <label for="seller-name">Your Name</label>
 
-    <form onsubmit="sendShoppingList(event)" class="booking-form">
+      <input id="seller-name" required autocomplete="name" placeholder="Enter your name">
 
-        <label>Your Name</label>
-        <input type="text" id="shoppingName" placeholder="Enter your name" required>
+      <label for="seller-email">Email Address</label>
 
-        <label>Phone Number</label>
-        <input type="tel" id="shoppingPhone" placeholder="Enter your phone number" required>
+      <input id="seller-email" type="email" required autocomplete="email" placeholder="you@example.com">
 
-        <label>Shopping / Market Location</label>
-        <input type="text" id="shoppingLocation" placeholder="Example: Wuse Market" required>
+      <label for="seller-phone">Private Contact Number</label>
 
-        <label>Delivery / Destination</label>
-        <input type="text" id="shoppingDestination" placeholder="Where should we deliver?" required>
+      <input id="seller-phone" type="tel" required autocomplete="tel" placeholder="For private verification only">
 
-        <label>What do you want us to buy?</label>
-        <textarea id="shoppingItems"
-            placeholder="Example:
-Rice — 10kg
-Tomatoes — 2 baskets
-Fish — 5 pieces
-Cooking oil — 2 bottles
+      <label for="shop-name">Shop Name</label>
 
-List everything you need here."
-            rows="8"
-            required></textarea>
+      <input id="shop-name" required placeholder="Enter your business name">
 
-        <label>Preferred Delivery Time</label>
-        <input type="text" id="shoppingTime" placeholder="Example: Afternoon">
+      <label for="seller-market">Market or Shopping Area</label>
 
-        <label>Additional Instructions</label>
-        <textarea id="shoppingInstructions"
-            placeholder="Any special instructions, preferred brands, quantities, etc."
-            rows="4"></textarea>
+      <select id="seller-market" required>
 
-        <button type="submit">
-            📲 Send Shopping List on WhatsApp
-        </button>
+        <option value="">Choose a market</option>
+
+      </select>
+
+      <label for="shop-location">Shop Location or Stall Number</label>
+
+      <input id="shop-location" required placeholder="Market, section or stall">
+
+      <label for="shop-category">Main Product Category</label>
+
+      <select id="shop-category" required>
+
+        <option value="">Choose a category</option>
+
+        <option>Food and Groceries</option>
+
+        <option>Fresh Produce</option>
+
+        <option>Meat and Fish</option>
+
+        <option>Clothing and Fashion</option>
+
+        <option>Electronics</option>
+
+        <option>Home and Household</option>
+
+        <option>Beauty and Personal Care</option>
+
+        <option>Building Materials</option>
+
+        <option>Other</option>
+
+      </select>
+
+      <label for="shop-description">Describe Your Shop</label>
+
+      <textarea id="shop-description" rows="4" required placeholder="What do you sell?"></textarea>
+
+      <button class="button" type="submit">Prepare Registration Request</button>
 
     </form>
-</section>
-<!-- DELIVERY INFORMATION -->
 
-<section class="section" id="delivery-information">
+    <p class="muted">Your phone number is private and must not be displayed on your public shop listing. Live registration, secure sign-in and admin approval will be connected through Supabase.</p>
 
-    <h2 class="section-title">
-        🚚 Quick Hands Delivery Information
-    </h2>
+  </section>
 
-    <p class="section-intro">
-        We help you shop, pick up and get your items delivered with less stress.
-    </p>
+  <section id="order">
 
-    <div class="steps">
+    <h2>Shopping Request</h2>
 
-        <div class="step">
-            <div class="step-number">1</div>
-            <h3>Place Your Request</h3>
-            <p>
-                Tell us what you need, where to shop or pick it up, and where
-                you want it delivered.
-            </p>
-        </div>
+    <p class="muted">Use this form to ask Quick Hands to check current prices and availability. A market-shopping service fee of ₦10,000 applies when Quick Hands carries out the shopping service. Goods and rider delivery are separate costs.</p>
 
-        <div class="step">
-            <div class="step-number">2</div>
-            <h3>We Confirm the Details</h3>
-            <p>
-                Quick Hands will confirm your request, location and delivery
-                arrangements with you.
-            </p>
-        </div>
+    <form id="order-form" class="card">
 
-        <div class="step">
-            <div class="step-number">3</div>
-            <h3>Shopping or Pickup</h3>
-            <p>
-                We can shop for your requested items or pick up your items
-                from the specified location.
-            </p>
-        </div>
+      <label for="customer-name">Your Name</label>
 
-        <div class="step">
-            <div class="step-number">4</div>
-            <h3>Delivery to You</h3>
-            <p>
-                Your items are arranged for delivery to your chosen destination.
-            </p>
-        </div>
+      <input id="customer-name" required autocomplete="name">
 
-    </div>
+      <label for="customer-phone">Your Phone Number</label>
 
-    <p class="section-intro">
-        📍 Currently focused on serving customers in Abuja.
-    </p>
+      <input id="customer-phone" type="tel" required autocomplete="tel">
 
-</section>
+      <label for="destination">Delivery Location</label>
 
-<!-- END DELIVERY INFORMATION -->
-<section class="section" id="how-it-works">
-    <h2 class="section-title">
-        📖 How Quick Hands Works
-    </h2>
-    <p class="section-intro">
-        Getting help is simple.
-    </p>
-    <div class="steps">
-        <div class="step">
-            <div class="step-number">1</div>
-            <h3>Choose a Service</h3>
-            <p>
-                Select shopping, errands, pickups or delivery.
-            </p>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <h3>Tell Us What You Need</h3>
-            <p>
-                Give us the locations and details of your request.
-            </p>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <h3>Send Your Request</h3>
-            <p>
-                Your request goes directly to Quick Hands through WhatsApp.
-            </p>
-        </div>
-        <div class="step">
-            <div class="step-number">4</div>
-            <h3>We Get It Done</h3>
-            <p>
-                We confirm the request and arrange the service.
-            </p>
-        </div>
-    </div>
-</section>
-<section class="section" id="riders">
-    <h2 class="section-title">
-        Coming to Quick Hands
-    </h2>
-    <p class="section-intro">
-        We're building more ways for customers, sellers and service
-        providers to use Quick Hands.
-    </p>
-    <div class="coming-grid">
-      <div class="coming-card">
-    <h3>🏪 Quick Hands Marketplace</h3>
+      <input id="destination" required placeholder="Area or address in Abuja">
 
-    <p>
-        Discover shops and businesses on Quick Hands.
-        Sellers will be able to create their own shops and display
-        their products for customers to browse.
-    </p>
+      <label for="items">Shopping List</label>
 
- <a
-    href="#marketplace"
-    class="button"
->
-    🛍️ Browse Marketplace
-</a>
-    </div>
-        <div class="coming-card">
-            <h3>🚚 Become a Rider</h3>
-            <p>
-                Rider registration and delivery opportunities are coming soon.
-            </p>
-        </div>
-        <div class="coming-card">
-            <h3>👤 Customer Accounts</h3>
-            <p>
-                Create an account and manage your Quick Hands requests.
-            </p>
-        </div>
-        <div class="coming-card">
-            <h3>📢 Business Advertising</h3>
-            <p>
-                Businesses and individuals will be able to advertise on Quick Hands.
-            </p>
-        </div>
-    </div>
-</section>
-<!-- QUICK HANDS MARKETPLACE -->
+      <textarea id="items" rows="5" required placeholder="List products, quantities and preferred shops. Prices can be confirmed before purchase."></textarea>
 
-<section class="section" id="marketplace">
+      <label for="extra-details">Additional Instructions</label>
 
-<h2 class="section-title">
-🛍️ Quick Hands Marketplace
-</h2>
+      <textarea id="extra-details" rows="3" placeholder="Preferred brands or other details"></textarea>
 
-<p class="section-intro">
-Shop from markets and sellers across Abuja. Choose a market to discover shops and products available through Quick Hands.
-</p>
+      <button class="button" type="submit">Send Shopping Request on WhatsApp</button>
 
-<div class="coming-grid">
+    </form>
 
-<div class="coming-card">
-<h3>🛒 Gwarinpa Market</h3>
-<p>
-Browse shops and products from Gwarinpa Market.
-</p>
+  </section>
 
-<a href="#gwarinpa-market" class="button">
-View Gwarinpa Market
-</a>
-</div>
+  <div class="notice">
 
-<div class="coming-card">
-<h3>🛒 Wuse Market</h3>
-<p>
-Explore shops and products from Wuse Market.
-</p>
+    <strong>Coming next:</strong> Supabase-backed seller accounts, shop approval,
 
-<a href="#marketplace" class="button">
-Coming Soon
-</a>
-</div>
+    live products and seller-set prices, customer accounts, cart and checkout,
 
-<div class="coming-card">
-<h3>🛒 Garki Market</h3>
-<p>
-Explore shops and products from Garki Market.
-</p>
+    order tracking, secure payment verification, and admin controls.
 
-<a href="#marketplace" class="button">
-Coming Soon
-</a>
-</div>
+    These features are not active in this preview.
 
-<div class="coming-card">
-<h3>🛒 Kubwa Market</h3>
-<p>
-Explore shops and products from Kubwa Market.
-</p>
+  </div>
 
-<a href="#marketplace" class="button">
-Coming Soon
-</a>
-</div>
+</main>
 
-</div>
-
-<!-- GWARINPA MARKET -->
-
-<div id="gwarinpa-market" class="section" style="padding: 30px 0;">
-
-<h2 class="section-title">
-🏪 Gwarinpa Market
-</h2>
-
-<p class="section-intro">
-Choose a shop in Gwarinpa Market and browse products available through Quick Hands.
-</p>
-
-<div class="coming-grid">
-
-<div class="coming-card">
-
-<h3>🏪 Mama Grace Foods</h3>
-
-<p>
-📍 Gwarinpa Market
-</p>
-
-<p>
-🍚 Rice, beans, grains and groceries
-</p>
-
-<hr>
-
-<h4>🛍️ Products</h4>
-
-<p>
-🍚 Rice
-</p>
-
-<p>
-🫘 Beans
-</p>
-
-<p>
-🌾 Grains
-</p>
-
-<p>
-🛒 Groceries
-</p>
-
-<a
-href="https://wa.me/2349041797547?text=Hello%20Quick%20Hands%2C%20I%20want%20to%20shop%20from%20Mama%20Grace%20Foods%20in%20Gwarinpa%20Market."
-class="button button-green"
->
-📲 Order From This Shop
-</a>
-
-</div>
-
-<div class="coming-card">
-
-<h3>🏪 Gwarinpa Fresh Produce</h3>
-
-<p>
-📍 Gwarinpa Market
-</p>
-
-<p>
-🥬 Vegetables, tomatoes, onions and fruits
-</p>
-
-<a
-href="https://wa.me/2349041797547?text=Hello%20Quick%20Hands%2C%20I%20want%20to%20shop%20from%20Gwarinpa%20Fresh%20Produce."
-class="button button-green"
->
-📲 Ask About This Shop
-</a>
-
-</div>
-
-<div class="coming-card">
-
-<h3>🏪 Gwarinpa Meat & Fish</h3>
-
-<p>
-📍 Gwarinpa Market
-</p>
-
-<p>
-🥩 Meat, fish and other food items
-</p>
-
-<a
-href="https://wa.me/2349041797547?text=Hello%20Quick%20Hands%2C%20I%20want%20to%20shop%20from%20Gwarinpa%20Meat%20%26%20Fish."
-class="button button-green"
->
-📲 Ask About This Shop
-</a>
-
-</div>
-
-<div class="coming-card">
-
-<h3>🏪 Gwarinpa Household Store</h3>
-
-<p>
-📍 Gwarinpa Market
-</p>
-
-<p>
-🧹 Household and cleaning products
-</p>
-
-<a
-href="https://wa.me/2349041797547?text=Hello%20Quick%20Hands%2C%20I%20want%20to%20shop%20from%20Gwarinpa%20Household%20Store."
-class="button button-green"
->
-📲 Ask About This Shop
-</a>
-
-</div>
-
-</div>
-
-<p class="section-intro">
-🚧 Shops and products shown here are demonstration listings for the Marketplace build. Real sellers can be added when seller registration is available.
-</p>
-
-</div>
-
-</section>
-<!-- END QUICK HANDS MARKETPLACE -->
-<!-- BECOME A SELLER -->
-<section
-    class="section"
-    id="seller-registration"
-    style="display:none;"
->
-    <h2 class="section-title">
-        🏪 Become a Quick Hands Seller
-    </h2>
-
-    <p class="section-intro">
-        Register your shop and start selling to customers across Abuja.
-    </p>
-
-
-    <!-- SELLER PERSONAL INFORMATION -->
-
-    <details open>
-
-        <summary>
-            👤 Personal Information
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <input
-                type="text"
-                id="seller-name"
-                placeholder="Full Name"
-                required
-            >
-
-            <input
-                type="tel"
-                id="seller-phone"
-                placeholder="Phone Number"
-                required
-            >
-
-            <input
-                type="email"
-                id="seller-email"
-                placeholder="Email Address"
-            >
-
-            <input
-                type="tel"
-                id="seller-whatsapp"
-                placeholder="WhatsApp Number"
-            >
-
-        </div>
-
-    </details>
-
-
-    <!-- BUSINESS INFORMATION -->
-
-    <details>
-
-        <summary>
-            🏪 Business Information
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <input
-                type="text"
-                id="shop-name"
-                placeholder="Shop / Business Name"
-                required
-            >
-
-            <input
-                type="text"
-                id="seller-business-type"
-                placeholder="Business Type"
-            >
-
-            <input
-                type="text"
-                id="seller-description"
-                placeholder="Short Business Description"
-            >
-
-        </div>
-
-    </details>
-
-
-    <!-- MARKET INFORMATION -->
-
-    <details>
-
-        <summary>
-            🛒 Market & Location
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <label for="seller-market">
-                Market / Location
-            </label>
-
-            <input
-                type="text"
-                id="seller-market"
-                placeholder="Example: Gwarinpa Market"
-                required
-            >
-
-            <input
-                type="text"
-                id="seller-shop-address"
-                placeholder="Shop Address / Stall Number"
-            >
-
-            <input
-                type="text"
-                id="seller-city"
-                placeholder="City"
-                value="Abuja"
-            >
-
-            <input
-                type="text"
-                id="seller-state"
-                placeholder="State"
-                value="FCT"
-            >
-
-        </div>
-
-    </details>
-
-
-    <!-- PRODUCTS AND SERVICES -->
-
-    <details>
-
-        <summary>
-            🛍️ Products & Services
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <input
-                type="text"
-                id="seller-category"
-                placeholder="Main Product Category"
-            >
-
-            <input
-                type="text"
-                id="seller-products"
-                placeholder="Products You Sell"
-            >
-
-            <input
-                type="text"
-                id="seller-services"
-                placeholder="Services You Provide (Optional)"
-            >
-
-        </div>
-
-    </details>
-
-
-    <!-- DELIVERY INFORMATION -->
-
-    <details>
-
-        <summary>
-            🚚 Delivery & Shop Hours
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <input
-                type="text"
-                id="seller-opening-hours"
-                placeholder="Opening Hours"
-            >
-
-            <input
-                type="text"
-                id="seller-delivery-area"
-                placeholder="Delivery Areas"
-            >
-
-            <input
-                type="text"
-                id="seller-delivery-notes"
-                placeholder="Delivery Information"
-            >
-
-        </div>
-
-    </details>
-
-
-    <!-- PAYOUT INFORMATION -->
-
-    <details>
-
-        <summary>
-            💰 Payout Information
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <p>
-                Your payout information will be used to set up secure seller payments.
-            </p>
-
-            <input
-                type="text"
-                id="bank-name"
-                placeholder="Bank Name"
-            >
-
-            <input
-                type="text"
-                id="account-name"
-                placeholder="Account Name"
-            >
-
-            <input
-                type="text"
-                id="account-number"
-                placeholder="Account Number"
-                inputmode="numeric"
-            >
-
-        </div>
-
-    </details>
-
-
-    <!-- SELLER AGREEMENT -->
-
-    <details>
-
-        <summary>
-            ✅ Verification & Agreement
-        </summary>
-
-        <div style="padding:15px 0;">
-
-            <label style="display:block; margin:10px 0;">
-
-                <input
-                    type="checkbox"
-                    id="seller-agreement"
-                >
-
-                I confirm that the information provided is correct
-                and I agree to the Quick Hands seller terms.
-
-            </label>
-
-        </div>
-
-    </details>
-
-
-    <!-- REGISTER BUTTON -->
-
-    <div style="margin-top:20px;">
-
-        <button
-            type="submit"
-            form="seller-form"
-            class="button button-green"
-        >
-            🏪 Submit Seller Application
-        </button>
-
-    </div>
-
-
-    <form id="seller-form" style="display:none;"></form>
-
-    <p id="seller-message"></p>
-
-</section>
-
-<!-- END BECOME A SELLER -->
-<section class="advertisement">
-    <h2>
-        📢 Advertise With Quick Hands
-    </h2>
-    <p>
-        Put your business, products or services in front of Quick Hands customers.
-    </p>
-    <a
-        href="https://wa.me/2349041797547?text=Hello%20Quick%20Hands%2C%20I%20am%20interested%20in%20advertising%20on%20Quick%20Hands."
-        class="button button-green"
-    >
-        📲 Ask About Advertising
-    </a>
-</section>
-<section class="section contact">
-    <h2 class="section-title">
-        Need Help?
-    </h2>
-    <p>
-        Contact Quick Hands directly.
-    </p>
-    <div class="contact-buttons">
-        <a
-            href="https://wa.me/2349041797547"
-            class="button button-green"
-        >
-            📲 WhatsApp
-        </a>
-        <a
-            href="tel:+2349041797547"
-            class="button button-dark"
-        >
-            📞 Call Us
-        </a>
-    </div>
-</section>
 <footer>
-    <h3>
-        QUICK HANDS
-    </h3>
 
-    <p>
-        Your errands. Our hands.
-    </p>
+  <p>Quick Hands Services & Marketplace · Abuja, Nigeria</p>
 
-    <p>
-        Shop, order, pick up and get your items delivered without the stress.
-    </p>
+  <p>WhatsApp: +234 904 179 7547</p>
 
-    <p>
-        📞 +234 904 179 7547
-    </p>
+  <p><a href="index.html">Visit the main website</a></p>
 
-    <p>
-        © 2026 Quick Hands Services & Marketplace
-    </p>
 </footer>
-<script>
-    const QUICK_HANDS_NUMBER = "2349041797547";
-
-    function chooseService(serviceName) {
-        setTimeout(function() {
-            document.getElementById("service").value = serviceName;
-        }, 100);
-    }
-
-    // EXISTING ERRAND FORM
-    document
-        .getElementById("errandForm")
-        .addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const name =
-                document.getElementById("name").value.trim();
-
-            const phone =
-                document.getElementById("phone").value.trim();
-
-            const service =
-                document.getElementById("service").value;
-
-            const location =
-                document.getElementById("location").value.trim();
-
-            const destination =
-                document.getElementById("destination").value.trim();
-
-            const details =
-                document.getElementById("details").value.trim();
-
-            const message =
-                "🛒 QUICK HANDS ERRAND REQUEST\n\n" +
-                "Name: " + name + "\n" +
-                "Customer Phone: " + phone + "\n" +
-                "Service: " + service + "\n" +
-                "Pickup / Shopping Location: " +
-                location + "\n" +
-                "Delivery / Destination: " +
-                destination + "\n" +
-                "Details: " + details;
-
-            const whatsappURL =
-                "https://wa.me/" +
-                QUICK_HANDS_NUMBER +
-                "?text=" +
-                encodeURIComponent(message);
-
-            window.location.href = whatsappURL;
-        });
-
-    // SHOPPING LIST FORM
-    function sendShoppingList(event) {
-        event.preventDefault();
-
-        const name =
-            document.getElementById("shoppingName").value.trim();
-
-        const phone =
-            document.getElementById("shoppingPhone").value.trim();
-
-        const location =
-            document.getElementById("shoppingLocation").value.trim();
-
-        const destination =
-            document.getElementById("shoppingDestination").value.trim();
-
-        const items =
-            document.getElementById("shoppingItems").value.trim();
-
-        const time =
-            document.getElementById("shoppingTime").value.trim();
-
-        const instructions =
-            document.getElementById("shoppingInstructions").value.trim();
-
-        const message =
-            "🛒 QUICK HANDS SHOPPING LIST\n\n" +
-            "Name: " + name + "\n" +
-            "Customer Phone: " + phone + "\n" +
-            "Shopping / Market Location: " +
-            location + "\n" +
-            "Delivery / Destination: " +
-            destination + "\n\n" +
-            "ITEMS NEEDED:\n" +
-            items + "\n\n" +
-            "Preferred Delivery Time: " +
-            time + "\n\n" +
-            "Additional Instructions:\n" +
-            instructions;
-
-        const whatsappURL =
-            "https://wa.me/" +
-            QUICK_HANDS_NUMBER +
-            "?text=" +
-            encodeURIComponent(message);
-
-        window.location.href = whatsappURL;
-    }
-</script>
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL = "https://gccphxlofazghlgtzwba.supabase.co";
 
-const SUPABASE_ANON_KEY = "sb_publishable_DPI3mrF-ZpajMMD480pHew_tNM3-IyU";
+  const WHATSAPP_NUMBER = "2349041797547";
 
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
-</script>
+  const markets = [
 
-<!-- SUPABASE MARKETPLACE TEST -->
-<section id="supabase-marketplace-test" style="padding:30px 20px; max-width:600px; margin:auto;">
+    { name: "Gwarinpa", emoji: "🥬", description: "Groceries and everyday needs" },
 
-    <h2>🛍️ Live Marketplace</h2>
+    { name: "Wuse Market", emoji: "🛍️", description: "Food, fashion and general goods" },
 
-    <p>
-        Markets connected to Quick Hands Marketplace.
-    </p>
+    { name: "Garki Modern Market", emoji: "🥕", description: "Produce and household shopping" },
 
-    <div id="market-list">
-        Loading markets...
-    </div>
+    { name: "Garki International Market", emoji: "🧺", description: "Retail and wholesale goods" },
 
-</section>
+    { name: "Dei-Dei Market", emoji: "🧱", description: "Building materials and trading" },
 
-<script>
-async function loadMarkets() {
+    { name: "Kado Fish Market", emoji: "🐟", description: "Fish and seafood" },
 
-    const marketList =
-        document.getElementById("market-list");
+    { name: "Maitama Farmers Market", emoji: "🌾", description: "Farm produce and food" },
 
-    const { data, error } =
-        await supabaseClient
-            .from("Market")
-            .select("*");
+    { name: "Gudu Market", emoji: "🏪", description: "General market shopping" },
 
-    if (error) {
-        marketList.textContent =
-            "Could not load markets: " + error.message;
-        return;
-    }
+    { name: "Utako Market", emoji: "🥑", description: "Produce and groceries" },
 
-    if (!data || data.length === 0) {
-        marketList.textContent =
-            "No markets found.";
-        return;
-    }
+    { name: "Kubwa", emoji: "🛒", description: "Local shops and essentials" },
 
-    marketList.innerHTML = "";
+    { name: "Nyanya Market", emoji: "🍅", description: "Food and everyday goods" },
 
-    data.forEach(function(market) {
+    { name: "Karmo Market", emoji: "🧺", description: "Local retail and produce" },
 
-        const name =
-            market.name ||
-            market.Name ||
-            "Unnamed Market";
+    { name: "Karu Market", emoji: "🛍️", description: "General merchandise" },
 
-        const item =
-            document.createElement("p");
+    { name: "Lugbe Market", emoji: "🥬", description: "Groceries and daily needs" },
 
-        item.textContent = "🛒 " + name;
+    { name: "Jabi", emoji: "🏬", description: "Shopping areas and stores" },
 
-        marketList.appendChild(item);
+    { name: "Kuje Market", emoji: "🌽", description: "Local produce and goods" }
+
+  ];
+
+  const marketList = document.getElementById("market-list");
+
+  const sellerMarket = document.getElementById("seller-market");
+
+  markets.forEach(function(market) {
+
+    const card = document.createElement("button");
+
+    card.type = "button";
+
+    card.className = "card market-button";
+
+    card.innerHTML =
+
+      '<div class="emoji">' + market.emoji + '</div>' +
+
+      '<strong></strong><p class="muted"></p>';
+
+    card.querySelector("strong").textContent = market.name;
+
+    card.querySelector("p").textContent = market.description;
+
+    card.addEventListener("click", function() {
+
+      document.getElementById("shops-title").textContent =
+
+        "Shops in " + market.name;
+
+      document.getElementById("shops").scrollIntoView({ behavior: "smooth" });
+
     });
-}
-
-loadMarkets();
-</script>
-<!-- CUSTOMER ACCOUNT -->
-<section id="account" style="padding:40px 20px; max-width:600px; margin:auto;">
 
-    <style>
+    marketList.appendChild(card);
 
-        #account input {
-            display:block;
-            width:100%;
-            padding:12px;
-            margin:10px 0;
-            box-sizing:border-box;
-            border:1px solid #ccc;
-            border-radius:8px;
-        }
-
-        #account button {
-            margin:8px 0;
-            padding:12px 18px;
-            border-radius:8px;
-            cursor:pointer;
-        }
-
-        .account-panel {
-            display:none;
-            margin-top:15px;
-            padding:20px;
-            border:1px solid #ddd;
-            border-radius:10px;
-            background:#fafafa;
-        }
+    const option = document.createElement("option");
 
-        .account-option {
-            display:block;
-            width:100%;
-        }
-
-    </style>
-
-
-    <h2>👤 Customer Account</h2>
-
-    <p>
-        Create an account or log in to manage your Quick Hands orders.
-    </p>
-
-
-    <!-- CUSTOMER OPTIONS -->
-
-    <button
-        type="button"
-        id="show-customer-register"
-        class="button button-green account-option"
-    >
-        👤 Create Customer Account
-    </button>
-
-
-    <button
-        type="button"
-        id="show-customer-login"
-        class="button account-option"
-    >
-        🔐 Already Have an Account? Log In
-    </button>
-
-
-    <!-- CUSTOMER REGISTRATION -->
-
-    <div
-        id="customer-register-panel"
-        class="account-panel"
-    >
-
-        <h3>👤 Create Your Customer Account</h3>
-
-        <p>
-            Please provide your information so Quick Hands can serve you better.
-        </p>
-
-
-        <h4>Personal Information</h4>
-
-        <input
-            type="text"
-            id="signup-name"
-            placeholder="Full Name"
-        >
-
-        <input
-            type="tel"
-            id="signup-phone"
-            placeholder="Phone Number"
-        >
-
-        <input
-            type="tel"
-            id="signup-whatsapp"
-            placeholder="WhatsApp Number"
-        >
-
+    option.value = market.name;
 
-        <h4>Account Information</h4>
+    option.textContent = market.name;
 
-        <input
-            type="email"
-            id="signup-email"
-            placeholder="Email Address"
-        >
+    sellerMarket.appendChild(option);
 
-        <input
-            type="password"
-            id="signup-password"
-            placeholder="Password"
-        >
+  });
 
-        <input
-            type="password"
-            id="signup-password-confirm"
-            placeholder="Confirm Password"
-        >
+  document.getElementById("seller-form").addEventListener("submit", function(event) {
 
-
-        <h4>Delivery Information</h4>
-
-        <input
-            type="text"
-            id="signup-address"
-            placeholder="Home / Delivery Address"
-        >
+    event.preventDefault();
 
-        <input
-            type="text"
-            id="signup-area"
-            placeholder="Area / District"
-        >
+    const seller = document.getElementById("seller-name").value.trim();
 
-        <input
-            type="text"
-            id="signup-city"
-            placeholder="City"
-        >
+    const email = document.getElementById("seller-email").value.trim();
 
-        <input
-            type="text"
-            id="signup-state"
-            placeholder="State"
-        >
+    const phone = document.getElementById("seller-phone").value.trim();
 
-        <input
-            type="text"
-            id="signup-delivery-notes"
-            placeholder="Delivery Instructions (Optional)"
-        >
+    const shop = document.getElementById("shop-name").value.trim();
 
+    const market = sellerMarket.value;
 
-        <button
-            type="button"
-            id="create-account-button"
-            class="button button-green"
-        >
-            Create Account
-        </button>
+    const location = document.getElementById("shop-location").value.trim();
 
-    </div>
+    const category = document.getElementById("shop-category").value;
 
-
-    <!-- CUSTOMER LOGIN -->
-
-    <div
-        id="customer-login-panel"
-        class="account-panel"
-    >
-
-        <h3>🔐 Customer Login</h3>
-
-        <input
-            type="email"
-            id="login-email"
-            placeholder="Email Address"
-        >
-
-        <input
-            type="password"
-            id="login-password"
-            placeholder="Password"
-        >
-
-        <button
-            type="button"
-            id="login-account-button"
-            class="button"
-        >
-            Log In
-        </button>
-
-    </div>
-
-
-    <p id="account-message"></p>
-
-
-    <!-- SELLER ACCESS -->
-
-    <div
-        style="
-            margin-top:30px;
-            padding-top:20px;
-            border-top:1px solid #ddd;
-        "
-    >
-
-        <h3>🏪 Want to Sell on Quick Hands?</h3>
-
-        <p>
-            Register your shop and become a Quick Hands Marketplace seller.
-        </p>
-
-        <button
-            type="button"
-            id="show-seller-registration"
-            class="button button-green account-option"
-        >
-            🏪 Register as a Seller
-        </button>
-
-    </div>
-
-</section>
-
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const registerButton =
-        document.getElementById("show-customer-register");
-
-    const loginButton =
-        document.getElementById("show-customer-login");
-
-    const sellerButton =
-        document.getElementById("show-seller-registration");
-
-    const registerPanel =
-        document.getElementById("customer-register-panel");
-
-    const loginPanel =
-        document.getElementById("customer-login-panel");
-
-    const sellerPanel =
-        document.getElementById("seller-registration");
-
-    const createButton =
-        document.getElementById("create-account-button");
-
-    const loginAccountButton =
-        document.getElementById("login-account-button");
+    const description = document.getElementById("shop-description").value.trim();
 
     const message =
-        document.getElementById("account-message");
 
+      "QUICK HANDS MARKETPLACE — SHOP REGISTRATION ENQUIRY\n\n" +
 
-    /* SHOW CUSTOMER REGISTRATION */
+      "Applicant: " + seller + "\n" +
 
-    registerButton.addEventListener("click", function () {
+      "Email: " + email + "\n" +
 
-        registerPanel.style.display = "block";
+      "Private phone: " + phone + "\n" +
 
-        loginPanel.style.display = "none";
+      "Shop name: " + shop + "\n" +
 
-        message.textContent = "";
+      "Market: " + market + "\n" +
 
-        registerPanel.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+      "Location: " + location + "\n" +
 
-    });
+      "Category: " + category + "\n" +
 
+      "Description: " + description + "\n\n" +
 
-    /* SHOW CUSTOMER LOGIN */
+      "Please explain the next steps for seller registration and approval.";
 
-    loginButton.addEventListener("click", function () {
+    alert("This preview does not save seller applications. Your messaging app will open so you can send an enquiry. Live private registration must be connected before public launch.");
 
-        loginPanel.style.display = "block";
+    window.location.href = "https://wa.me/" + WHATSAPP_NUMBER +
 
-        registerPanel.style.display = "none";
+      "?text=" + encodeURIComponent(message);
 
-        message.textContent = "";
+  });
 
-        loginPanel.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+  document.getElementById("order-form").addEventListener("submit", function(event) {
 
-    });
+    event.preventDefault();
 
+    const name = document.getElementById("customer-name").value.trim();
 
-    /* SHOW SELLER REGISTRATION */
+    const phone = document.getElementById("customer-phone").value.trim();
 
-    sellerButton.addEventListener("click", function () {
+    const destination = document.getElementById("destination").value.trim();
 
-        if (sellerPanel) {
+    const items = document.getElementById("items").value.trim();
 
-            sellerPanel.style.display = "block";
+    const extra = document.getElementById("extra-details").value.trim();
 
-            sellerPanel.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+    const message =
 
-        }
+      "QUICK HANDS MARKETPLACE — SHOPPING REQUEST\n\n" +
 
-    });
+      "Customer: " + name + "\n" +
 
+      "Phone: " + phone + "\n" +
 
-    /* CREATE CUSTOMER ACCOUNT */
+      "Delivery location: " + destination + "\n\n" +
 
-    createButton.addEventListener("click", async function () {
+      "Shopping list:\n" + items + "\n\n" +
 
-        message.textContent =
-            "Creating your account...";
+      "Additional instructions: " + (extra || "None") + "\n\n" +
 
+      "Please confirm current seller prices, availability, the applicable " +
 
-        const name =
-            document.getElementById("signup-name").value.trim();
+      "shopping service fee and delivery fee before proceeding.";
 
-        const phone =
-            document.getElementById("signup-phone").value.trim();
+    window.location.href = "https://wa.me/" + WHATSAPP_NUMBER +
 
-        const whatsapp =
-            document.getElementById("signup-whatsapp").value.trim();
+      "?text=" + encodeURIComponent(message);
 
-        const email =
-            document.getElementById("signup-email").value.trim();
-
-        const password =
-            document.getElementById("signup-password").value;
-
-        const passwordConfirm =
-            document.getElementById("signup-password-confirm").value;
-
-
-        if (
-            !name ||
-            !phone ||
-            !email ||
-            !password ||
-            !passwordConfirm
-        ) {
-
-            message.textContent =
-                "Please fill in all required fields.";
-
-            return;
-
-        }
-
-
-        if (password.length < 6) {
-
-            message.textContent =
-                "Password must be at least 6 characters.";
-
-            return;
-
-        }
-
-
-        if (password !== passwordConfirm) {
-
-            message.textContent =
-                "Passwords do not match.";
-
-            return;
-
-        }
-
-
-        try {
-
-            const result =
-                await supabaseClient.auth.signUp({
-
-                    email: email,
-
-                    password: password,
-
-                    options: {
-
-                        data: {
-
-                            name: name,
-
-                            phone: phone,
-
-                            whatsapp: whatsapp,
-
-                            address:
-                                document.getElementById(
-                                    "signup-address"
-                                ).value.trim(),
-
-                            area:
-                                document.getElementById(
-                                    "signup-area"
-                                ).value.trim(),
-
-                            city:
-                                document.getElementById(
-                                    "signup-city"
-                                ).value.trim(),
-
-                            state:
-                                document.getElementById(
-                                    "signup-state"
-                                ).value.trim(),
-
-                            delivery_notes:
-                                document.getElementById(
-                                    "signup-delivery-notes"
-                                ).value.trim()
-
-                        },
-
-                        emailRedirectTo:
-                            "https://quickhandsservices.github.io/quick-hands-website/"
-
-                    }
-
-                });
-
-
-            if (result.error) {
-
-                message.textContent =
-                    "Signup error: " +
-                    result.error.message;
-
-                return;
-
-            }
-
-
-            message.textContent =
-                "Account created! Please check your email to confirm your account.";
-
-        } catch (error) {
-
-            message.textContent =
-                "Error: " +
-                error.message;
-
-        }
-
-    });
-
-
-    /* CUSTOMER LOGIN */
-
-    loginAccountButton.addEventListener("click", async function () {
-
-        message.textContent =
-            "Logging in...";
-
-
-        const email =
-            document.getElementById("login-email").value.trim();
-
-        const password =
-            document.getElementById("login-password").value;
-
-
-        if (!email || !password) {
-
-            message.textContent =
-                "Please enter your email and password.";
-
-            return;
-
-        }
-
-
-        try {
-
-            const result =
-                await supabaseClient.auth.signInWithPassword({
-
-                    email: email,
-
-                    password: password
-
-                });
-
-
-            if (result.error) {
-
-                message.textContent =
-                    "Login error: " +
-                    result.error.message;
-
-                return;
-
-            }
-
-
-            message.textContent =
-                "Login successful!";
-
-        } catch (error) {
-
-            message.textContent =
-                "Error: " +
-                error.message;
-
-        }
-
-    });
-
-});
+  });
 
 </script>
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const sellerForm =
-        document.getElementById("seller-form");
-
-    if (!sellerForm) {
-        return;
-    }
-
-
-    sellerForm.addEventListener("submit", async function (event) {
-
-        event.preventDefault();
-
-
-        const message =
-            document.getElementById("seller-message");
-
-
-        message.textContent =
-            "Registering your shop...";
-
-
-        if (typeof supabaseClient === "undefined") {
-
-            message.textContent =
-                "Supabase is not connected.";
-
-            return;
-        }
-
-
-        /* CHECK CUSTOMER LOGIN */
-
-        const { data: userData, error: userError } =
-            await supabaseClient.auth.getUser();
-
-
-        if (userError || !userData.user) {
-
-            message.textContent =
-                "Please create or log in to your Customer Account first.";
-
-            return;
-        }
-
-
-        const user =
-            userData.user;
-
-
-        /* GET SELLER INFORMATION */
-
-        const sellerName =
-            document.getElementById("seller-name").value.trim();
-
-        const sellerPhone =
-            document.getElementById("seller-phone").value.trim();
-
-        const sellerEmail =
-            document.getElementById("seller-email").value.trim();
-
-        const sellerWhatsapp =
-            document.getElementById("seller-whatsapp").value.trim();
-
-
-        /* BUSINESS INFORMATION */
-
-        const shopName =
-            document.getElementById("shop-name").value.trim();
-
-        const businessType =
-            document.getElementById("seller-business-type").value.trim();
-
-        const description =
-            document.getElementById("seller-description").value.trim();
-
-
-        /* LOCATION */
-
-        const sellerMarket =
-            document.getElementById("seller-market").value.trim();
-
-        const shopAddress =
-            document.getElementById("seller-shop-address").value.trim();
-
-        const sellerCity =
-            document.getElementById("seller-city").value.trim();
-
-        const sellerState =
-            document.getElementById("seller-state").value.trim();
-
-
-        /* PRODUCTS */
-
-        const category =
-            document.getElementById("seller-category").value.trim();
-
-        const products =
-            document.getElementById("seller-products").value.trim();
-
-        const services =
-            document.getElementById("seller-services").value.trim();
-
-
-        /* DELIVERY */
-
-        const openingHours =
-            document.getElementById("seller-opening-hours").value.trim();
-
-        const deliveryArea =
-            document.getElementById("seller-delivery-area").value.trim();
-
-        const deliveryNotes =
-            document.getElementById("seller-delivery-notes").value.trim();
-
-
-        /* PAYOUT */
-
-        const bankName =
-            document.getElementById("bank-name").value.trim();
-
-        const accountName =
-            document.getElementById("account-name").value.trim();
-
-        const accountNumber =
-            document.getElementById("account-number").value.trim();
-
-
-        /* AGREEMENT */
-
-        const agreement =
-            document.getElementById("seller-agreement").checked;
-
-
-        /* REQUIRED INFORMATION */
-
-        if (
-            !sellerName ||
-            !sellerPhone ||
-            !shopName ||
-            !sellerMarket ||
-            !agreement
-        ) {
-
-            message.textContent =
-                "Please complete the required information and accept the seller agreement.";
-
-            return;
-        }
-
-
-        /* FIND MARKET */
-
-        const { data: market, error: marketError } =
-            await supabaseClient
-                .from("Market")
-                .select("id, name")
-                .ilike("name", sellerMarket)
-                .maybeSingle();
-
-
-        if (marketError || !market) {
-
-            message.textContent =
-                "Market not found. Please enter the exact market name.";
-
-            return;
-        }
-
-
-        /* CREATE SHOP */
-
-        const { data: shop, error: shopError } =
-            await supabaseClient
-                .from("Shops")
-                .insert({
-
-                    Name: shopName,
-
-                    Phone: sellerPhone,
-
-                    market_id: market.id,
-
-                    auth_user_id: user.id,
-
-                    status: "pending"
-
-                })
-                .select("id")
-                .single();
-
-
-        if (shopError) {
-
-            message.textContent =
-                "Shop registration failed: " +
-                shopError.message;
-
-            return;
-        }
-
-
-        /* SAVE PAYOUT PROFILE */
-
-        const { error: payoutError } =
-            await supabaseClient
-                .from("seller_payout_profiles")
-                .insert({
-
-                    shop_id: shop.id,
-
-                    bank_name: bankName,
-
-                    account_name: accountName,
-
-                    account_number: accountNumber,
-
-                    verification_status: "pending"
-
-                });
-
-
-        if (payoutError) {
-
-            message.textContent =
-                "Shop created, but payout information could not be saved: " +
-                payoutError.message;
-
-            return;
-        }
-
-
-        /* SUCCESS */
-
-        message.textContent =
-            "Seller registration submitted successfully! Your shop is pending approval.";
-
-
-        /* CLEAR SELLER FIELDS */
-
-        document.getElementById("seller-name").value = "";
-        document.getElementById("seller-phone").value = "";
-        document.getElementById("seller-email").value = "";
-        document.getElementById("seller-whatsapp").value = "";
-
-        document.getElementById("shop-name").value = "";
-        document.getElementById("seller-business-type").value = "";
-        document.getElementById("seller-description").value = "";
-
-        document.getElementById("seller-market").value = "";
-        document.getElementById("seller-shop-address").value = "";
-
-        document.getElementById("seller-category").value = "";
-        document.getElementById("seller-products").value = "";
-        document.getElementById("seller-services").value = "";
-
-        document.getElementById("seller-opening-hours").value = "";
-        document.getElementById("seller-delivery-area").value = "";
-        document.getElementById("seller-delivery-notes").value = "";
-
-        document.getElementById("bank-name").value = "";
-        document.getElementById("account-name").value = "";
-        document.getElementById("account-number").value = "";
-
-        document.getElementById("seller-agreement").checked = false;
-
-    });
-
-});
-
-</script>
 </body>
+
 </html>
