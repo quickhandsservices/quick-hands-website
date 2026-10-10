@@ -600,53 +600,144 @@ function openMarkets() {
 }
 
 
+
 function openSection(name) {
-
     dashboardSection.classList.add("hidden");
-
     managementSection.classList.remove("hidden");
 
-
-    sectionTitle.textContent =
-        name;
-
-
+    sectionTitle.textContent = name;
     sectionDescription.textContent =
-        "Quick Hands Admin — " +
-        name +
-        " management.";
-
+        "Quick Hands Admin — " + name + " management.";
 
     sectionContent.innerHTML =
+        '<div id="records-area" class="loading">' +
+        'Loading records...</div>';
 
-        '<div class="status-box">' +
-
-        '<strong>' +
-        escapeHtml(name) +
-        '</strong>' +
-
-        '<p style="margin-top:8px">' +
-
-        'This section is ready for connection to Supabase.' +
-
-        '</p>' +
-
-        '<p style="margin-top:8px">' +
-
-        'We can build this section next without changing the working login.' +
-
-        '</p>' +
-
-        '</div>';
-
+    loadSectionRecords(name);
 }
 
+async function loadSectionRecords(name) {
+    const tables = {
+        "Shops & Sellers": "Shops",
+        "Products": "Products",
+        "Orders": "orders",
+        "Customers": "customers",
+        "Payments": "payments",
+        "Delivery": "delivery_details",
+        "Commissions & Payouts": "seller_payouts"
+    };
 
+    const table = tables[name];
+    const area = document.getElementById("records-area");
+
+    if (!table || !area) return;
+
+    try {
+        const { data, error } = await supabaseClient
+            .from(table)
+            .select("*")
+            .limit(50);
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+            area.textContent =
+                "No records found, or this account cannot view records.";
+            return;
+        }
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "table-wrap";
+        wrapper.style.overflowX = "auto";
+
+        const tableElement = document.createElement("table");
+        tableElement.style.width = "100%";
+        tableElement.style.borderCollapse = "collapse";
+
+        const columns = Object.keys(data[0]);
+        const header = document.createElement("tr");
+
+        columns.forEach(function (column) {
+            const th = document.createElement("th");
+            th.textContent = column;
+            th.style.padding = "10px";
+            th.style.textAlign = "left";
+            header.appendChild(th);
+        });
+
+        const thead = document.createElement("thead");
+        thead.appendChild(header);
+        tableElement.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+
+        data.forEach(function (record) {
+            const row = document.createElement("tr");
+
+            columns.forEach(function (column) {
+                const cell = document.createElement("td");
+                const value = record[column];
+
+                cell.textContent =
+                    value === null || value === undefined
+                        ? ""
+                        : typeof value === "object"
+                            ? JSON.stringify(value)
+                            : String(value);
+
+                cell.style.padding = "10px";
+                cell.style.borderTop = "1px solid #eee";
+                row.appendChild(cell);
+            });
+
+            tbody.appendChild(row);
+        });
+
+        tableElement.appendChild(tbody);
+        wrapper.appendChild(tableElement);
+
+        area.replaceChildren(wrapper);
+
+    } catch (error) {
+        console.error("Admin records error:", error);
+
+        area.textContent =
+            "Could not load " + name + ": " + error.message;
+    }
+}
 async function loadMarkets() {
+const list =
+document.getElementById("market-list");
 
-    const list =
-        document.getElementById("market-list");
-
+if (!list) return;
+list.textContent = "Loading markets...";
+try {
+    const { data, error } = await supabaseClient
+        .from("Market")
+        .select("*")
+        .order("id", { ascending: true });
+    if (error) throw error;
+    if (!data || data.length === 0) {
+        list.textContent = "No markets found, or this account cannot view markets.";
+        return;
+    }
+    list.replaceChildren();
+    data.forEach(function (market) {
+        const item = document.createElement("div");
+        item.className = "market";
+        const title = document.createElement("strong");
+        title.textContent = market.Name || market.name || market.market_name || ("Market " + market.id);
+        const description = document.createElement("div");
+        description.className = "market-description";
+        description.textContent = market.Description || market.description || "No description available.";
+        item.append(title, description);
+        list.appendChild(item);
+    });
+} catch (error) {
+    console.error("Markets loading error:", error);
+    list.textContent = "Unable to load markets: " + error.message;
+}
+}
 
     try {
 
