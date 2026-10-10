@@ -1243,7 +1243,117 @@
     showMarket("Gwarinpa");
 
   </script>
-
+<!-- QUICK HANDS LIVE SUPABASE CONNECTION -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function connectQuickHandsMarketplace() {
+  const SUPABASE_URL =
+    "https://gccphxlofazghlgtzwba.supabase.co";
+  const SUPABASE_KEY =
+    "sb_publishable_DPI3mrF-ZpajMMD480pHew_tNM3-IyU";
+  const marketGrid = document.querySelector(".markets");
+  try {
+    const db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+    marketGrid.textContent = "Loading live markets...";
+    const [marketResult, shopResult, productResult] =
+      await Promise.all([
+        db.from("Market").select("*"),
+        db.from("Shops").select("*"),
+        db.from("Products").select("*")
+      ]);
+    if (marketResult.error) throw marketResult.error;
+    if (shopResult.error) throw shopResult.error;
+    if (productResult.error) throw productResult.error;
+    const markets = marketResult.data || [];
+    const shops = shopResult.data || [];
+    const products = productResult.data || [];
+    if (!markets.length) {
+      marketGrid.textContent = "No markets found in Supabase.";
+      return;
+    }
+    const getMarketName = m =>
+      m.name || m.Name || m.market_name ||
+      m.market || ("Market " + m.id);
+    const getShopName = s =>
+      s.name || s.Name || s.shop_name ||
+      s.shop || "Local Shop";
+    const getProductName = p =>
+      p.Name || p.name || p.product_name || "Product";
+    const getDescription = item =>
+      item.Description || item.description || "";
+    const getPrice = p =>
+      Number(p.Price ?? p.price ?? 0);
+    // Prepare live data for the existing marketplace display.
+    Object.keys(shopData).forEach(k => delete shopData[k]);
+    Object.keys(productData).forEach(k => delete productData[k]);
+    markets.forEach(market => {
+      const marketName = getMarketName(market);
+      const marketShops = shops.filter(
+        shop => String(shop.market_id) === String(market.id)
+      );
+      shopData[marketName] = marketShops.map(shop => ({
+        id: shop.id,
+        name: getShopName(shop),
+        description: getDescription(shop) || "Local shop",
+        emoji: "🛒"
+      }));
+      productData[marketName] = products
+        .filter(product =>
+          marketShops.some(
+            shop => String(shop.id) === String(product.shop_id)
+          )
+        )
+        .map(product => {
+          const shop = marketShops.find(
+            s => String(s.id) === String(product.shop_id)
+          );
+          return {
+            id: product.id,
+            name: getProductName(product),
+            description: getDescription(product),
+            price: getPrice(product),
+            emoji: "🛍️",
+            shop: shop ? getShopName(shop) : "Local Shop"
+          };
+        });
+    });
+    // Replace the sample market buttons with database markets.
+    marketGrid.replaceChildren();
+    markets.forEach(market => {
+      const name = getMarketName(market);
+      const button = document.createElement("button");
+      button.className = "card market";
+      button.type = "button";
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.textContent = "🛒";
+      const title = document.createElement("strong");
+      title.textContent = name;
+      const description = document.createElement("p");
+      description.className = "muted";
+      description.textContent = "Explore shops and products";
+      button.append(emoji, title, description);
+      button.addEventListener("click", () => showMarket(name));
+      marketGrid.appendChild(button);
+    });
+    // Display the first market from the database.
+    showMarket(getMarketName(markets[0]));
+    console.log("Quick Hands live data connected", {
+      markets: markets.length,
+      shops: shops.length,
+      products: products.length
+    });
+  } catch (error) {
+    console.error("Quick Hands Supabase error:", error);
+    marketGrid.textContent =
+      "Could not load live markets: " +
+      (error.message || "Please check the database connection.");
+  }
+})();
+</script>
 </body>
 
 </html>
