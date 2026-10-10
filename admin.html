@@ -468,9 +468,6 @@ async function login() {
     );
 
 
-    try {
-
-        const result =
             await supabaseClient.auth.signInWithPassword({
                 email: email,
                 password: password
