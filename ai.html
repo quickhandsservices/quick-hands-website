@@ -1,0 +1,125 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuickHands AI</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .ai-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            box-sizing: border-box;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🤖 QUICKHANDS AI</h1>
+    <p>Your personal AI assistant</p>
+</header>
+
+<main>
+
+    <div class="ai-box">
+
+        <h2>Ask QuickHands AI</h2>
+
+        <p>
+            Tell me what you need help with.
+        </p>
+
+        <textarea
+            id="userMessage"
+            placeholder="Type your message here..."
+        ></textarea>
+
+        <button onclick="askAI()">
+            🤖 Ask QuickHands AI
+        </button>
+
+        <div id="response">
+            QuickHands AI is ready.
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+
+function askAI() {
+
+    const message =
+        document.getElementById("userMessage").value.trim();
+
+    const response =
+        document.getElementById("response");
+
+    if (!message) {
+        response.textContent =
+            "Please type a message first.";
+
+        return;
+    }
+
+    response.textContent =
+        "🤖 QuickHands AI received your message: " + message;
+}
+
+</script>
+
+</body>
+</html>
