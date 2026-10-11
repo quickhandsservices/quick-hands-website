@@ -99,26 +99,39 @@
 </main>
 
 <script>
-
-function askAI() {
-
-    const message =
-        document.getElementById("userMessage").value.trim();
-
-    const response =
-        document.getElementById("response");
-
-    if (!message) {
-        response.textContent =
-            "Please type a message first.";
-
-        return;
+async function askAI() {
+  const message = document.getElementById("userMessage").value.trim();
+  const response = document.getElementById("response");
+  const button = document.querySelector("button");
+  if (!message) {
+    response.textContent = "Please type a message first.";
+    return;
+  }
+  button.disabled = true;
+  response.textContent = "🤖 QuickHands AI is thinking...";
+  try {
+    const result = await fetch(
+      "https://quick-hands-marketplace-new.vercel.app/api/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message })
+      }
+    );
+    const data = await result.json();
+    if (!result.ok) {
+      throw new Error(data.error || "AI request failed.");
     }
-
+    response.textContent = data.reply;
+  } catch (error) {
     response.textContent =
-        "🤖 QuickHands AI received your message: " + message;
+      "Sorry, QuickHands AI could not respond right now. Please try again.";
+  } finally {
+    button.disabled = false;
+  }
 }
-
 </script>
 
 </body>
