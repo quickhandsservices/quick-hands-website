@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
@@ -8,11 +10,15 @@
 
   <title>Policies | Quick Hands Services & Marketplace</title>
 
-  <meta name="description" content="Read the policies of Quick Hands Services & Marketplace.">
+  <meta name="description" content="Read the policies of Quick Hands Services & Marketplace in Abuja, Nigeria.">
 
   <style>
 
-    * { box-sizing: border-box; }
+    * {
+
+      box-sizing: border-box;
+
+    }
 
     body {
 
@@ -40,7 +46,13 @@
 
     }
 
-    header a { color: white; text-decoration: none; }
+    header a {
+
+      color: white;
+
+      text-decoration: none;
+
+    }
 
     main {
 
@@ -66,9 +78,19 @@
 
     }
 
-    .policy h2 { color: #a95710; }
+    .policy h2 {
 
-    .policy-content { white-space: pre-wrap; overflow-wrap: anywhere; }
+      color: #a95710;
+
+    }
+
+    .policy-content {
+
+      white-space: pre-wrap;
+
+      overflow-wrap: anywhere;
+
+    }
 
     #message {
 
@@ -78,9 +100,17 @@
 
       border-radius: 10px;
 
+      margin-bottom: 18px;
+
     }
 
-    footer { text-align: center; padding: 25px; }
+    footer {
+
+      text-align: center;
+
+      padding: 25px;
+
+    }
 
   </style>
 
@@ -102,9 +132,19 @@
 
     <h2>Our Policies</h2>
 
-    <p>Please read the applicable policy before placing an order or requesting a service.</p>
+    <p>
 
-    <div id="message" role="status">Loading published policies…</div>
+      Please read the applicable policy before placing an order
+
+      or requesting a service.
+
+    </p>
+
+    <div id="message" role="status">
+
+      Loading published policies…
+
+    </div>
 
     <div id="policies"></div>
 
@@ -154,13 +194,23 @@
 
           .order("id", { ascending: true });
 
-        if (error) throw error;
+        if (error) {
 
-        message.textContent = data.length
+          throw error;
 
-          ? ""
+        }
 
-          : "Our policies are being prepared. Please check again later.";
+        if (!data || data.length === 0) {
+
+          message.textContent =
+
+            "Our policies are being prepared. Please check again later.";
+
+          return;
+
+        }
+
+        message.textContent = "";
 
         data.forEach(function(policy) {
 
