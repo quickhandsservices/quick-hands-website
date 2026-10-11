@@ -21,7 +21,9 @@ return res.status(204).end();
 }
 
 if (req.method !== “POST”) {
-return res.status(405).json({ error: “Method not allowed.” });
+return res.status(405).json({
+error: “Method not allowed.”
+});
 }
 
 if (!process.env.OPENAI_API_KEY) {
@@ -61,7 +63,10 @@ const aiResponse = await fetch(
 );
 const data = await aiResponse.json();
 if (!aiResponse.ok) {
-  console.error("OpenAI request failed:", data.error?.code || "unknown");
+  console.error(
+    "OpenAI request failed:",
+    data.error?.code || "unknown"
+  );
   return res.status(502).json({
     error: "The AI service could not answer just now. Please try again."
   });
@@ -78,8 +83,10 @@ return res.status(200).json({
 
 } catch (error) {
 console.error(“QuickHands AI error:”, error.message);
+
 return res.status(500).json({
-error: “Something went wrong. Please try again.”
+  error: "Something went wrong. Please try again."
 });
+
 }
 };
