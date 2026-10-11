@@ -51,3 +51,7 @@ const answer = (data.output || [])
 return res.status(200).json({
   reply: answer || "Please try asking your question another way."
 });
+return res.status(500).json({
+  error: "Something went wrong. Please try again."
+});
+
