@@ -406,9 +406,9 @@ color: #0B5733;
        Need something done in Abuja? Quick Hands Services & Marketplace can help with market shopping, personal shopping, errands, pickups and delivery.
     </p>
     <div class="hero-buttons">
-        <a href="#booking" class="button button-white">
-            🛒 Book an Errand
-        </a>
+     <a href="#booking" class="button button-white" onclick="openBookingForm(event)">
+    🛒 Book an Errand
+</a>
         <a href="tel:+2349041797547" class="button button-dark">
             📞 Call Quick Hands
         </a>
@@ -475,6 +475,14 @@ color: #0B5733;
 </a>
     </div>
 </section>
+ <style>
+    #booking {
+        display: none;
+    }
+    #booking.booking-open {
+        display: block;
+    }
+</style>
 <section class="booking-section" id="booking">
     <div class="section">
         <div class="booking-container">
@@ -1286,6 +1294,15 @@ class="button button-green"
 </footer>
 <script>
     const QUICK_HANDS_NUMBER = "2349041797547";
+    function openBookingForm(event) {
+event.preventDefault();
+
+const bookingSection = document.getElementById("booking");
+bookingSection.classList.add("booking-open");
+bookingSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
 
     function chooseService(serviceName) {
         setTimeout(function() {
