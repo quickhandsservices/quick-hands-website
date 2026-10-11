@@ -1304,13 +1304,15 @@ bookingSection.scrollIntoView({
     block: "start"
 });
 }
-
-
     function chooseService(serviceName) {
-        setTimeout(function() {
-            document.getElementById("service").value = serviceName;
-        }, 100);
-    }
+    const bookingSection = document.getElementById("booking");
+    bookingSection.classList.add("booking-open");
+    document.getElementById("service").value = serviceName;
+    bookingSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
     // EXISTING ERRAND FORM
     document
@@ -2478,17 +2480,10 @@ document.addEventListener("DOMContentLoaded", function () {
         Your Order, Your Approval
 
       </p>
-
-      <p>We confirm the total applicable charges with you before starting work.</p>
-
-      <a href="#booking"
-
-         style="display:inline-block;margin-top:15px;background:#168447;color:#fff;padding:14px 24px;border-radius:9px;text-decoration:none;font-weight:bold;">
-
-        Book a Service
-
-      </a>
-
+ <a href="#booking" onclick="openBookingForm(event)"
+   style="display:inline-block;margin-top:15px;background:#168447;color:#fff;padding:14px 24px;border-radius:9px;text-decoration:none;font-weight:bold;">
+    Book a Service
+</a>
     </div>
 
   </div>
