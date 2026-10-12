@@ -377,6 +377,42 @@
 
     }
 
+#errands {
+  scroll-margin-top: 20px;
+}
+
+#errands h2 {
+  color: #14532d;
+  margin-bottom: 8px;
+}
+
+.errands-grid {
+  margin-bottom: 20px;
+}
+
+#errand-booking input,
+#errand-booking select,
+#errand-booking textarea {
+  width: 100%;
+  margin-top: 5px;
+}
+
+#errand-booking .form-button {
+  width: 100%;
+  margin-top: 16px;
+  background: #166534;
+  color: white;
+  padding: 13px;
+  border: 0;
+  border-radius: 9px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#errand-booking .form-button:hover {
+  background: #14532d;
+}
+
   </style>
 
 </head>
@@ -1485,6 +1521,56 @@
       }
 
     );
+
+function openErrandForm(serviceName) {
+  const booking = document.getElementById("errand-booking");
+  booking.style.display = "block";
+
+  document.getElementById("errand-service").value = serviceName;
+
+  booking.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+document.getElementById("errand-form").addEventListener(
+  "submit",
+  function(event) {
+    event.preventDefault();
+
+    const name =
+      document.getElementById("errand-name").value.trim();
+    const phone =
+      document.getElementById("errand-phone").value.trim();
+    const service =
+      document.getElementById("errand-service").value;
+    const location =
+      document.getElementById("errand-location").value.trim();
+    const destination =
+      document.getElementById("errand-destination").value.trim();
+    const details =
+      document.getElementById("errand-details").value.trim();
+
+    const message =
+      "🛒 QUICK HANDS ERRAND REQUEST\n\n" +
+      "Name: " + name + "\n" +
+      "Customer Phone: " + phone + "\n" +
+      "Service: " + service + "\n" +
+      "Pickup / Shopping Location: " + location + "\n" +
+      "Delivery / Destination: " + destination + "\n" +
+      "Details: " + details + "\n\n" +
+      "Please confirm the service availability and final charges.";
+
+    const whatsappURL =
+      "https://wa.me/" + WHATSAPP_NUMBER +
+      "?text=" + encodeURIComponent(message);
+
+    window.location.href = whatsappURL;
+  }
+);
+
+showMarket("Gwarinpa");
 
     showMarket("Gwarinpa");
 
