@@ -426,6 +426,260 @@
 
   <main>
 
+
+<section id="errands">
+
+  <h2>Quick Hands Errands & Delivery</h2>
+
+  <p class="muted">
+
+    Your errands. Our hands. Choose a service and send
+
+    your request directly to Quick Hands on WhatsApp.
+
+  </p>
+
+  <div class="markets errands-grid">
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Market Shopping')">
+
+      <div class="emoji">🛒</div>
+
+      <strong>Market Shopping</strong>
+
+      <p class="muted">Market and supermarket shopping</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Personal Shopping')">
+
+      <div class="emoji">🛍️</div>
+
+      <strong>Personal Shopping</strong>
+
+      <p class="muted">Shop for items on your behalf</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('General Errands')">
+
+      <div class="emoji">📦</div>
+
+      <strong>General Errands</strong>
+
+      <p class="muted">Get everyday tasks done</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Pickup and Drop-off')">
+
+      <div class="emoji">📍</div>
+
+      <strong>Pickup & Drop-off</strong>
+
+      <p class="muted">Collect and deliver your items</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Bike Delivery')">
+
+      <div class="emoji">🏍️</div>
+
+      <strong>Bike Delivery</strong>
+
+      <p class="muted">Request a delivery rider</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Business Errands')">
+
+      <div class="emoji">🏢</div>
+
+      <strong>Business Errands</strong>
+
+      <p class="muted">Shopping and tasks for businesses</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Bulk and Wholesale Shopping')">
+
+      <div class="emoji">📦</div>
+
+      <strong>Bulk & Wholesale</strong>
+
+      <p class="muted">Large shopping requests</p>
+
+    </button>
+
+    <button class="card market" type="button"
+
+      onclick="openErrandForm('Vehicle and Truck Delivery')">
+
+      <div class="emoji">🚚</div>
+
+      <strong>Vehicle & Truck Delivery</strong>
+
+      <p class="muted">Request suitable transport</p>
+
+    </button>
+
+  </div>
+
+  <div class="card" id="errand-booking"
+
+       style="margin-top:22px; display:none;">
+
+    <h2>Book an Errand</h2>
+
+    <p class="muted">
+
+      Complete the form. Quick Hands will confirm the
+
+      request, availability and charges with you.
+
+    </p>
+
+    <form id="errand-form">
+
+      <label for="errand-name">Your Name</label>
+
+      <input id="errand-name" type="text"
+
+             placeholder="Enter your name" required>
+
+      <label for="errand-phone">Phone Number</label>
+
+      <input id="errand-phone" type="tel"
+
+             placeholder="Enter your phone number" required>
+
+      <label for="errand-service">Service Required</label>
+
+      <select id="errand-service" required>
+
+        <option value="">Select a service</option>
+
+        <option>Market Shopping</option>
+
+        <option>Personal Shopping</option>
+
+        <option>General Errands</option>
+
+        <option>Pickup and Drop-off</option>
+
+        <option>Bike Delivery</option>
+
+        <option>Business Errands</option>
+
+        <option>Bulk and Wholesale Shopping</option>
+
+        <option>Vehicle and Truck Delivery</option>
+
+      </select>
+
+      <label for="errand-location">
+
+        Pickup or Shopping Location
+
+      </label>
+
+      <input id="errand-location" type="text"
+
+             placeholder="Where should we go?" required>
+
+      <label for="errand-destination">
+
+        Delivery or Destination
+
+      </label>
+
+      <input id="errand-destination" type="text"
+
+             placeholder="Where should we deliver?" required>
+
+      <label for="errand-details">
+
+        Details of Your Request
+
+      </label>
+
+      <textarea id="errand-details" rows="5"
+
+        placeholder="Describe the items, task, quantity or other instructions"
+
+        required></textarea>
+
+      <button class="button form-button" type="submit">
+
+        Send Errand Request on WhatsApp
+
+      </button>
+
+    </form>
+
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+
+    <h3>Errand Pricing</h3>
+
+    <p>
+
+      <strong>Market and supermarket shopping:</strong>
+
+      ₦15,000 service fee per shopping request or trip,
+
+      subject to confirmation.
+
+    </p>
+
+    <p>
+
+      <strong>General and personal errands:</strong>
+
+      Quote based on the task and distance.
+
+    </p>
+
+    <p>
+
+      <strong>Bulk and wholesale shopping:</strong>
+
+      Request a quotation.
+
+    </p>
+
+    <p>
+
+      <strong>Rider, vehicle and truck delivery:</strong>
+
+      Charged separately as applicable.
+
+    </p>
+
+    <p class="muted">
+
+      Confirm the final charges before work begins.
+
+    </p>
+
+  </div>
+
+</section>
     <section id="markets">
 
       <h2>Explore Abuja Markets</h2>
