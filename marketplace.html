@@ -1360,8 +1360,10 @@ showMarket("Gwarinpa");
     const [marketResult, shopResult, productResult] =
       await Promise.all([
         db.from("Market").select("*"),
-        db.from("Shops").select("*"),
-        db.from("Products").select("*")
+        db.from("Shops").select(
+    "id,Name,Description,image_url,status,market_id"
+    ),
+      db.from("Products").select("*")
       ]);
     if (marketResult.error) throw marketResult.error;
     if (shopResult.error) throw shopResult.error;
