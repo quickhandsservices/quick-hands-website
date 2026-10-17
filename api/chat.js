@@ -13,14 +13,8 @@ module.exports = async function handler(req, res) {
     res.setHeader("Vary", "Origin");
   }
 
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST, OPTIONS"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type"
-  );
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
     return res.status(204).end();
@@ -35,9 +29,9 @@ module.exports = async function handler(req, res) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
-    console.error("OPENAI_API_KEY is not configured.");
+    console.error("Quick Hands AI: OPENAI_API_KEY is missing.");
     return res.status(500).json({
-      error: "The AI service is not configured yet."
+      error: "AI setup is incomplete. Please contact the administrator."
     });
   }
 
@@ -55,7 +49,7 @@ module.exports = async function handler(req, res) {
 
     if (message.length > 5000) {
       return res.status(400).json({
-        error: "Your message is too long. Please shorten it."
+        error: "Please shorten your message and try again."
       });
     }
 
@@ -63,29 +57,28 @@ module.exports = async function handler(req, res) {
 You are Quick Hands AI, the customer assistant for
 Quick Hands Services & Marketplace in Abuja, Nigeria.
 
-Help customers understand the marketplace, shopping,
-errands, pickups, deliveries, and how to contact the team.
+Help customers with market shopping, supermarkets, personal
+shopping, general errands, bill payments, pickups, deliveries,
+bulk and wholesale requests, and marketplace navigation.
 
 Business rules:
-- Market and supermarket shopping service fee:
-  ₦15,000 per request or trip, subject to confirmation
-  of the applicable charge before work begins.
-- Other errands are quoted according to the task,
-  distance, quantity of items, and work required.
+- Market and supermarket shopping service fee: ₦15,000
+  per request or trip, subject to confirmation before work begins.
+- Other errands are quoted according to task, distance,
+  quantity of items, and work required.
 - Bulk and wholesale requests require a quotation.
 - Delivery charges are separate and must be confirmed.
-- Never invent product prices, availability, order status,
-  payment status, delivery tracking, or seller details.
-- If information is unavailable, explain that it needs
-  confirmation from the Quick Hands team.
-- Do not claim to have placed orders, processed payments,
-  issued refunds, or contacted anyone.
+- Never invent product prices, stock, order status, payment
+  status, delivery tracking, or seller details.
+- Never claim to have placed an order, processed a payment,
+  issued a refund, or contacted anyone.
+- If information is unavailable, say it needs confirmation.
 - Be polite, clear, and concise.
-- Direct customers to https://quickhandsservicesmarketplace.com/
-  or WhatsApp https://wa.me/2349041797547 when appropriate.
+- Website: https://quickhandsservicesmarketplace.com/
+- WhatsApp: https://wa.me/2349041797547
 `;
 
-    const response = await fetch(
+    const upstream = await fetch(
       "https://api.openai.com/v1/responses",
       {
         method: "POST",
@@ -102,17 +95,21 @@ Business rules:
       }
     );
 
-    const data = await response.json();
+    const data = await upstream.json();
 
-    if (!response.ok) {
+    if (!upstream.ok) {
       console.error(
-        "OpenAI API error:",
-        response.status,
-        JSON.stringify(data)
+        "Quick Hands AI: OpenAI request failed.",
+        "HTTP status:",
+        upstream.status,
+        "Error type:",
+        data?.error?.type || "unknown",
+        "Error code:",
+        data?.error?.code || "unknown"
       );
 
       return res.status(502).json({
-        error: "The AI could not respond right now. Please try again."
+        error: "The AI service is temporarily unavailable. Please try again."
       });
     }
 
@@ -125,17 +122,19 @@ Business rules:
       .trim();
 
     if (!reply) {
-      console.error("OpenAI returned no text response.");
-
+      console.error("Quick Hands AI: OpenAI returned no text.");
       return res.status(502).json({
-        error: "No response was received. Please try again."
+        error: "The AI returned an empty response. Please try again."
       });
     }
 
     return res.status(200).json({ reply });
 
   } catch (error) {
-    console.error("Quick Hands AI error:", error);
+    console.error(
+      "Quick Hands AI internal error:",
+      error?.message || "Unknown error"
+    );
 
     return res.status(500).json({
       error: "Something went wrong. Please try again shortly."
