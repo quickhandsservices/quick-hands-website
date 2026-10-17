@@ -1076,62 +1076,55 @@
 
       ]
 };   
-    
+  
 const productData = {
   Gwarinpa: [
     {
       id: "mg-rice",
       name: "Rice",
+      shop: "Mama Grace Foods",
       description: "Rice varieties. Confirm type, package size and availability.",
-      image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80",
-       price: null,
+      image_url: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80",
+      price: null,
       stock: null,
       emoji: "🍚"
-},
-
-      
     },
     {
       id: "mg-beans",
       name: "Beans",
+      shop: "Mama Grace Foods",
       description: "Beans varieties. Confirm type and package size.",
-      image: "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=600&q=80",
+      image_url: "https://images.unsplash.com/photo-1515543904379-3d757afe72e4?auto=format&fit=crop&w=600&q=80",
       price: null,
-     stock: null,
-     emoji: "🍚"
-},
-
-  
+      stock: null,
+      emoji: "🫘"
     },
     {
       id: "mg-grains",
       name: "Grains",
+      shop: "Mama Grace Foods",
       description: "Grains and cereals. Confirm the specific grain available.",
-      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80",
-       price: null, 
-       stock: null,
-       emoji: "🍚"
-},
-
-      
+      image_url: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80",
+      price: null,
+      stock: null,
+      emoji: "🌾"
     },
     {
       id: "mg-groceries",
       name: "Groceries",
+      shop: "Mama Grace Foods",
       description: "Everyday grocery items. Ask us about available products.",
-      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80",
+      image_url: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80",
       price: null,
       stock: null,
-      emoji: "🍚"
-},
-
-
+      emoji: "🛒"
     }
   ],
   Wuse: [],
   Garki: [],
   Kubwa: []
 };
+  
 let selectedMarket = "Gwarinpa";
 
     function formatNaira(amount) {
@@ -1189,12 +1182,31 @@ let selectedMarket = "Gwarinpa";
         const card = document.createElement("div");
 
         card.className = "card product-card";
+      
+      const emoji = document.createElement("div");
 
-        const emoji = document.createElement("div");
+  emoji.className = "emoji";
+        
+ emoji.textContent = product.emoji || "🛍️";
 
-        emoji.className = "emoji";
+let productVisual = emoji;
 
-        emoji.textContent = product.emoji;
+if (product.image_url) {
+  const photo = document.createElement("img");
+  photo.src = product.image_url;
+  photo.alt = product.name || "Product photo";
+  photo.loading = "lazy";
+  photo.style.width = "100%";
+  photo.style.height = "150px";
+  photo.style.objectFit = "cover";
+  photo.style.borderRadius = "10px";
+
+  photo.onerror = function() {
+    photo.replaceWith(emoji);
+  };
+
+  productVisual = photo;
+}
 
         const title = document.createElement("h3");
 
@@ -1216,7 +1228,9 @@ let selectedMarket = "Gwarinpa";
 
         price.className = "price";
 
-        price.textContent = formatNaira(product.price);
+        price.textContent = product.price == null
+  ? "Price to be confirmed"
+  : formatNaira(product.price);
 
         const button = document.createElement("button");
 
@@ -1232,7 +1246,7 @@ let selectedMarket = "Gwarinpa";
 
         });
 
-        card.append(emoji, title, shop, description, price, button);
+        card.append(productVisual, title, shop, description, price, button);
 
         productList.appendChild(card);
 
@@ -1250,7 +1264,9 @@ let selectedMarket = "Gwarinpa";
 
         " from " + product.shop +
 
-        " — example price " + formatNaira(product.price);
+        " — " + (product.price == null
+  ? "price to be confirmed"
+  : formatNaira(product.price));
 
       if (itemsField.value.trim()) {
 
@@ -1434,23 +1450,25 @@ showMarket("Gwarinpa");
       p.Name || p.name || p.product_name || "Product";
     const getDescription = item =>
       item.Description || item.description || "";
-    const getPrice = p =>
-      Number(p.Price ?? p.price ?? 0);
+    const getPrice = p => p.Price ?? p.price ?? null;
     // Prepare live data for the existing marketplace display.
     Object.keys(shopData).forEach(k => delete shopData[k]);
-    Object.keys(productData).forEach(k => delete productData[k]);
+
+const starterProducts = productData.Gwarinpa || [];
+Object.keys(productData).forEach(k => delete productData[k]);
     markets.forEach(market => {
       const marketName = getMarketName(market);
       const marketShops = shops.filter(
         shop => String(shop.market_id) === String(market.id)
       );
+      
       shopData[marketName] = marketShops.map(shop => ({
         id: shop.id,
         name: getShopName(shop),
         description: getDescription(shop) || "Local shop",
         emoji: "🛒"
       }));
-      productData[marketName] = products
+      const liveProducts = products
         .filter(product =>
           marketShops.some(
             shop => String(shop.id) === String(product.shop_id)
@@ -1464,11 +1482,20 @@ showMarket("Gwarinpa");
             id: product.id,
             name: getProductName(product),
             description: getDescription(product),
-            price: getPrice(product),
+            price: product.Price ?? product.price ?? null,
+            stock: product.Stock ?? product.stock ?? null,
+            image_url: product.image_url || product.Image_URL || "",
             emoji: "🛍️",
             shop: shop ? getShopName(shop) : "Local Shop"
           };
         });
+
+      if (marketName.toLowerCase() === "gwarinpa" && liveProducts.length === 0) {
+        productData[marketName] = starterProducts;
+      } else {
+        productData[marketName] = liveProducts;
+      }
+ 
     });
     // Replace the sample market buttons with database markets.
     marketGrid.replaceChildren();
