@@ -1231,54 +1231,73 @@ if (product.image_url) {
         price.textContent = product.price == null
   ? "Price to be confirmed"
   : formatNaira(product.price);
+        
+const quantityLabel = document.createElement("label");
+quantityLabel.textContent = "Quantity";
 
-        const button = document.createElement("button");
+const quantityInput = document.createElement("input");
+quantityInput.type = "number";
+quantityInput.min = "1";
+quantityInput.step = "1";
+quantityInput.value = "1";
+quantityInput.required = true;
+quantityInput.setAttribute("aria-label", "Quantity for " + product.name);
 
-        button.className = "button";
+const button = document.createElement("button");
+button.className = "button";
+button.type = "button";
+button.textContent = "Add to List";
 
-        button.type = "button";
+button.addEventListener("click", function() {
+  const quantity = Number(quantityInput.value);
 
-        button.textContent = "Add to List";
+  if (!Number.isInteger(quantity) || quantity < 1) {
+    alert("Please enter a quantity of at least 1.");
+    return;
+  }
 
-        button.addEventListener("click", function() {
+  addToShoppingList(product, quantity);
+});
 
-          addToShoppingList(product);
+card.append(
+  productVisual,
+  title,
+  shop,
+  description,
+  price,
+  quantityLabel,
+  
+  quantityInput,
+  button
+);
 
-        });
-
-        card.append(productVisual, title, shop, description, price, button);
-
-        productList.appendChild(card);
+productList.appendChild(card);
 
       });
 
     }
 
-    function addToShoppingList(product) {
+function addToShoppingList(product, quantity = 1) {
 
-      const itemsField = document.getElementById("items");
 
-      const line =
+  const itemsField = document.getElementById("items");
 
-        "- " + product.name +
+  const line =
+    "- " + product.name +
+    " from " + product.shop +
+    " — Quantity: " + quantity +
+    " — " + (product.price == null
+      ? "price to be confirmed"
+      : formatNaira(product.price));
 
-        " from " + product.shop +
+  if (itemsField.value.trim()) {
+    itemsField.value += "\n" + line;
+  } else {
+    itemsField.value = line;
+  }
 
-        " — " + (product.price == null
-  ? "price to be confirmed"
-  : formatNaira(product.price));
+}
 
-      if (itemsField.value.trim()) {
-
-        itemsField.value += "\n" + line;
-
-      } else {
-
-        itemsField.value = line;
-
-      }
-
-    }
     document.getElementById("order-form").addEventListener(
   "submit",
       function(event) {
