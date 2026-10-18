@@ -97,22 +97,36 @@ Business rules:
 
     const data = await upstream.json();
 
-    if (!upstream.ok) {
+       if (!upstream.ok) {
+      const errorType = data?.error?.type || "unknown";
+      const errorCode = data?.error?.code || "unknown";
+
       console.error(
         "Quick Hands AI: OpenAI request failed.",
         "HTTP status:",
         upstream.status,
         "Error type:",
-        data?.error?.type || "unknown",
+        errorType,
         "Error code:",
-        data?.error?.code || "unknown"
+        errorCode
       );
 
-      return res.status(502).json({
-        error: "The AI service is temporarily unavailable. Please try again."
-      });
-    }
+      if (
+        errorCode === "credit_balance_exhausted" ||
+        errorType === "insufficient_quota"
+      ) {
+        return res.status(503).json({
+          error: "Quick Hands AI is temporarily unavailable. Please try again later.",
+          code: "AI_CREDITS_UNAVAILABLE"
+        });
+      }
 
+      return res.status(502).json({
+        error: "The AI service is temporarily unavailable. Please try again.",
+        code: "AI_SERVICE_ERROR"
+      });
+    } 
+    
     const reply = (data.output || [])
       .filter(item => item.type === "message")
       .flatMap(item => item.content || [])
