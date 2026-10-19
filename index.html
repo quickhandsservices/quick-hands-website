@@ -747,6 +747,121 @@ footer a {
     max-width: 100%;
   }
 }
+
+/* FIX HOMEPAGE HERO AND SERVICE GRID */
+.hero {
+  display: block !important;
+  position: relative;
+  min-height: 320px;
+  padding: 60px 20px !important;
+  text-align: center;
+  background: linear-gradient(135deg, #064e3b, #168447) !important;
+  color: #ffffff !important;
+}
+
+.hero h1,
+.hero h2,
+.hero p {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 58px) !important;
+  font-weight: 800 !important;
+  margin: 0 0 10px !important;
+}
+
+.hero h2 {
+  font-size: clamp(24px, 4vw, 34px) !important;
+  font-weight: 700 !important;
+  margin: 0 0 18px !important;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 0 auto 28px !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+}
+
+.hero-buttons {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hero-buttons .button {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px !important;
+  min-height: 48px;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+}
+
+.hero-buttons .button-white {
+  background: #ffffff !important;
+  color: #064e3b !important;
+}
+
+.hero-buttons .button-dark {
+  background: #033b2b !important;
+  color: #ffffff !important;
+}
+
+/* Match the actual class used in the HTML */
+.service-grid,
+.services-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 800px) {
+  .service-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding: 44px 18px !important;
+  }
+
+  .hero p {
+    font-size: 16px !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons .button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .service-grid,
+  .services-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+      
 </style>  
 </head>
 <body>
