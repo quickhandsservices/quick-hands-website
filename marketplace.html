@@ -1165,178 +1165,213 @@ let selectedMarket = "Gwarinpa";
       return "₦" + amount.toLocaleString("en-NG");
 
     }
+  
+function showMarket(market) {
+  selectedMarket = market;
 
-    function showMarket(market) {
+  const shopsSection = document.getElementById("shops");
+  const productsSection = document.getElementById("products");
+  const shopTitle = document.getElementById("shops-title");
+  const shopList = document.getElementById("shop-list");
+  const productList = document.getElementById("product-list");
 
-      selectedMarket = market;
+  // Show shops only after a customer selects a market.
+  shopsSection.style.display = "block";
+  productsSection.style.display = "none";
 
-      document.getElementById("shops-title").textContent =
+  shopTitle.textContent = "Shops in " + market;
 
-        "Shops in " + market;
+  shopList.replaceChildren();
+  productList.replaceChildren();
+  productList.style.display = "";
 
-      const shopList = document.getElementById("shop-list");
+  const shops = shopData[market] || [];
+  const products = productData[market] || [];
 
-      const productList = document.getElementById("product-list");
+  if (shops.length === 0) {
+    const message = document.createElement("p");
+    message.textContent = "No shops are available in this market yet.";
+    shopList.appendChild(message);
+  }
 
-      shopList.replaceChildren();
-      productList.replaceChildren();
-      productList.style.display = "none";
+  shops.forEach(function(shop) {
+    const card = document.createElement("div");
+    card.className = "card shop-card";
+    card.style.cursor = "pointer";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
 
-      shopData[market].forEach(function(shop) {
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.textContent = shop.emoji || "🏪";
 
-        const card = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = shop.name;
 
-        card.className = "card shop-card";
+    const location = document.createElement("p");
+    location.className = "muted";
+    location.textContent = "📍 " + market;
 
-        const emoji = document.createElement("div");
+    const description = document.createElement("p");
+    description.className = "muted";
+    description.textContent = shop.description || "";
 
-        emoji.className = "emoji";
+    const productsLabel = document.createElement("p");
+    productsLabel.textContent = "🛍️ Products";
 
-        emoji.textContent = shop.emoji;
+    const orderLabel = document.createElement("p");
+    orderLabel.textContent = "📲 " +
+      (shop.name === "Mama Grace Foods"
+        ? "Order From This Shop"
+        : "Ask About This Shop");
 
-        const title = document.createElement("h3");
+    card.append(
+      emoji,
+      title,
+      location,
+      description,
+      productsLabel,
+      orderLabel
+    );
 
-        title.textContent = shop.name;
+    function openThisShop() {
+      productsSection.style.display = "block";
 
-        const description = document.createElement("p");
+      let matchingProducts = 0;
 
-        description.className = "muted";
+      Array.from(productList.children).forEach(function(productCard) {
+        const matches = productCard.dataset.shop === shop.name;
+        productCard.style.display = matches ? "" : "none";
 
-        description.textContent = shop.description;
+        if (matches) matchingProducts++;
+      });
 
-      card.append(emoji, title, description);
+      let emptyMessage = document.getElementById("no-shop-products");
 
-card.style.cursor = "pointer";
-card.setAttribute("role", "button");
-card.setAttribute("tabindex", "0");
+      if (emptyMessage) emptyMessage.remove();
 
-function openThisShop() {
-  productList.style.display = "block";
+      if (matchingProducts === 0) {
+        emptyMessage = document.createElement("p");
+        emptyMessage.id = "no-shop-products";
+        emptyMessage.textContent =
+          "Products for " + shop.name +
+          " will appear here when they are added.";
+        productList.appendChild(emptyMessage);
+      }
 
-  Array.from(productList.children).forEach(function(productCard) {
-    productCard.style.display =
-      productCard.dataset.shop === shop.name ? "" : "none";
+      productsSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    card.addEventListener("click", openThisShop);
+
+    card.addEventListener("keydown", function(event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openThisShop();
+      }
+    });
+
+    shopList.appendChild(card);
   });
 
-  productList.scrollIntoView({
+  products.forEach(function(product) {
+    const card = document.createElement("div");
+    card.className = "card product-card";
+    card.dataset.shop = product.shop;
+
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.textContent = product.emoji || "🛍️";
+
+    let productVisual = emoji;
+
+    if (product.image_url) {
+      const photo = document.createElement("img");
+      photo.src = product.image_url;
+      photo.alt = product.name || "Product photo";
+      photo.loading = "lazy";
+      photo.style.width = "100%";
+      photo.style.height = "150px";
+      photo.style.objectFit = "cover";
+      photo.style.borderRadius = "10px";
+
+      photo.onerror = function() {
+        photo.replaceWith(emoji);
+      };
+
+      productVisual = photo;
+    }
+
+    const title = document.createElement("h3");
+    title.textContent = product.name;
+
+    const shopName = document.createElement("p");
+    shopName.className = "muted";
+    shopName.textContent = product.shop;
+
+    const description = document.createElement("p");
+    description.className = "muted";
+    description.textContent = product.description || "";
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = product.price == null
+      ? "Price to be confirmed"
+      : formatNaira(product.price);
+
+    const quantityLabel = document.createElement("label");
+    quantityLabel.textContent = "Quantity";
+
+    const quantityInput = document.createElement("input");
+    quantityInput.type = "number";
+    quantityInput.min = "1";
+    quantityInput.step = "1";
+    quantityInput.value = "1";
+    quantityInput.required = true;
+    quantityInput.setAttribute(
+      "aria-label",
+      "Quantity for " + product.name
+    );
+
+    const button = document.createElement("button");
+    button.className = "button";
+    button.type = "button";
+    button.textContent = "Add to List";
+
+    button.addEventListener("click", function() {
+      const quantity = Number(quantityInput.value);
+
+      if (!Number.isInteger(quantity) || quantity < 1) {
+        alert("Please enter a quantity of at least 1.");
+        return;
+      }
+
+      addToShoppingList(product, quantity);
+    });
+
+    card.append(
+      productVisual,
+      title,
+      shopName,
+      description,
+      price,
+      quantityLabel,
+      quantityInput,
+      button
+    );
+
+    card.style.display = "none";
+    productList.appendChild(card);
+  });
+
+  shopsSection.scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
 }
-
-card.addEventListener("click", openThisShop);
-
-card.addEventListener("keydown", function(event) {
-  if (event.key === "Enter" || event.key === " ") {
-    event.preventDefault();
-    openThisShop();
-  }
-});
-
-        shopList.appendChild(card);
-
-      });
-
-      productData[market].forEach(function(product) {
-
-        const card = document.createElement("div");
-
-        card.className = "card product-card"; 
-       card.dataset.shop = product.shop;
-      const emoji = document.createElement("div");
-
-  emoji.className = "emoji";
-        
- emoji.textContent = product.emoji || "🛍️";
-
-let productVisual = emoji;
-
-if (product.image_url) {
-  const photo = document.createElement("img");
-  photo.src = product.image_url;
-  photo.alt = product.name || "Product photo";
-  photo.loading = "lazy";
-  photo.style.width = "100%";
-  photo.style.height = "150px";
-  photo.style.objectFit = "cover";
-  photo.style.borderRadius = "10px";
-
-  photo.onerror = function() {
-    photo.replaceWith(emoji);
-  };
-
-  productVisual = photo;
-}
-
-        const title = document.createElement("h3");
-
-        title.textContent = product.name;
-
-        const shop = document.createElement("p");
-
-        shop.className = "muted";
-
-        shop.textContent = product.shop;
-
-        const description = document.createElement("p");
-
-        description.className = "muted";
-
-        description.textContent = product.description;
-
-        const price = document.createElement("p");
-
-        price.className = "price";
-
-        price.textContent = product.price == null
-  ? "Price to be confirmed"
-  : formatNaira(product.price);
-        
-const quantityLabel = document.createElement("label");
-quantityLabel.textContent = "Quantity";
-
-const quantityInput = document.createElement("input");
-quantityInput.type = "number";
-quantityInput.min = "1";
-quantityInput.step = "1";
-quantityInput.value = "1";
-quantityInput.required = true;
-quantityInput.setAttribute("aria-label", "Quantity for " + product.name);
-
-const button = document.createElement("button");
-button.className = "button";
-button.type = "button";
-button.textContent = "Add to List";
-
-button.addEventListener("click", function() {
-  const quantity = Number(quantityInput.value);
-
-  if (!Number.isInteger(quantity) || quantity < 1) {
-    alert("Please enter a quantity of at least 1.");
-    return;
-  }
-
-  addToShoppingList(product, quantity);
-});
-
-card.append(
-  productVisual,
-  title,
-  shop,
-  description,
-  price,
-  quantityLabel,
-  
-  quantityInput,
-  button
-);
-
-productList.appendChild(card);
-
-      });
-
-    }
-
 
 let shoppingCart = [];
     
