@@ -1337,26 +1337,140 @@ productList.appendChild(card);
 
     }
 
-function addToShoppingList(product, quantity = 1) {
 
-
+let shoppingCart = [];
+    
+function renderShoppingCart() {
+  const container = document.getElementById("cart-items");
+  const emptyMessage = document.getElementById("cart-empty");
+  const totalDisplay = document.getElementById("cart-total");
   const itemsField = document.getElementById("items");
 
-  const line =
-    "- " + product.name +
-    " from " + product.shop +
-    " — Quantity: " + quantity +
-    " — " + (product.price == null
-      ? "price to be confirmed"
-      : formatNaira(product.price));
+  if (!container || !emptyMessage || !totalDisplay) return;
 
-  if (itemsField.value.trim()) {
-    itemsField.value += "\n" + line;
+  container.replaceChildren();
+  emptyMessage.style.display = shoppingCart.length ? "none" : "block";
+
+  let total = 0;
+  let allPricesKnown = shoppingCart.length > 0;
+
+  shoppingCart.forEach(function(item, index) {
+    const row = document.createElement("div");
+    row.className = "card";
+    row.style.marginBottom = "12px";
+
+    const title = document.createElement("h3");
+    title.textContent = item.name;
+
+    const shop = document.createElement("p");
+    shop.className = "muted";
+    shop.textContent = item.shop || "Shop to be confirmed";
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = item.price == null
+      ? "Price to be confirmed"
+      : formatNaira(item.price) + " each";
+
+    const quantityLabel = document.createElement("label");
+    quantityLabel.textContent = "Quantity ";
+
+    const quantity = document.createElement("input");
+    quantity.type = "number";
+    quantity.min = "1";
+    quantity.step = "1";
+    quantity.value = String(item.quantity);
+    quantity.style.width = "90px";
+
+    quantity.addEventListener("change", function() {
+      const newQuantity = Number(quantity.value);
+
+      if (!Number.isInteger(newQuantity) || newQuantity < 1) {
+        alert("Please enter a quantity of at least 1.");
+        renderShoppingCart();
+        return;
+      }
+
+      shoppingCart[index].quantity = newQuantity;
+      renderShoppingCart();
+    });
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "button";
+    removeButton.textContent = "Remove";
+
+    removeButton.addEventListener("click", function() {
+      shoppingCart.splice(index, 1);
+      renderShoppingCart();
+    });
+
+    row.append(title, shop, price, quantityLabel, quantity, removeButton);
+    container.appendChild(row);
+
+    if (item.price == null || !Number.isFinite(Number(item.price))) {
+      allPricesKnown = false;
+    } else {
+      total += Number(item.price) * item.quantity;
+    }
+  });
+
+  totalDisplay.textContent = allPricesKnown
+    ? formatNaira(total)
+    : "To be confirmed";
+
+  if (itemsField) {
+    itemsField.value = shoppingCart.map(function(item) {
+      return "- " + item.name +
+        " from " + (item.shop || "Shop to be confirmed") +
+        " — Quantity: " + item.quantity +
+        " — " + (item.price == null
+          ? "price to be confirmed"
+          : formatNaira(item.price));
+    }).join("\n");
+  }
+}
+
+function addToShoppingList(product, quantity = 1) {
+  const existing = shoppingCart.find(function(item) {
+    return item.name === product.name &&
+      item.shop === product.shop;
+  });
+
+  if (existing) {
+    existing.quantity += quantity;
   } else {
-    itemsField.value = line;
+    shoppingCart.push({
+      name: product.name,
+      shop: product.shop,
+      price: product.price == null ? null : Number(product.price),
+      quantity: quantity
+    });
   }
 
+  renderShoppingCart();
+
+  document.getElementById("cart-section").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
+
+document.getElementById("checkout-button").addEventListener("click", function() {
+  if (shoppingCart.length === 0) {
+    alert("Please add at least one product to your cart first.");
+    return;
+  }
+
+  renderShoppingCart();
+
+  document.getElementById("order-form").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  document.getElementById("customer-name").focus();
+});
 
     document.getElementById("order-form").addEventListener(
   "submit",
