@@ -762,7 +762,7 @@
 
     </section>
 
-    <section id="shops">
+  <section id="shops" style="display: none;">
 
       <h2 id="shops-title">Shops in Gwarinpa</h2>
 
@@ -776,7 +776,7 @@
 
     </section>
 
-    <section id="products">
+    <section id="products" style="display: none;">
 
       <h2>Starter Product List</h2>
 
@@ -1588,8 +1588,6 @@ document.getElementById("errand-form").addEventListener(
   }
 );
 
-showMarket("Gwarinpa");
-
   </script>
 <!-- QUICK HANDS LIVE SUPABASE CONNECTION -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1701,7 +1699,6 @@ Object.keys(productData).forEach(k => delete productData[k]);
       marketGrid.appendChild(button);
     });
     // Display the first market from the database.
-    showMarket(getMarketName(markets[0]));
     console.log("Quick Hands live data connected", {
       markets: markets.length,
       shops: shops.length,
