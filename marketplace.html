@@ -1139,6 +1139,7 @@ let selectedMarket = "Gwarinpa";
       shopList.replaceChildren();
 
       productList.replaceChildren();
+      productList.style.display = "none";
 
       shopData[market].forEach(function(shop) {
 
@@ -1162,7 +1163,34 @@ let selectedMarket = "Gwarinpa";
 
         description.textContent = shop.description;
 
-        card.append(emoji, title, description);
+      card.append(emoji, title, description);
+
+card.style.cursor = "pointer";
+card.setAttribute("role", "button");
+card.setAttribute("tabindex", "0");
+
+function openThisShop() {
+  productList.style.display = "block";
+
+  Array.from(productList.children).forEach(function(productCard) {
+    productCard.style.display =
+      productCard.dataset.shop === shop.name ? "" : "none";
+  });
+
+  productList.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+card.addEventListener("click", openThisShop);
+
+card.addEventListener("keydown", function(event) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openThisShop();
+  }
+});
 
         shopList.appendChild(card);
 
@@ -1172,8 +1200,8 @@ let selectedMarket = "Gwarinpa";
 
         const card = document.createElement("div");
 
-        card.className = "card product-card";
-      
+        card.className = "card product-card"; 
+       card.dataset.shop = product.shop;
       const emoji = document.createElement("div");
 
   emoji.className = "emoji";
