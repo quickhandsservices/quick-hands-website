@@ -1707,7 +1707,10 @@ Object.keys(productData).forEach(k => delete productData[k]);
           };
         });
 
-      if (marketName.toLowerCase() === "gwarinpa" && liveProducts.length === 0) {
+      const isGwarinpa =
+  marketName.toLowerCase().replace(/\s+market$/, "").trim() === "gwarinpa";
+
+if (isGwarinpa && liveProducts.length === 0) {
         productData[marketName] = starterProducts;
       } else {
         productData[marketName] = liveProducts;
