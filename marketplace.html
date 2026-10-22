@@ -1501,14 +1501,14 @@ function renderShoppingCart() {
 
 function addToShoppingList(product, quantity = 1) {
   const existing = shoppingCart.find(function(item) {
-    return item.name === product.name &&
-      item.shop === product.shop;
+    return item.productId === product.id;
   });
 
   if (existing) {
     existing.quantity += quantity;
   } else {
     shoppingCart.push({
+      productId: product.id,
       name: product.name,
       shop: product.shop,
       price: product.price == null ? null : Number(product.price),
@@ -1523,7 +1523,6 @@ function addToShoppingList(product, quantity = 1) {
     block: "start"
   });
 }
-
 document.getElementById("checkout-button").addEventListener("click", function() {
   if (shoppingCart.length === 0) {
     alert("Please add at least one product to your cart first.");
