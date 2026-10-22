@@ -926,12 +926,45 @@
 
           ></textarea>
 
+          <label for="payment-email">Email for Paystack Test</label>
+
+          <input
+
+            id="payment-email"
+
+            type="email"
+
+            placeholder="Enter your email address"
+
+          >
+          
           <button class="button form-button" type="submit">
 
             Send Request on WhatsApp
 
           </button>
 
+          <button
+
+            class="button form-button"
+
+            id="paystack-test-button"
+
+            type="button"
+
+            style="background:#0b6bcb"
+
+          >
+
+            Pay with Paystack (Test Mode)
+
+          </button>
+
+          <p class="muted">
+
+            Test payments only. Delivery and service fees are not included.
+
+          </p>
         </form>
 
       </div>
@@ -1574,6 +1607,79 @@ document.getElementById("checkout-button").addEventListener("click", function() 
       }
 
     );
+
+document.getElementById("paystack-test-button")
+  .addEventListener("click", async function () {
+    if (shoppingCart.length === 0) {
+      alert("Please add products to your cart first.");
+      return;
+    }
+
+    const unknownPrice = shoppingCart.some(function (item) {
+      return item.price == null ||
+        !Number.isFinite(Number(item.price));
+    });
+
+    if (unknownPrice) {
+      alert("Please confirm all product prices before testing payment.");
+      return;
+    }
+
+    const name = document.getElementById("customer-name").value.trim();
+    const phone = document.getElementById("customer-phone").value.trim();
+    const destination = document.getElementById("destination").value.trim();
+    const email = document.getElementById("payment-email").value.trim();
+
+    if (!name || !phone || !destination || !email) {
+      alert("Please enter your name, phone, delivery location and email.");
+      return;
+    }
+
+    if (!document.getElementById("payment-email").checkValidity()) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    const amount = shoppingCart.reduce(function (total, item) {
+      return total + Number(item.price) * item.quantity;
+    }, 0);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      alert("The cart total is invalid.");
+      return;
+    }
+
+    const button = this;
+    button.disabled = true;
+    button.textContent = "Connecting to Paystack...";
+
+    try {
+      const response = await fetch("/api/initialize-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          amount: amount
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.authorization_url) {
+        throw new Error(
+          result.error || "Could not start the test payment."
+        );
+      }
+
+      window.location.href = result.authorization_url;
+    } catch (error) {
+      alert(error.message || "Payment could not be started.");
+      button.disabled = false;
+      button.textContent = "Pay with Paystack (Test Mode)";
+    }
+  });
 
 function openErrandForm(serviceName) {
   const booking = document.getElementById("errand-booking");
