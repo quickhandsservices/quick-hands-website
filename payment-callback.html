@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Payment Status | Quick Hands Services & Marketplace</title>
+
+  <style>
+
+    body {
+
+      margin: 0;
+
+      padding: 24px;
+
+      font-family: Arial, sans-serif;
+
+      background: #ecfdf3;
+
+      color: #14532d;
+
+      text-align: center;
+
+    }
+
+    main {
+
+      max-width: 520px;
+
+      margin: 60px auto;
+
+      padding: 28px;
+
+      background: white;
+
+      border-radius: 16px;
+
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+
+    }
+
+    h1 { font-size: 25px; }
+
+    p { line-height: 1.6; }
+
+    a {
+
+      display: inline-block;
+
+      margin-top: 18px;
+
+      padding: 12px 18px;
+
+      border-radius: 8px;
+
+      background: #166534;
+
+      color: white;
+
+      text-decoration: none;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main>
+
+    <h1 id="heading">Checking your payment…</h1>
+
+    <p id="message">Please wait while we verify your transaction with Paystack.</p>
+
+    <a href="/marketplace.html">Return to marketplace</a>
+
+  </main>
+
+  <script>
+
+    (async function () {
+
+      const heading = document.getElementById("heading");
+
+      const message = document.getElementById("message");
+
+      const params = new URLSearchParams(window.location.search);
+
+      const reference = params.get("reference") || params.get("trxref");
+
+      if (!reference) {
+
+        heading.textContent = "Payment reference not found";
+
+        message.textContent =
+
+          "We could not find a payment reference. Please contact Quick Hands before trying to pay again.";
+
+        return;
+
+      }
+
+      try {
+
+        const response = await fetch("/api/verify-payment", {
+
+          method: "POST",
+
+          headers: { "Content-Type": "application/json" },
+
+          body: JSON.stringify({ reference })
+
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.verified === true && result.status === "success") {
+
+          heading.textContent = "Payment verified";
+
+          message.textContent =
+
+            "Paystack confirmed this transaction. Keep your payment reference: " + reference;
+
+        } else {
+
+          heading.textContent = "Payment not confirmed";
+
+          message.textContent =
+
+            result.message || "We could not confirm this payment. Please contact Quick Hands before trying again.";
+
+        }
+
+      } catch (error) {
+
+        heading.textContent = "Unable to verify payment";
+
+        message.textContent =
+
+          "Please contact Quick Hands with your payment reference. Do not pay again until the status is checked.";
+
+      }
+
+    })();
+
+  </script>
+
+</body>
+
+</html>
