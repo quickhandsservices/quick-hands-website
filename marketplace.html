@@ -1003,193 +1003,7 @@
 
     const WHATSAPP_NUMBER = "2349041797547";
 
-    const shopData = {
-
-      Gwarinpa: [
-
-        {
-
-          name: "Mama Grace Foods",
-
-          description: "Rice, beans, grains and groceries",
-
-          emoji: "🛒"
-
-        },
-
-        {
-
-          name: "Gwarinpa Fresh Produce",
-
-          description: "Vegetables, fruits and fresh produce",
-
-          emoji: "🥬"
-
-        },
-
-        {
-
-          name: "Gwarinpa Meat & Fish",
-
-          description: "Meat, fish and frozen food",
-
-          emoji: "🐟"
-
-        },
-
-        {
-
-          name: "Gwarinpa Household Store",
-
-          description: "Household supplies and essentials",
-
-          emoji: "🧹"
-
-        }
-
-      ],
-
-      Wuse: [
-
-        {
-
-          name: "Wuse Food Market",
-
-          description: "Foodstuff and everyday groceries",
-
-          emoji: "🥘"
-
-        },
-
-        {
-
-          name: "Wuse Fresh Produce",
-
-          description: "Vegetables and fruits",
-
-          emoji: "🥑"
-
-        },
-
-        {
-
-          name: "Wuse Household Goods",
-
-          description: "Home and kitchen essentials",
-
-          emoji: "🏠"
-
-        }
-
-      ],
-
-      Garki: [
-
-        {
-
-          name: "Garki Foodstuff Shop",
-
-          description: "Rice, beans, grains and staples",
-
-          emoji: "🌾"
-
-        },
-
-        {
-
-          name: "Garki Produce Shop",
-
-          description: "Fresh vegetables and fruits",
-
-          emoji: "🥕"
-
-        },
-
-        {
-
-          name: "Garki Meat & Fish",
-
-          description: "Fresh and frozen food",
-
-          emoji: "🐟"
-
-        }
-
-      ],
-
-      Kubwa: [
-
-        {
-
-          name: "Kubwa Grocery Shop",
-
-          description: "Everyday groceries and foodstuff",
-
-          emoji: "🛒"
-
-        },
-
-        {
-
-          name: "Kubwa Fresh Produce",
-
-          description: "Fresh fruits and vegetables",
-
-          emoji: "🍅"
-
-        },
-
-        {
-
-          name: "Kubwa Household Store",
-
-          description: "Household essentials",
-
-          emoji: "🧺"
-
-        }
-
-      ]
-};   
-  const productData = {
-  Gwarinpa: [
-    {
-      id: "mg-rice",
-      name: "Rice",
-      description: "Ask Mama Grace Foods about available varieties and sizes.",
-      price: 2800,
-      emoji: "🍚",
-      shop: "Mama Grace Foods"
-    },
-    {
-      id: "mg-beans",
-      name: "Beans",
-      description: "Ask about available varieties and quantities.",
-      price: 2500,
-      emoji: "🫘",
-      shop: "Mama Grace Foods"
-    },
-    {
-      id: "mg-grains",
-      name: "Grains and Cereals",
-      description: "Ask about available grains and package sizes.",
-      price: null,
-      emoji: "🌾",
-      shop: "Mama Grace Foods"
-    },
-    {
-      id: "mg-groceries",
-      name: "Other Groceries",
-      description: "Ask about available grocery items and sizes.",
-      price: null,
-      emoji: "🛒",
-      shop: "Mama Grace Foods"
-    }
-  ],
-  Wuse: [],
-  Garki: [],
-  Kubwa: []
-};
+    const shopData = {};
 
 let selectedMarket = "Gwarinpa";
 
@@ -1781,7 +1595,7 @@ document.getElementById("errand-form").addEventListener(
     // Prepare live data for the existing marketplace display.
     Object.keys(shopData).forEach(k => delete shopData[k]);
 
-const starterProducts = productData.Gwarinpa || [];
+
 Object.keys(productData).forEach(k => delete productData[k]);
     markets.forEach(market => {
       const marketName = getMarketName(market);
@@ -1821,11 +1635,7 @@ Object.keys(productData).forEach(k => delete productData[k]);
       const isGwarinpa =
     marketName.toLowerCase().replace(/\s+market$/, "").trim() === "gwarinpa";
     
-if (isGwarinpa && liveProducts.length === 0) {
-        productData[marketName] = starterProducts;
-      } else {
-        productData[marketName] = liveProducts;
-      }
+productData[marketName] = liveProducts;
  
     });
     // Replace the sample market buttons with database markets.
