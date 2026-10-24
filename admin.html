@@ -855,6 +855,42 @@ async function checkExistingSession() {
 
 checkExistingSession();
 
+  document.getElementById("sewing-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("sewing-name").value.trim();
+    const phone = document.getElementById("sewing-phone").value.trim();
+    const gender = document.getElementById("sewing-gender").value;
+    const garment = document.getElementById("sewing-garment").value;
+    const style = document.getElementById("sewing-style").value.trim();
+    const unit = document.getElementById("sewing-unit").value;
+    const measurements = document.getElementById("sewing-measurements").value.trim();
+    const fabric = document.getElementById("sewing-fabric").value.trim();
+    const colour = document.getElementById("sewing-colour").value.trim();
+    const quantity = document.getElementById("sewing-quantity").value;
+    const deadline = document.getElementById("sewing-deadline").value;
+    const notes = document.getElementById("sewing-notes").value.trim();
+
+    const message =
+      "QUICK HANDS SEWING & TAILORING ENQUIRY\n\n" +
+      "Customer: " + name + "\n" +
+      "Customer phone: " + phone + "\n" +
+      "Measurement chart: " + gender + "\n" +
+      "Garment: " + garment + "\n" +
+      "Style: " + style + "\n" +
+      "Measurement unit: " + unit + "\n" +
+      "Measurements: " + (measurements || "To be confirmed with tailor") + "\n" +
+      "Fabric: " + (fabric || "Need advice") + "\n" +
+      "Colour: " + (colour || "Not specified") + "\n" +
+      "Quantity: " + quantity + "\n" +
+      "Required date: " + (deadline || "To be discussed") + "\n" +
+      "Additional instructions: " + (notes || "None") + "\n\n" +
+      "Please confirm the sewing price, fabric requirements and completion time before proceeding.";
+
+    window.location.href =
+      "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  });
+
 </script>
 
 </body>
