@@ -2957,6 +2957,7 @@ card.append(emoji, title, description, browseButton);
     }
 function showShopProducts(shopName) {
   const productList = document.getElementById("product-list");
+  document.getElementById("products").style.display = "block";
   const title = document.querySelector("#products h2");
 
   title.textContent = "Products from " + shopName;
