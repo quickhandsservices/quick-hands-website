@@ -3345,6 +3345,8 @@ function goToCheckout() {
     const gwarinpaMarket = markets.find(m =>
   getMarketName(m).toLowerCase().replace(/\s+market$/, "").trim() === "gwarinpa"
 );
+console.log("Gwarinpa shops:", shopData["Gwarinpa"]);
+console.log("Gwarinpa products:", productData["Gwarinpa"]);
 showMarket(getMarketName(gwarinpaMarket || markets[0]));
     console.log("Quick Hands live data connected", {
       markets: markets.length,
