@@ -1565,7 +1565,7 @@ document.getElementById("errand-form").addEventListener(
         db.from("Shops").select(
     "id,Name,Description,image_url,status,market_id"
     ),
-      db.from("Products").select("*")
+    db.from("Products").select("*").eq("status", "active")
       ]);
     if (marketResult.error) throw marketResult.error;
     if (shopResult.error) throw shopResult.error;
