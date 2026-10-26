@@ -3290,32 +3290,37 @@ function goToCheckout() {
         description: getDescription(shop) || "Local shop",
         emoji: "🛒"
       }));
-      productData[marketName] = products
+    productData[marketName] = products
   .filter(product => {
     const isActive =
-      product.is_active !== false &&
-      product.active !== false &&
-      product.Is_Active !== false &&
       String(product.status ?? product.Status ?? "active").toLowerCase() === "active";
 
+    const productShopId =
+      product.shop_id ?? product.Shop_ID ?? product.shopId;
+
     return isActive && marketShops.some(
-      shop => String(shop.id) === String(product.shop_id)
+      shop => String(shop.id) === String(productShopId)
     );
   })
-        .map(product => {
-          const shop = marketShops.find(
-            s => String(s.id) === String(product.shop_id)
-          );
-          return {
-            id: product.id,
-            name: getProductName(product),
-            description: getDescription(product),
-            price: getPrice(product),
-            emoji: "🛍️",
-            shop: shop ? getShopName(shop) : "Local Shop"
-          };
-        });
-    });
+  .map(product => {
+    const shop = marketShops.find(
+      s => String(s.id) === String(
+        product.shop_id ?? product.Shop_ID ?? product.shopId
+      )
+    );
+
+    return {
+      id: product.id,
+      name: getProductName(product),
+      description: getDescription(product),
+      price: product.Price ?? product.price ?? product.price_per_unit ?? null,
+      stock: product.Stock ?? product.stock ?? null,
+      image_url: product.image_url || product.Image_URL || "",
+      emoji: "🛍️",
+      shop: shop ? getShopName(shop) : "Local Shop"
+    };
+  });
+    
     // Replace the sample market buttons with database markets.
     marketGrid.replaceChildren();
     markets.forEach(market => {
