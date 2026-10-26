@@ -1033,13 +1033,8 @@ function showMarket(market) {
   productList.replaceChildren();
   productList.style.display = "";
 
-  const shops = (window.liveShops || []).filter(function(shop) {
-  return (shop.market_name || shop.market || shop.marketName) === market;
-});
-
-const products = (window.liveProducts || []).filter(function(product) {
-  return (product.market_name || product.market || product.marketName) === market;
-});
+const shops = shopData[market] || [];
+const products = productData[market] || [];
 
   if (shops.length === 0) {
     const message = document.createElement("p");
