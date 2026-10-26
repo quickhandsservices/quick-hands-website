@@ -1610,14 +1610,18 @@ Object.keys(productData).forEach(k => delete productData[k]);
       
       const liveProducts = products
         .filter(product =>
-          marketShops.some(
-            shop => String(shop.id) === String(product.shop_id)
-          )
-        )
+  marketShops.some(
+    shop => String(shop.id) === String(
+      product.shop_id ?? product.Shop_ID ?? product.shopId
+    )
+  )
+)
         .map(product => {
           const shop = marketShops.find(
-            s => String(s.id) === String(product.shop_id)
-          );
+  s => String(s.id) === String(
+    product.shop_id ?? product.Shop_ID ?? product.shopId
+  )
+);
           return {
             id: product.id,
             name: getProductName(product),
