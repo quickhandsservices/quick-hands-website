@@ -414,8 +414,6 @@
 
   </style>
 
-<body>
-
   <header>
 
     <div class="brand">QUICK HANDS</div>
@@ -1035,8 +1033,13 @@ function showMarket(market) {
   productList.replaceChildren();
   productList.style.display = "";
 
-  const shops = shopData[market] || [];
-  const products = productData[market] || [];
+  const shops = (window.liveShops || []).filter(function(shop) {
+  return (shop.market_name || shop.market || shop.marketName) === market;
+});
+
+const products = (window.liveProducts || []).filter(function(product) {
+  return (product.market_name || product.market || product.marketName) === market;
+});
 
   if (shops.length === 0) {
     const message = document.createElement("p");
@@ -1575,6 +1578,8 @@ document.getElementById("errand-form").addEventListener(
     const markets = marketResult.data || [];
     const shops = shopResult.data || [];
     const products = productResult.data || [];
+    window.liveShops = shops;
+window.liveProducts = products;
     if (!markets.length) {
       marketGrid.textContent = "No markets found in Supabase.";
       return;
