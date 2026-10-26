@@ -1622,7 +1622,7 @@ Object.keys(productData).forEach(k => delete productData[k]);
             id: product.id,
             name: getProductName(product),
             description: getDescription(product),
-            price: product.Price ?? product.price ?? null,
+            price: product.Price ?? product.price ?? product.price_per_unit ?? null,
             stock: product.Stock ?? product.stock ?? null,
             image_url: product.image_url || product.Image_URL || "",
             emoji: "🛍️",
