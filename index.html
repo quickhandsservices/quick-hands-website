@@ -2963,11 +2963,9 @@ function showShopProducts(shopName) {
   title.textContent = "Products from " + shopName;
   productList.replaceChildren();
 
-  const marketProducts = (productData[selectedMarket] || []).filter(
-  product => product.shop && product.shop.toLowerCase().trim() === shopName.toLowerCase().trim()
-);
+    const marketProducts = productData[selectedMarket] || [];
   const shopProducts = marketProducts.filter(
-    product => product.shop === shopName
+    product => (product.shop || "").toLowerCase().trim() === shopName.toLowerCase().trim()
   );
 
   if (!shopProducts.length) {
