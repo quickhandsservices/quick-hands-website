@@ -3288,17 +3288,20 @@ function goToCheckout() {
         description: getDescription(shop) || "Local shop",
         emoji: "🛒"
       }));
-    productData[marketName] = products
+ 
+productData[marketName] = products
   .filter(product => {
-    const isActive =
-      String(product.status ?? product.Status ?? "active").toLowerCase() === "active";
+    const status = String(
+      product.status ?? product.Status ?? "active"
+    ).trim().toLowerCase();
 
     const productShopId =
       product.shop_id ?? product.Shop_ID ?? product.shopId;
 
-    return isActive && marketShops.some(
-      shop => String(shop.id) === String(productShopId)
-    );
+    return status === "active" &&
+      marketShops.some(
+        shop => String(shop.id) === String(productShopId)
+      );
   })
   .map(product => {
     const shop = marketShops.find(
@@ -3309,16 +3312,16 @@ function goToCheckout() {
 
     return {
       id: product.id,
-      name: getProductName(product),
-      description: getDescription(product),
+      name: product.Name ?? product.name ?? product.product_name ?? "Product",
+      description: product.Description ?? product.description ?? "",
       price: product.Price ?? product.price ?? product.price_per_unit ?? null,
       stock: product.Stock ?? product.stock ?? null,
-      image_url: product.image_url || product.Image_URL || "",
+      image_url: product.image_url ?? product.Image_URL ?? "",
       emoji: "🛍️",
       shop: shop ? getShopName(shop) : "Local Shop"
     };
   });
-    
+
     // Replace the sample market buttons with database markets.
     marketGrid.replaceChildren();
     markets.forEach(market => {
