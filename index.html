@@ -3280,10 +3280,7 @@ function goToCheckout() {
       const marketName = getMarketName(market);
       const marketShops = shops.filter(shop =>
   String(shop.market_id) === String(market.id) &&
-  shop.is_active !== false &&
-  shop.active !== false &&
-  shop.Is_Active !== false &&
-  String(shop.status ?? shop.Status ?? "active").toLowerCase() === "active"
+  String(shop.status ?? shop.Status ?? "").toLowerCase() === "active"
 );
       shopData[marketName] = marketShops.map(shop => ({
         id: shop.id,
