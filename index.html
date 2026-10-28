@@ -2889,8 +2889,11 @@ browseButton.textContent = "Browse Products";
 
 browseButton.addEventListener("click", function() {
   showShopProducts(shop.name);
+  document.getElementById("products").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 });
-
 card.append(emoji, title, description, browseButton);
 
         shopList.appendChild(card);
