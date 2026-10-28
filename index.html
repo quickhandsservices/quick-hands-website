@@ -3278,18 +3278,19 @@ function goToCheckout() {
     Object.keys(productData).forEach(k => delete productData[k]);
     markets.forEach(market => {
       const marketName = getMarketName(market);
+    const displayMarketName = marketName.replace(/^\s+|\s+$/g, "");
       const marketShops = shops.filter(shop =>
   String(shop.market_id) === String(market.id) &&
   String(shop.status ?? shop.Status ?? "").toLowerCase() === "active"
 );
-      shopData[marketName] = marketShops.map(shop => ({
+      shopData[displayMarketName] = marketShops.map(shop => ({
         id: shop.id,
         name: getShopName(shop),
         description: getDescription(shop) || "Local shop",
         emoji: "🛒"
       }));
  
-productData[marketName] = products
+productData[displayMarketName] = products
   .filter(product => {
     const status = String(
       product.status ?? product.Status ?? "active"
