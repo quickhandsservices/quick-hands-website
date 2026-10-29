@@ -2465,767 +2465,488 @@ window.open(whatsappURL, "_blank");
 
   </footer>
 
-  <script>
 
-    const WHATSAPP_NUMBER = "2348085687836";
+<script>
 
-    const shopData = {
+var WHATSAPP_NUMBER = "2348085687836";
 
-      Gwarinpa: [
+var shopData = {};
 
-        {
+var productData = {};
 
-         name: "Adaku Shop",
+var selectedMarket = "Gwarinpa";
 
-          description: "Rice, beans, grains and groceries",
+var shoppingCart = [];
 
-          emoji: "🛒"
+function formatNaira(amount) {
 
-        },
+  var number = Number(amount);
 
-        {
+  return "₦" + (Number.isFinite(number) ? number.toLocaleString("en-NG") : "0");
 
-          name: "Gwarinpa Fresh Produce",
+}
 
-          description: "Vegetables, fruits and fresh produce",
+function showMarket(market) {
 
-          emoji: "🥬"
+  selectedMarket = market;
 
-        },
+  var title = document.getElementById("shops-title");
 
-        {
+  var shopList = document.getElementById("shop-list");
 
-          name: "Gwarinpa Meat & Fish",
+  var productList = document.getElementById("product-list");
 
-          description: "Meat, fish and frozen food",
+  if (!title || !shopList || !productList) return;
 
-          emoji: "🐟"
+  title.textContent = "Shops in " + market;
 
-        },
+  shopList.replaceChildren();
 
-        {
-
-          name: "Gwarinpa Household Store",
-
-          description: "Household supplies and essentials",
-
-          emoji: "🧹"
-
-        }
-
-      ],
-
-      Wuse: [
-
-        {
-
-          name: "Wuse Food Market",
-
-          description: "Foodstuff and everyday groceries",
-
-          emoji: "🥘"
-
-        },
-
-        {
-
-          name: "Wuse Fresh Produce",
-
-          description: "Vegetables and fruits",
-
-          emoji: "🥑"
-
-        },
-
-        {
-
-          name: "Wuse Household Goods",
-
-          description: "Home and kitchen essentials",
-
-          emoji: "🏠"
-
-        }
-
-      ],
-
-      Garki: [
-
-        {
-
-          name: "Garki Foodstuff Shop",
-
-          description: "Rice, beans, grains and staples",
-
-          emoji: "🌾"
-
-        },
-
-        {
-
-          name: "Garki Produce Shop",
-
-          description: "Fresh vegetables and fruits",
-
-          emoji: "🥕"
-
-        },
-
-        {
-
-          name: "Garki Meat & Fish",
-
-          description: "Fresh and frozen food",
-
-          emoji: "🐟"
-
-        }
-
-      ],
-
-      Kubwa: [
-
-        {
-
-          name: "Kubwa Grocery Shop",
-
-          description: "Everyday groceries and foodstuff",
-
-          emoji: "🛒"
-
-        },
-
-        {
-
-          name: "Kubwa Fresh Produce",
-
-          description: "Fresh fruits and vegetables",
-
-          emoji: "🍅"
-
-        },
-
-        {
-
-          name: "Kubwa Household Store",
-
-          description: "Household essentials",
-
-          emoji: "🧺"
-
-        }
-
-      ]
-
-    };
-
-    const productData = {
-  Gwarinpa: [
-    {
-      name: "Adaku Shop",
-      description: "Rice, beans, grains and groceries",
-      emoji: "🛒",
-      shop: "adakus shop"
-    },
-    {
-      name: "Rice",
-      description: "Confirm package size and price with the seller",
-      price: 3500 per mudu 
-      emoji: "🍚",
-      shop: "Adaku shop '
-    },
-    {
-      name: "Beans",
-      description: "Confirm package size and price with the seller",
-      price: 3000 per mudu 
-      emoji: "🫘",
-      shop: "Adaku  shop "
-    },
-    {
-      name: "Grains",
-      description: "Confirm package size and price with the seller",
-      price: null
-      emoji: "🌾",
-      shop: "Adaku   shop"
-    }
-  ],
-  Wuse: [],
-  Garki: [],
-  Kubwa: []
-};
-
-        {
-
-          name: "Fresh Fish",
-
-          description: "Illustrative listing; confirm weight",
-
-          price: 6000,
-
-          emoji: "🐟",
-
-          shop: "Gwarinpa Meat & Fish"
-
-        },
-
-        {
-
-          name: "Cooking Oil",
-
-          description: "Illustrative listing; confirm bottle size",
-
-          price: 4500,
-
-          emoji: "🫒",
-
-          shop: "adakus shop "
-
-        },
-
-        {
-
-          name: "Household Cleaner",
-
-          description: "Illustrative listing; confirm brand and size",
-
-          price: 2500,
-
-          emoji: "🧴",
-
-          shop: "Gwarinpa Household Store"
-
-        }
-
-      ],
-
-      Wuse: [
-
-        {
-
-        
-
-          
-
-          emoji: "🍚",
-
-          shop: "Wuse Food Market"
-
-        },
-
-        {
-
-          name: "Fresh Peppers",
-
-          description: "Illustrative listing; confirm quantity",
-
-          price: 3000,
-
-          emoji: "🌶️",
-
-          shop: "Wuse Fresh Produce"
-
-        },
-
-        {
-
-          name: "Cooking Utensils",
-
-          description: "Illustrative listing; confirm item",
-
-          price: 5000,
-
-          emoji: "🍳",
-
-          shop: "Wuse Household Goods"
-
-        }
-
-      ],
-
-      Garki: [
-
-        {
-
-          name: "Beans",
-
-          description: "Illustrative listing; confirm quantity",
-
-          price: 3500,
-
-          emoji: "🫘",
-
-          shop: "Garki Foodstuff Shop"
-
-        },
-
-        {
-
-          name: "Fresh Tomatoes",
-
-          description: "Illustrative listing; confirm basket size",
-
-          price: 5000,
-
-          emoji: "🍅",
-
-          shop: "Garki Produce Shop"
-
-        },
-
-        {
-
-          name: "Frozen Fish",
-
-          description: "Illustrative listing; confirm weight",
-
-          price: 6000,
-
-          emoji: "🐟",
-
-          shop: "Garki Meat & Fish"
-
-        }
-
-      ],
-
-      Kubwa: [
-
-        {
-
-          name: "Rice",
-
-          description: "Illustrative listing; confirm bag size",
-
-          price: 75000,
-
-          emoji: "🍚",
-
-          shop: "Kubwa Grocery Shop"
-
-        },
-
-        {
-
-          name: "Fresh Vegetables",
-
-          description: "Illustrative listing; confirm quantity",
-
-          price: 3000,
-
-          emoji: "🥬",
-
-          shop: "Kubwa Fresh Produce"
-
-        },
-
-        {
-
-          name: "Household Essentials",
-
-          description: "Illustrative listing; confirm item",
-
-          price: 2500,
-
-          emoji: "🧺",
-
-          shop: "Kubwa Household Store"
-
-        }
-
-      ]
-
-    };
-
-  let selectedMarket = "Gwarinpa";
-let shoppingCart = [];
-
-    function formatNaira(amount) {
-
-      return "₦" + amount.toLocaleString("en-NG");
-
-    }
-
-    function showMarket(market) {
-
-      selectedMarket = market;
-
-      document.getElementById("shops-title").textContent =
-
-        "Shops in " + market;
-
-      const shopList = document.getElementById("shop-list");
-
-      const productList = document.getElementById("product-list");
-
-      shopList.replaceChildren();
-
-      productList.replaceChildren();
-
-      shopData[market].forEach(function(shop) {
-
-        const card = document.createElement("div");
-
-        card.className = "card shop-card";
-
-        const emoji = document.createElement("div");
-
-        emoji.className = "emoji";
-
-        emoji.textContent = shop.emoji;
-
-        const title = document.createElement("h3");
-
-        title.textContent = shop.name;
-
-        const description = document.createElement("p");
-
-        description.className = "muted";
-
-        description.textContent = shop.description;
-
-        const browseButton = document.createElement("button");
-browseButton.className = "button";
-browseButton.type = "button";
-browseButton.textContent = "Browse Products";
-
-browseButton.addEventListener("click", function() {
-  showShopProducts(shop.name);
-  document.getElementById("products").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-});
-card.append(emoji, title, description, browseButton);
-
-        shopList.appendChild(card);
-
-      });
-
-      productData[market].forEach(function(product) {
-
-        const card = document.createElement("div");
-
-        card.className = "card product-card";
-
-        const emoji = document.createElement("div");
-
-        emoji.className = "emoji";
-
-        emoji.textContent = product.emoji;
-
-        const title = document.createElement("h3");
-
-        title.textContent = product.name;
-
-        const shop = document.createElement("p");
-
-        shop.className = "muted";
-
-        shop.textContent = product.shop;
-
-        const description = document.createElement("p");
-
-        description.className = "muted";
-
-        description.textContent = product.description;
-
-        const price = document.createElement("p");
-
-        price.className = "price";
-
-        price.textContent =
-  product.price === null || product.price === undefined
-    ? "Price to be confirmed"
-    : formatNaira(product.price);
-
-        const button = document.createElement("button");
-
-        button.className = "button";
-
-        button.type = "button";
-
-        button.textContent = "Add to List";
-
-        button.addEventListener("click", function() {
-
-          addToShoppingList(product);
-
-        });
-
-        card.append(emoji, title, shop, description, price, button);
-
-        productList.appendChild(card);
-
-      });
-
-    }
-function showShopProducts(shopName) {
-  const productList = document.getElementById("product-list");
-  document.getElementById("products").style.display = "block";
-  const title = document.querySelector("#products h2");
-
-  title.textContent = "Products from " + shopName;
   productList.replaceChildren();
 
-    const marketProducts = productData[selectedMarket] || [];
-  const shopProducts = marketProducts.filter(
-    product => (product.shop || "").toLowerCase().trim() === shopName.toLowerCase().trim()
-  );
+  (shopData[market] || []).forEach(function(shop) {
 
-  if (!shopProducts.length) {
-    const message = document.createElement("p");
-    message.className = "muted";
-    message.textContent =
-      "No active products are currently listed for this shop.";
-    productList.appendChild(message);
-    return;
-  }
+    var card = document.createElement("div");
 
-  shopProducts.forEach(product => {
-    const card = document.createElement("div");
+    card.className = "card shop-card";
+
+    var emoji = document.createElement("div");
+
+    emoji.className = "emoji";
+
+    emoji.textContent = shop.emoji || "🛒";
+
+    var heading = document.createElement("h3");
+
+    heading.textContent = shop.name;
+
+    var description = document.createElement("p");
+
+    description.className = "muted";
+
+    description.textContent = shop.description || "";
+
+    var button = document.createElement("button");
+
+    button.className = "button";
+
+    button.type = "button";
+
+    button.textContent = "Browse Products";
+
+    button.addEventListener("click", function() {
+
+      showShopProducts(shop.name);
+
+    });
+
+    card.append(emoji, heading, description, button);
+
+    shopList.appendChild(card);
+
+  });
+
+  (productData[market] || []).forEach(function(product) {
+
+    var card = document.createElement("div");
+
     card.className = "card product-card";
 
-    const name = document.createElement("h3");
-    name.textContent = product.name;
+    var emoji = document.createElement("div");
 
-    const description = document.createElement("p");
+    emoji.className = "emoji";
+
+    emoji.textContent = product.emoji || "🛍️";
+
+    var heading = document.createElement("h3");
+
+    heading.textContent = product.name;
+
+    var shop = document.createElement("p");
+
+    shop.className = "muted";
+
+    shop.textContent = product.shop || "";
+
+    var description = document.createElement("p");
+
     description.className = "muted";
+
     description.textContent = product.description || "";
 
-    const price = document.createElement("p");
+    var price = document.createElement("p");
+
     price.className = "price";
+
     price.textContent =
+
       product.price === null || product.price === undefined
+
         ? "Price to be confirmed"
+
         : formatNaira(product.price);
 
-    const button = document.createElement("button");
+    var button = document.createElement("button");
+
     button.className = "button";
+
     button.type = "button";
+
     button.textContent = "Add to List";
-    button.addEventListener("click", () => addToShoppingList(product));
 
-    card.append(name, description, price, button);
-    productList.appendChild(card);
-  });
+    button.addEventListener("click", function() {
 
-  document.getElementById("products").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-    function addToShoppingList(product) {
-  const existingItem = shoppingCart.find(
-    item => String(item.id ?? item.name) ===
-            String(product.id ?? product.name) &&
-            item.shop === product.shop
-  );
+      addToShoppingList(product);
 
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    shoppingCart.push({
-      ...product,
-      quantity: 1
     });
+
+    card.append(emoji, heading, shop, description, price, button);
+
+    productList.appendChild(card);
+
+  });
+
+}
+
+function showShopProducts(shopName) {
+
+  var productList = document.getElementById("product-list");
+
+  var section = document.getElementById("products");
+
+  if (!productList || !section) return;
+
+  section.style.display = "block";
+
+  var title = section.querySelector("h2");
+
+  if (title) title.textContent = "Products from " + shopName;
+
+  productList.replaceChildren();
+
+  var products = (productData[selectedMarket] || []).filter(function(product) {
+
+    return (product.shop || "").trim().toLowerCase() ===
+
+      shopName.trim().toLowerCase();
+
+  });
+
+  if (!products.length) {
+
+    var message = document.createElement("p");
+
+    message.className = "muted";
+
+    message.textContent = "No active products are currently listed for this shop.";
+
+    productList.appendChild(message);
+
+  }
+
+  products.forEach(function(product) {
+
+    var card = document.createElement("div");
+
+    card.className = "card product-card";
+
+    var heading = document.createElement("h3");
+
+    heading.textContent = product.name;
+
+    var description = document.createElement("p");
+
+    description.className = "muted";
+
+    description.textContent = product.description || "";
+
+    var price = document.createElement("p");
+
+    price.className = "price";
+
+    price.textContent =
+
+      product.price === null || product.price === undefined
+
+        ? "Price to be confirmed"
+
+        : formatNaira(product.price);
+
+    var button = document.createElement("button");
+
+    button.className = "button";
+
+    button.type = "button";
+
+    button.textContent = "Add to List";
+
+    button.addEventListener("click", function() {
+
+      addToShoppingList(product);
+
+    });
+
+    card.append(heading, description, price, button);
+
+    productList.appendChild(card);
+
+  });
+
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+}
+
+function addToShoppingList(product) {
+
+  var existing = shoppingCart.find(function(item) {
+
+    return String(item.id ?? item.name) === String(product.id ?? product.name) &&
+
+      item.shop === product.shop;
+
+  });
+
+  if (existing) {
+
+    existing.quantity += 1;
+
+  } else {
+
+    shoppingCart.push({ ...product, quantity: 1 });
+
   }
 
   renderCart();
 
-  document.getElementById("cart").scrollIntoView({
-    behavior: "smooth"
-  });
+  var cart = document.getElementById("cart");
+
+  if (cart) cart.scrollIntoView({ behavior: "smooth" });
+
 }
 
 function renderCart() {
-  const cartItems = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
+
+  var cartItems = document.getElementById("cart-items");
+
+  var cartTotal = document.getElementById("cart-total");
+
+  if (!cartItems || !cartTotal) return;
 
   cartItems.replaceChildren();
 
-  let total = 0;
+  var total = 0;
 
-  if (shoppingCart.length === 0) {
-    const emptyMessage = document.createElement("p");
-    emptyMessage.className = "muted";
-    emptyMessage.textContent = "Your cart is empty.";
-    cartItems.appendChild(emptyMessage);
+  if (!shoppingCart.length) {
+
+    var empty = document.createElement("p");
+
+    empty.className = "muted";
+
+    empty.textContent = "Your cart is empty.";
+
+    cartItems.appendChild(empty);
+
   }
 
-  shoppingCart.forEach((item, index) => {
-    const card = document.createElement("div");
+  shoppingCart.forEach(function(item, index) {
+
+    var card = document.createElement("div");
+
     card.className = "card product-card";
 
-    const title = document.createElement("h3");
-    title.textContent = item.name;
+    var heading = document.createElement("h3");
 
-    const shop = document.createElement("p");
+    heading.textContent = item.name;
+
+    var shop = document.createElement("p");
+
     shop.className = "muted";
-    shop.textContent = item.shop;
 
-    const quantity = document.createElement("p");
+    shop.textContent = item.shop || "";
+
+    var quantity = document.createElement("p");
+
     quantity.textContent = "Quantity: " + item.quantity;
 
-    const price = document.createElement("p");
+    var price = document.createElement("p");
+
     price.className = "price";
 
-    if (item.price === null || item.price === undefined) {
+    if (item.price === null || item.price === undefined ||
+
+        !Number.isFinite(Number(item.price))) {
+
       price.textContent = "Price to be confirmed";
+
     } else {
-      price.textContent = formatNaira(item.price * item.quantity);
-      total += item.price * item.quantity;
+
+      price.textContent = formatNaira(Number(item.price) * item.quantity);
+
+      total += Number(item.price) * item.quantity;
+
     }
 
-    const controls = document.createElement("div");
+    var controls = document.createElement("div");
 
-    const decrease = document.createElement("button");
+    var decrease = document.createElement("button");
+
     decrease.className = "button";
+
     decrease.type = "button";
+
     decrease.textContent = "−";
-    decrease.setAttribute("aria-label", "Decrease quantity");
-    decrease.addEventListener("click", () => {
+
+    decrease.addEventListener("click", function() {
+
       item.quantity -= 1;
 
-      if (item.quantity <= 0) {
-        shoppingCart.splice(index, 1);
-      }
+      if (item.quantity <= 0) shoppingCart.splice(index, 1);
 
       renderCart();
+
     });
 
-    const increase = document.createElement("button");
+    var increase = document.createElement("button");
+
     increase.className = "button";
+
     increase.type = "button";
+
     increase.textContent = "+";
-    increase.setAttribute("aria-label", "Increase quantity");
+
     increase.style.marginLeft = "8px";
-    increase.addEventListener("click", () => {
+
+    increase.addEventListener("click", function() {
+
       item.quantity += 1;
+
       renderCart();
+
     });
 
-    const remove = document.createElement("button");
+    var remove = document.createElement("button");
+
     remove.className = "button";
+
     remove.type = "button";
+
     remove.textContent = "Remove";
+
     remove.style.marginLeft = "8px";
-    remove.addEventListener("click", () => {
+
+    remove.addEventListener("click", function() {
+
       shoppingCart.splice(index, 1);
+
       renderCart();
+
     });
 
     controls.append(decrease, increase, remove);
-    card.append(title, shop, quantity, price, controls);
+
+    card.append(heading, shop, quantity, price, controls);
+
     cartItems.appendChild(card);
+
   });
 
   cartTotal.textContent = formatNaira(total);
+
 }
 
 function goToCheckout() {
-  if (shoppingCart.length === 0) {
+
+  if (!shoppingCart.length) {
+
     alert("Please add products to your cart first.");
+
     return;
+
   }
 
-  const itemsField = document.getElementById("items");
+  var itemsField = document.getElementById("items");
 
-  itemsField.value = shoppingCart.map(item => {
-    const itemPrice =
-      item.price === null || item.price === undefined
-        ? "Price to be confirmed"
-        : formatNaira(item.price);
+  if (!itemsField) return;
+
+  itemsField.value = shoppingCart.map(function(item) {
+
+    var price = item.price === null || item.price === undefined
+
+      ? "Price to be confirmed"
+
+      : formatNaira(item.price);
 
     return "- " + item.name +
+
       " from " + item.shop +
+
       " | Quantity: " + item.quantity +
-      " | Unit price: " + itemPrice;
+
+      " | Unit price: " + price;
+
   }).join("\n");
 
-    document.getElementById("order").scrollIntoView({
-    behavior: "smooth"
-  });
+  var order = document.getElementById("order");
+
+  if (order) order.scrollIntoView({ behavior: "smooth" });
+
 }
-      document.getElementById("order").scrollIntoView({
 
-        behavior: "smooth"
+var orderForm = document.getElementById("order-form");
 
-      });
+if (orderForm) {
+
+  orderForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    var name = document.getElementById("customer-name").value.trim();
+
+    var phone = document.getElementById("customer-phone").value.trim();
+
+    var destination = document.getElementById("destination").value.trim();
+
+    var items = document.getElementById("items").value.trim();
+
+    var extra = document.getElementById("extra-details").value.trim();
+
+    if (!name || !phone || !destination || !shoppingCart.length) {
+
+      alert("Please complete your name, phone, delivery location and shopping list.");
+
+      return;
 
     }
 
-    document.getElementById("order-form").addEventListener(
+    var message =
 
-      "submit",
+      "🛒 QUICK HANDS MARKETPLACE ORDER REQUEST\n\n" +
 
-      function(event) {
+      "Customer: " + name + "\n" +
 
-        event.preventDefault();
+      "Phone: " + phone + "\n" +
 
-        const name =
+      "Market: " + selectedMarket + "\n" +
 
-          document.getElementById("customer-name").value.trim();
+      "Delivery location: " + destination + "\n\n" +
 
-        const phone =
+      "Shopping list:\n" + items + "\n\n" +
 
-          document.getElementById("customer-phone").value.trim();
+      "Additional instructions: " + (extra || "None") + "\n\n" +
 
-        const destination =
+      "Please confirm product availability, any unconfirmed prices, " +
 
-          document.getElementById("destination").value.trim();
+      "shopping service fee and rider delivery cost before proceeding.";
 
-        const items =
+    window.location.href = "https://wa.me/" + WHATSAPP_NUMBER +
 
-          document.getElementById("items").value.trim();
+      "?text=" + encodeURIComponent(message);
 
-        const extraDetails =
+  });
 
-          document.getElementById("extra-details").value.trim();
+}
 
-        if (!name || !phone || !destination || shoppingCart.length === 0) {
-
-          alert("Please complete your name, phone, delivery location and shopping list.");
-
-          return;
-
-        }
-
-        const message =
-
-          "🛒 QUICK HANDS MARKETPLACE ORDER REQUEST\n\n" +
-
-          "Customer: " + name + "\n" +
-
-          "Phone: " + phone + "\n" +
-
-          "Market: " + selectedMarket + "\n" +
-
-          "Delivery location: " + destination + "\n\n" +
-
-          "Shopping list:\n" + items + "\n\n" +
-
-          "Additional instructions: " +
-
-          (extraDetails || "None") + "\n\n" +
-
-          "Please confirm current product prices, availability, " +
-
-          "shopping service fee and rider delivery cost before proceeding.";
-
-        const whatsappURL =
-
-          "https://wa.me/" + WHATSAPP_NUMBER +
-
-          "?text=" + encodeURIComponent(message);
-
-        window.location.href = whatsappURL;
-
-      }
-
-    );
-
-    showMarket("Gwarinpa");
-
-  </script>
+</script>
 <!-- QUICK HANDS LIVE SUPABASE CONNECTION -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
