@@ -1810,11 +1810,10 @@ List everything you need here."
 
     ].join("\n");
 
-    const whatsappURL =
+  const whatsappURL =
+  "https://wa.me/2348085687836?text=" + encodeURIComponent(message);
 
-      "https://wa.me/2349041797547?text=" + encodeURIComponent(message);
-
-    window.open(whatsappURL, "_blank");
+window.open(whatsappURL, "_blank");
 
   });
 
