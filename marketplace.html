@@ -1632,7 +1632,14 @@ Object.keys(productData).forEach(k => delete productData[k]);
       const isGwarinpa =
     marketName.toLowerCase().replace(/\s+market$/, "").trim() === "gwarinpa";
     
-productData[marketName] = liveProducts;
+productData[marketName] = liveProducts.filter(
+  product => marketShops.some(
+    shop =>
+      String(shop.id) === "1" &&
+      String(shop.name).toLowerCase() === "adaku shop" &&
+      String(product.shop) === String(shop.name)
+  )
+);
  
     });
     // Replace the sample market buttons with database markets.
